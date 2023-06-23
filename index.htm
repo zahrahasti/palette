@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="language" content="EN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/style.css">
+    <script defer src="./script.js"></script>
+    <style>
+
+        :root{
+         --font-base:62.5%;
+         --width--base:32rem;
+         --height--base:32rem;
+         ---0:0;
+        }
+        .tran{
+            opacity:1;
+            transition:.4s;
+            animation: low .3s linear;
+        }
+        .tran2{
+            opacity:1;
+            transition:.4s;
+            animation: low2 .8s linear; 
+            animation-fill-mode: forwards;
+        }
+        @keyframes low2 {
+            0%{
+                opacity:1;
+                transform:translateY(-2rem);
+            }
+            100%{
+                opacity:0;
+                display: block;
+                transform: translateY(0);
+            }
+        }
+        @keyframes low {
+            0%{
+                opacity:1;
+            }
+            100%{
+                opacity:0;
+            }
+        }
+        html {
+            font-size:var(--font-base);
+        }
+        .opacity-effect{
+            opacity:0;
+            animation:opacity .3s linear;
+            animation-fill-mode:forwards;
+        }
+
+        .translate-y{
+            transform: translateY(5rem);
+            animation:trans .3s ease-in-out ;
+            animation-fill-mode: forwards;
+        }
+        @keyframes trans {
+            0%{
+            transform: translateY(5rem);
+            }
+            100%{
+            transform: translateY(0rem);
+            }
+        }
+       
+        .inputColor{
+            width:5rem;
+            appearance: none;
+            -webkit-appearance:none;
+            outline: none;
+            border:none;
+            background:transparent;
+            height:5rem;
+         }
+      .inputColor::-webkit-color-swatch{
+        border-radius:.5rem;
+        border:none;
+      }
+      .inputColor::-moz-color-swatch{
+        border-radius:.5rem;
+        border:none;
+      } 
+        .hover:hover button{
+            display: flex;
+        }
+          
+        
+         .width-medium-1{
+           min-width:var(--width--base);
+           max-width:var(--width--base);
+        }
+         .width-medium-2{
+           min-width: calc(var(--width--base) * .75);
+           max-width: calc(var(--width--base) * .75);
+         }
+       
+        .main--section__1::-webkit-scrollbar,aside::-webkit-scrollbar {
+            width: 0;
+        }
+
+        .main--section__active {
+            display: grid;
+        }
+        .grid-5 {
+            display: grid;
+            grid-template-rows: 4fr 3fr 2fr 1.5fr;
+        }
+
+        .section-grid-wrap {
+            display: grid;
+            grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+        }       
+        
+        @media (max-width:1200px) {
+            html{
+                font-size:calc(var(--font-base) * .9);
+            } 
+           
+        }
+
+       .header input:focus+.color--template svg {
+            display: none;
+        }
+
+       .header input:focus+.color--template>.color--template__items {
+            display: block;
+          
+        }
+
+        .container-color:hover button {
+            opacity: 1;
+        }
+
+        .active {
+            background: rgba(0, 0, 0, .08);
+            transition: all .5s;
+            animation:opacity .3s linear;
+            animation-fill-mode:forwards;
+           
+        }
+         .hide{
+            width: var(---0) !important;
+            height: var(---0) !important;
+            opacity:var(---0) !important;
+            position: absolute;
+            left:-1200rem;
+            z-index:-4;
+         }
+         .opacity-low{
+            opacity:var(---0);
+            z-index:-4;
+         }
+        .active svg {
+            fill: black;
+            color: black;
+        }
+        .btn-like.active{
+            animation:btn .3s ease-in;
+        }
+        @keyframes btn {
+            0%{transform: scale(.9)};
+          100%{transform: scale(1)};
+            }
+        
+        .translate-y-0{
+            transform: translateY(15rem);
+            animation:translate .7s;
+            animation-fill-mode: forwards;
+        }
+        @keyframes translate {
+            0%{
+                opacity:.5;
+                transform: translateY(15rem); 
+            }
+            100%{
+                transform: translateY(0rem); 
+                opacity:1;
+            }
+        }
+        @keyframes opacity {
+            0%{
+                opacity:.4;
+            }
+            100%{
+                opacity:1;
+            }
+         }
+        @media (max-width:950px) {
+            html{
+                font-size:55%;
+            }
+        .width-medium-1{
+         width:calc(var(--width--base) * .15);
+         max-width:calc(var(--width--base) * .15);
+         min-width: calc(var(--width--base) * .15);
+         }
+         .width-medium-2{
+           min-width:calc(var(--width--base) * .56);
+           max-width:calc(var(--width--base) * .56);
+         }
+            .hidden-element  {
+                display: none;
+            }
+
+            .btn--open__menu {
+                align-self: flex-end;
+                align-items: flex-end;
+                justify-content: flex-end;
+            }
+            main .grid-repeat-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width:600px) {
+            html{
+                font-size:calc(var(--font-base) * .8);
+            } 
+        .width-medium-2{
+        width:calc(var(--width--base) * .15);
+         max-width:calc(var(--width--base) * .15);
+         min-width: calc(var(--width--base) * .15);
+            
+         }
+         div.width-medium-2 h3{
+            display: none;
+         }
+
+            .main--section__1 {
+                position: absolute;
+            }
+
+            .main--section__1 ul {
+                position: fixed;
+                left: 50%;
+                transform: translateX(-50%);
+                gap: 1rem;
+                bottom: 0;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 2.5rem;
+                height: 10rem;
+            }
+             strong.hidden-text{
+                display: none;
+             }
+         
+            .control--pallete__color li {
+                display: none;
+            }
+        }
+  
+ 
+    </style>
+</head>
+
+<body class="text-[1.6rem]">
+    <header class="header w-full  bg-white fixed left-1/2  -translate-x-1/2 z-[2] py-[.8rem]  ">
+        <nav  class="nav flex justify-between   items-center  border-b-[.1rem] pb-[1rem] border-gray-50">
+            <figure class="width-medium-2  pl-[2.5rem]  flex gap-[1rem]  items-center">
+                <img src="./img/Untitled-1.png" alt="" class="w-[3.2rem]">
+                <strong class="font-semibold hidden-text  text-[2rem] sm:block">Color Hunt</strong>
+            </figure>
+
+            <div class="nav--section__2 px-[2.5rem] w-full  relative">
+                <div class="h-full relative rounded-[2rem] ">
+
+                    <input 
+                          type="search"
+                          class="w-full pl-[3rem] relative z-[3] text-[1.4rem]  py-[.8rem] text-gray-800  focus:pl-[1.2rem] rounded-[2rem] border-[.1rem] border-gray-200   duration-100   outline-none "
+                          placeholder="Search Palletes">
+                    <div class="absolute color--template w-full h-full top-0">
+                        <svg
+                            class="text-gray-600 z-[4] left-[.8rem] w-[1.8rem] h-[1.8rem] top-1/2 -translate-y-1/2 absolute">
+                            <use href="./img/icon.svg#search"></use>
+                        </svg>
+
+                        <div
+                            class="color--template__items bg-white hidden duration-200  absolute p-[2rem]  w-full  rounded-b-2xl   border-gray-100 border-[.1rem] border-t-transparent top-[140%] ">
+                            <p class="font-semibold">Colors</p>
+                            <div class="flex flex-wrap items-center gap-2 py-[1rem] text-[1.2rem]">
+                                <div
+                                    class="small-color">
+                                    <span
+                                        class="block w-[1.5rem] h-[1.5rem] shadow-sm  bg-blue-400 rounded-full"></span><span>Blue</span>
+                                </div>
+                                <div class="small-color">
+                                    <span
+                                        class="block w-[1.5rem] h-[1.5rem] shadow-sm  bg-blue-600 rounded-full"></span><span>Teal</span>
+                                </div>
+                                <div class="small-color">
+                                    <span
+                                        class="block w-[1.5rem] h-[1.5rem] shadow-sm  bg-green-300 rounded-full"></span><span>Mint</span>
+                                </div>
+                                <div class="small-color">
+                                    <span
+                                        class="block w-[1.5rem] h-[1.5rem] shadow-sm  bg-green-600 rounded-full"></span><span>Green</span>
+                                </div>
+                                <div  class="small-color">
+                                    <span
+                                        class="block w-[1.5rem] h-[1.5rem] shadow-sm  bg-blue-600 rounded-full"></span><span>Sago</span>
+                                </div>
+                                <div class="small-color">
+                                    <span
+                                        class="block w-[1.5rem] h-[1.5rem] shadow-sm  bg-yellow-400 rounded-full"></span><span>Yellow</span>
+                                </div>
+                                <div class="small-color">
+                                    <span
+                                        class="block w-[1.5rem] h-[1.5rem] shadow-sm  bg-blue-600 rounded-full"></span>
+                                        <span>Beige</span>
+                                   </div>
+                                <div class="small-color">
+                                    <span
+                                        class="block w-[1.5rem] h-[1.5rem] shadow-sm  bg-red-800 rounded-full"></span><span>Brown</span>
+                                </div>
+                                <div class="small-color">
+                                    <span
+                                        class="block w-[1.5rem] h-[1.5rem] shadow-sm  bg-orange-600 rounded-full"></span><span>Orange</span>
+                                </div>
+                                <div class="small-color">
+                                    <span
+                                        class="block w-[1.5rem] h-[1.5rem] shadow-sm  bg-red-500 rounded-full"></span><span>Peach</span>
+                                </div>
+                                <div class="small-color">
+                                    <span
+                                        class="block w-[1.5rem] h-[1.5rem] shadow-sm  bg-orange-300 rounded-full"></span><span>Peach</span>
+                                </div>
+                                <div class="small-color">
+                                    <span
+                                        class="block w-[1.5rem] h-[1.5rem] shadow-sm  bg-pink-300 rounded-full"></span><span>Peach</span>
+                                </div>
+                               
+                                <div class="small-color">
+                                    <span
+                                        class="block w-[1.5rem] h-[1.5rem] shadow-sm  bg-purple-600 rounded-full"></span><span>purple</span>
+                                </div>
+                                <div class="small-color">
+                                    <span
+                                        class="block w-[1.5rem] h-[1.5rem] shadow-sm  bg-blue-800 rounded-full"></span><span>Blue</span>
+                                </div>
+                                <div class="small-color">
+                                    <span
+                                        class="block w-[1.5rem] h-[1.5rem] shadow-sm  bg-gray-300 rounded-full"></span><span>grey</span>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
+            </div>
+            <div class="nav--section__3 pr-[2.5rem]  width-medium-1 relative flex items-center justify-between gap-4">
+                <a href="../file.htm"
+                    class="btn-chrome hidden-element px-[1.2rem] h-full py-[.6rem] w-max md:flex items-center gap-[1rem] duration-200 hover:bg-[rgba(0,0,0,.01)] rounded-[1rem] border-[.1rem] border-gray-200">
+                    <img src="./img/chrome .png" alt="" class="w-[1.8rem]  h-[1.8rem]">
+                    <span>Add to Chrome</span>
+                </a>
+                <button type="button" class="btn block btn--open__menu p-3  btn--link__page  rounded-full transition-all duration-300 hover:bg-gray-50" data-content="open">
+                    <svg class="w-[2rem] h-[2rem] text-gray-600">
+                        <use href="./img/icon.svg#bar"></use>
+                    </svg>
+                </button>
+                 <ul class="absolute text-[1.4rem] hidden   menu bg-white min-w-[12rem] md:min-w-[15rem] rounded-sm shadow-sm px-[.5rem] py-[1.2rem] top-[5rem] right-[2rem] border-[.1rem] border-gray-50">
+                    <li class="py-[.5rem] px-[1rem] active rounded-[.8rem]"><a href="#">palettes</a></li>
+                    <li class="py-[.5rem] px-[1rem] rounded-[.8rem]"><a href="#">create</a></li>
+                    <li class="py-[.5rem] px-[1rem] rounded-[.8rem]"><a href="#">collection</a></li>
+                 </ul>                    
+ 
+            </div>
+        </nav>
+    </header>
+
+    <main class="main min-h-full flex justify-between ">
+        
+        <section class="main--section__1  pl-[2.5rem] z-50  width-medium-2  sticky    h-[85vh] top-[8rem] mt-[8rem] overflow-y-scroll">
+            <ul class="control--pallete  bg-white z-10 text-gray-800 text-[1.6rem]">
+                <li class="active new btn--link__page  mb-[.5rem] rounded-[1.2rem]" data-btn="btn" data-content="new">
+                    <a href="#" class="flex   mb-[.5rem]  py-[.8rem]  px-[1.5rem] gap-[.8rem] text-[1.7rem] items-center">
+                        <span>
+                            <svg class="w-[2.2rem] h-[2.2rem] stroke-[1rem] stroke-black text-transparent">
+                                <use href="./img/icon.svg#star2"></use>
+                            </svg>
+                        </span>
+                        <span>New</span>
+                    </a>
+                </li>
+                <li class=" btn--link__page   mb-[.5rem]   rounded-[1.2rem]" data-btn="btn"  data-content="popular">
+                    <a href="#" class="flex gap-[.8rem]  py-[.8rem]  px-[1.5rem] text-[1.7rem] items-center">
+                        <span>
+                            <svg class="w-[2.2rem] h-[2.2rem] stroke-[.1rem] stroke-black text-transparent">
+                                <use href="./img/icon.svg#moon"></use>
+                            </svg>
+                        </span>
+                        <span>Popular</span>
+                    </a>
+                </li>
+                <li class=" btn--link__page  mb-[.5rem]  rounded-[1.2rem]" data-btn="btn" data-content="collection">
+                    <a href="#" class="flex gap-[.8rem]  py-[.8rem]  px-[1.5rem] text-[1.7rem] items-center">
+                        <span>
+                            <svg class=" w-[2.2rem] h-[2.2rem]">
+                                <use href="./img/icon.svg#random3"></use>
+                            </svg>
+                        </span>
+                        <span>Collection</span>
+                    </a>
+                </li>
+                <li class=" btn--link__page   mb-[.5rem]   rounded-[1.2rem]" data-btn="btn" data-content="create">
+                    <a href="#" class="flex gap-[.8rem]  py-[.8rem]  px-[1.5rem] text-[1.7rem] items-center">
+                        <span>
+                            <svg class="text-transparent w-[2.2rem] h-[2.2rem] stroke-[1rem] text-black stroke-black ">
+                                <use href="./img/icon.svg#heart3"></use>
+                            </svg>
+                        </span>
+                        <span>Create</span>
+                    </a>
+                </li>
+
+            </ul>
+            <ul class="control--pallete__color unshow">
+                <li class="py-4 px-[.8rem] text-gray-600 text-[1.4rem]"><a href="#">link</a></li>
+                <li class="py-4 px-[.8rem] text-gray-600 text-[1.4rem]"><a href="#">link</a></li>
+                <li class="py-4 px-[.8rem] text-gray-600 text-[1.4rem]"><a href="#">link</a></li>
+                <li class="py-4 px-[.8rem] text-gray-600 text-[1.4rem]"><a href="#">link</a></li>
+                <li class="py-4 px-[.8rem] text-gray-600 text-[1.4rem]"><a href="#">link</a></li>
+                <li class="py-4 px-[.8rem] text-gray-600 text-[1.4rem]"><a href="#">link</a></li>
+                <li class="py-4 px-[.8rem] text-gray-600 text-[1.4rem]"><a href="#">link</a></li>
+                <li class="py-4 px-[.8rem] text-gray-600 text-[1.4rem]"><a href="#">link</a></li>
+                <li class="py-4 px-[.8rem] text-gray-600 text-[1.4rem]"><a href="#">link</a></li>
+                <li class="py-4 px-[.8rem] text-gray-600 text-[1.4rem]"><a href="#">link</a></li>
+                <li class="py-4 px-[.8rem] text-gray-600 text-[1.4rem]"><a href="#">link</a></li>
+                <li class="py-4 px-[.8rem] text-gray-600 text-[1.4rem]"><a href="#">link</a></li>
+                <li class="py-4 px-[.8rem] text-gray-600 text-[1.4rem]"><a href="#">link</a></li>
+                <li class="py-4 px-[.8rem] text-gray-600 text-[1.4rem]"><a href="#">link</a></li>
+                <li class="py-4 px-[.8rem] text-gray-600 text-[1.4rem]"><a href="#">link</a></li>
+                <li class="py-4 px-[.8rem] text-gray-600 text-[1.4rem]"><a href="#">link</a></li>
+                <li class="py-4 px-[.8rem] text-gray-600 text-[1.4rem]"><a href="#">link</a></li>
+                <li class="py-4 px-[.8rem] text-gray-600 text-[1.4rem]"><a href="#">link</a></li>
+                <li class="py-4 px-[.8rem] text-gray-600 text-[1.4rem]"><a href="#">link</a></li>
+                <li class="py-4 px-[.8rem] text-gray-600 text-[1.4rem]"><a href="#">link</a></li>
+            </ul>
+      </section>
+
+
+       
+             <div class="container-main__palettes w-full  mt-[8rem] px-[2.5rem]">
+                    <div class="w-[45%] text-[1.4rem] flex items-center justify-center flex-col mx-auto" data-active="0"></div>
+                    <!-- Container Pallete in deffernt places -->
+                    <section class="container--color__palette section-grid-wrap section--new   h-full active-page w-full grid grid-sy  grid-cols-3 justify-between gap-[1rem]" data-active="1">
+                       </section>
+                    <section class="container--color__palette section-grid-wrap section--popular h-full hide    w-full grid grid-sy   grid-cols-3 justify-between gap-[1rem]" data-active="1"></section>
+                  
+                    <section class="container--color__palette section-grid-wrap section--collection hide  h-full active-page w-full bg-red-300 grid grid-sy  grid-cols-3 justify-between gap-[1rem]" data-active="1"> </section>
+                    <section class="container--color__palette min-h-[85vh] hide section--create w-full  top-[8rem]  grid gap-[1.5rem] justify-center z-1  items-center" data-active="1">
+                        <h3 class="text-center font-bold">New Color Palette</h3>
+                        <p class="text-center">Create a new palette and contribute to Color Hunt’s collection</p>
+                           <div class="flex  items-center relative justify-center">
+                              <div class="grid  grid-5 min-w-[30rem]  min-h-[30rem] text-white  top-0 rounded-[1rem] overflow-hidden grid-temp pallete--color__1" data-id="1">
+                                <div  class="user--selected relative cursor-pointer bg-[#BBBBBB]" data-color="1"></div>
+                                <div  class="user--selected relative cursor-pointer bg-[#CCCCCC]" data-color="2"></div>
+                                <div  class="user--selected relative cursor-pointer bg-[#DDDDDD]" data-color="3"></div>
+                                <div  class="user--selected relative cursor-pointer bg-[#EEEEEE]" data-color="4"></div>
+                                 <div class="container--picker absolute top-0 right-0"></div>
+                             </div>  
+                           
+                        </div>
+                       <button type="button" class="btn btn-custom mx-auto w-max btn--submit__palettes">
+                        <svg class="w-[2rem] mr-1 h-[2rem]"><use href="./img/icon.svg#tel" ></use></svg>
+                        Submit Palette
+                       </button>
+                       
+                    </section>
+             </div>
+      
+        
+        <aside class="main--section__3 pr-[2.5rem] block hidden-element width-medium-1 overflow-y-scroll sticky h-[80vh] top-[8rem]">
+            <div class=" border-b-[.1rem] pb-[2rem] border-gray-100">
+                <h3 class="font-semibold text-[1.8rem]">Color Palettes for <br> Designers and Artists</h3>
+                <p class="text-[1.3rem] mt-[.5rem]">Discover the newest hand-picked <br> palettes of Color Hunt
+                </p>
+            </div>
+             <section class="my-[1.5rem]">
+                <h3 class="font-semibold text-[1.8rem] mb-[1rem]">Collection</h3>
+                <div class="collection--user__love h-[30rem] flex flex-wrap gap-[.5rem]"></div>
+             </section>
+        </aside>
+  
+    
+         <!-- <section class="absolute gap-5 flex w-full h-[85vh] top-[8rem] justify-around z-1 bg-slate-500  items-center">
+       
+         
+        </section>   -->
+     <!-- <div  class="w-[5rem] h-[2.5rem] rounded-[.4rem] text-[1.3rem] grid place-content-center text-white bg-black top-20 z-20 absolute">Saved
+         <span class="border-r-[.7rem] border-l-[.7rem] w-0 h-0 border-b-[.7rem] border-r-transparent border-l-transparent border-b-black absolute -top-[.5rem] left-3"></span>   
+     <div> -->
+
+    </main>
+ 
+</body>
+
+</html>

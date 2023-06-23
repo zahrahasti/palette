@@ -1,0 +1,22 @@
+{
+  "name": "colorpallete",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "css": "npx tailwindcss -i ./assets/tailwind.css -o ./assets/style.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zahrahasti/colorPallete.git"
+  },
+  "author": "zahra NM",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zahrahasti/colorPallete/issues"
+  },
+  "homepage": "https://github.com/zahrahasti/colorPallete#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.3.2"
+  }
+}
