@@ -126,7 +126,7 @@ function removeActiveButton(btn){
   btn.querySelector(".like-counter").textContent--;
 }
 function likedPalette(){
-  
+
 }
 
 function createPalette (color, parent) {
@@ -160,10 +160,10 @@ function createPalette (color, parent) {
 };
 
 function createSamllPallete(id) {
-  const html = `<div style="width:7.2rem;height:7.2rem;border-radius:5px;" class="pallete--color relative grid-5 cursor-pointer grid-temp small--palettes-${id}" data-id="${id}">
+  const html = `<div  class="pallete--color relative w-[7rem] h-[7rem] grid-5 cursor-pointer grid-temp small--palettes-${id}" data-id="${id}">
   <div style="background:#${
     colors[id - 1].color_1
-  };border-radius:5px 5px 0 0;" class="container-color cursor-pointer"></div>
+  };" class="container-color rounded-t-[5px] cursor-pointer"></div>
   <div style="background:#${
     colors[id - 1].color_2
   }" class="container-color cursor-pointer"></div>
@@ -172,13 +172,13 @@ function createSamllPallete(id) {
   }" class="container-color cursor-pointer"></div>
   <div style="background:#${
     colors[id - 1].color_4
-  };border-radius:0 0 5px 5px;" class="container-color cursor-pointer"></div>
+  };" class="container-color rounded-b-[5px] cursor-pointer"></div>
   <button type="button" class="remove-item btn-small" data-id="${
     id 
   }">
-      <svg  style="width:.7rem;height:.7rem;color:#fff;"><use href="./img/icon.svg#time"></use></svg>
+      <svg class="w-[.7rem] h-[.7rem] text-white"><use href="./img/icon.svg#time"></use></svg>
   </button>
-  <div style="top:7rem;"  class="w-[5rem] h-[2.5rem] tran2 rounded-[.4rem] text-[1.3rem] grid place-content-center text-white bg-black top-20 z-20 absolute">Saved
+  <div  class="w-[5rem] top-[7rem] h-[2.5rem]  rounded-[.4rem] text-[1.3rem] grid place-content-center text-white bg-black  z-20 absolute">Saved
   <span class="border-r-[.7rem] border-l-[.7rem] w-0 h-0 border-b-[.7rem] border-r-transparent border-l-transparent border-b-black absolute -top-[.5rem] left-3"></span>   
 <div>
 </div>`;

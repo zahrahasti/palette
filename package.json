@@ -18,5 +18,6 @@
   "homepage": "https://github.com/zahrahasti/colorPallete#readme",
   "devDependencies": {
     "tailwindcss": "^3.3.2"
-  }
+  },
+  "keywords": []
 }
