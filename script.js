@@ -121,37 +121,68 @@ function addActiveButton(btn){
  btn.classList.add("active") 
 }
 function removeActiveButton(btn){
-  document.querySelector(`.small--palettes-${+btn.dataset.id}`).remove()
-  btn.classList.remove("active") 
-  btn.querySelector(".like-counter").textContent--;
+  document.querySelector(`.small--palettes-${+btn.dataset.id}`)?.remove()
+  btn.classList?.remove("active");
+  const textLiked=btn.querySelector(".like-counter")
+  if(textLiked)btn.querySelector(".like-counter").textContent--;
 }
 function likedPalette(){
 
 }
 
+
+function  likedPalette(color, parent) {
+  const html = `
+  <div  class="container--pallete__color mb-[5rem] text-[1.6rem]  container--pallete__color-${color.id} relative w-full  h-0  pb-[120%]">
+  <div class="pallete--color grid grid-5 w-full text-white absolute  h-[80%] top-0 rounded-[1rem] overflow-hidden  pallete--color__1" data-id="1">
+      <div style="background:#${color.color_1};" class="container-color group translate-y  rounded-tr-[1rem]  rounded-tl-[1rem]  relative cursor-pointer">
+          <button type="button" class="btn btn--copy__color w-max  absolute group-hover:opacity-100 opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.25)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_1}">#${color.color_1}</button>
+      </div>
+      <div style="background:#${color.color_2};" class="container-color group translate-y relative cursor-pointer">
+          <button type="button" class="btn btn--copy__color  w-max  absolute group-hover:opacity-100 opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.25)] duration-150 rounded-t-md   px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_2}">#${color.color_2}</button>
+      </div>
+      <div style="background:#${color.color_3};" class="container-color group translate-y relative cursor-pointer">
+      <button type="button" class="btn btn--copy__color  w-max  absolute group-hover:opacity-100 opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.25)] duration-150 rounded-t-md   px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_2}">#${color.color_3}</button>
+     </div>
+      <div style="background:#${color.color_4};" class="container-color group translate-y cursor-pointer">
+          <button type="button" class="btn btn--copy__color w-max  absolute group-hover:opacity-100 opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.25)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_4}">#${color.color_4}</button>
+      </div>
+  </div>
+       <button type="button" class="btn btn-like absolute active bottom-0 btn-like__${color.id} btn-custom" data-id="${color.id}" data-liked="false">
+        <span><svg class="stroke-[1rem]  stroke-black text-transparent w-[2rem] h-[2rem]"><use href="./img/icon.svg#heart3"></use></svg></span>
+        <span id="like-count">Liked</span>
+      </button>
+</div>`;
+
+  parent.insertAdjacentHTML("beforeend", html);
+ 
+};
+
+
+
 function createPalette (color, parent) {
   const html = `
-  <div  class="container--pallete__color  container--pallete__color-${color.id} relative w-full  h-0  pb-[120%]">
-  <div class="pallete--color grid grid-5 w-full text-white absolute  h-[80%] top-0 rounded-[1rem] overflow-hidden grid-temp pallete--color__1" data-id="1">
-      <div style="background:#${color.color_1};" class="container-color translate-y  rounded-tr-[1rem]  rounded-tl-[1rem]  relative cursor-pointer">
-          <button type="button" class="btn btn--copy__color w-max  absolute opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.25)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_1}">#${color.color_1}</button>
+  <div  class="container--pallete__color mb-[3rem]  container--pallete__color-${color.id} relative w-full  h-0  pb-[120%]">
+  <div style="background:#${color.color_1}" class="pallete--color grid-5 w-full  text-[1.6rem] md:text-[1.4rem] xl:text-[1.5rem] text-white absolute bg-[#${color.color_1}] h-[80%] top-0 rounded-[1rem] overflow-hidden  pallete--color__1" data-id="1">
+      <div style="background:#${color.color_1};" class="container-color group  rounded-tr-[1rem]  rounded-tl-[1rem]  relative cursor-pointer">
+          <button type="button" class="btn btn--copy__color w-max  absolute group-hover:opacity-100 opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_1}">#${color.color_1}</button>
       </div>
-      <div style="background:#${color.color_2};" class="container-color translate-y relative cursor-pointer">
-          <button type="button" class="btn btn--copy__color  w-max  absolute opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.25)] duration-150 rounded-t-md   px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_2}">#${color.color_2}</button>
+      <div style="background:#${color.color_2};" class="container-color group animate-[translateUp_1s_ease_forwards] relative cursor-pointer">
+          <button type="button" class="btn btn--copy__color  w-max group-hover:opacity-100  absolute opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md   px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_2}">#${color.color_2}</button>
       </div>
-      <div style="background:#${color.color_3};" class="container-color translate-y cursor-pointer">
-          <button type="button" class="btn btn--copy__color   w-max  absolute opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.25)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_3}">#${color.color_3}</button>
+      <div style="background:#${color.color_3};" class="container-color group animate-[translateUp_1s_ease_forwards] cursor-pointer">
+          <button type="button" class="btn btn--copy__color   w-max group-hover:opacity-100  absolute opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_3}">#${color.color_3}</button>
       </div>
-      <div style="background:#${color.color_4};" class="container-color translate-y cursor-pointer">
-          <button type="button" class="btn btn--copy__color w-max  absolute opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.25)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_4}">#${color.color_4}</button>
+      <div style="background:#${color.color_4};" class="container-color group animate-[translateUp_1s_ease_forwards] cursor-pointer">
+          <button type="button" class="btn btn--copy__color w-max  group-hover:opacity-100 absolute opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_4}">#${color.color_4}</button>
       </div>
   </div>
   <div class="flex container--btn__pallete justify-between absolute bottom-0 w-full gap-3 items-center my-[1rem]">
-      <button type="button" class="btn btn-like btn-like__${color.id} btn-custom" data-id="${color.id}" data-liked="false">
+      <button type="button" class="btn btn-like text-[1.8rem]  md:text-[1.6rem] sm:text-[1.4rem] btn-like__${color.id} btn-custom" data-id="${color.id}" data-liked="false">
         <span><svg class="stroke-[1rem]  stroke-black text-transparent w-[2rem] h-[2rem]"><use href="./img/icon.svg#heart3"></use></svg></span>
         <span id="like-count" class="like-counter">${color.likes}</span>
       </button>
-      <p class="text-[1.3rem] text-gray-500">${color.timer}</p>
+      <p class="text-[1.4rem] md:text-[1.2rem] text-gray-500">${color.timer}</p>
   </div>
 </div>`;
 
@@ -160,7 +191,7 @@ function createPalette (color, parent) {
 };
 
 function createSamllPallete(id) {
-  const html = `<div  class="pallete--color relative w-[7rem] h-[7rem] grid-5 cursor-pointer grid-temp small--palettes-${id}" data-id="${id}">
+  const html = `<div  class="pallete--color relative w-[7rem] h-[7rem] grid-5 cursor-pointer  small--palettes-${id}" data-id="${id}">
   <div style="background:#${
     colors[id - 1].color_1
   };" class="container-color rounded-t-[5px] cursor-pointer"></div>
@@ -178,7 +209,7 @@ function createSamllPallete(id) {
   }">
       <svg class="w-[.7rem] h-[.7rem] text-white"><use href="./img/icon.svg#time"></use></svg>
   </button>
-  <div  class="w-[5rem] top-[7rem] h-[2.5rem]  rounded-[.4rem] text-[1.3rem] grid place-content-center text-white bg-black  z-20 absolute">Saved
+  <div  class="w-[5rem] top-[7rem] h-[2.5rem] animate-[fadeAndTranslate_1.8s_ease_forwards] rounded-[.4rem] text-[1.2rem] grid place-content-center text-white bg-black  z-20 absolute">Saved
   <span class="border-r-[.7rem] border-l-[.7rem] w-0 h-0 border-b-[.7rem] border-r-transparent border-l-transparent border-b-black absolute -top-[.5rem] left-3"></span>   
 <div>
 </div>`;
@@ -186,10 +217,10 @@ selectedPalette.insertAdjacentHTML("beforeend", html);
   const removeItem=[...document.querySelectorAll(".remove-item")];
   removeItem.map(rm=>{
     rm?.addEventListener("click",function(){
-      rm.parentElement.classList.add("tran")
+      rm.parentElement.classList.add("animate-[fade_2s_ease_forwards]")
       setTimeout(()=>{
        
-        rm?.parentElement.remove()},300)
+        rm?.parentElement.remove()},250)
       removeClassActive(paletteCollection,this)
       removeClassActive(trendingPalette,this)
       
@@ -219,19 +250,25 @@ colors.forEach((color) =>{
 popularColorPalette.forEach((color) =>createPalette(color,trendingPalette));
 
 
-const allPalettes=[...paletteCollection.querySelectorAll(".container--pallete__color")]
-const copyText=[...paletteCollection.querySelectorAll(".btn--copy__color")];
+const allPalettes=[...paletteCollection.querySelectorAll(".container--pallete__color")];
 
-copyText.map(copy=>{
-  copy.addEventListener("click",function(){
-    navigator.clipboard.writeText(this.textContent.slice(1))
-    this.textContent="Copied";
-   setTimeout(()=>this.textContent=this.dataset.color,400)
-  
+function copyTextColor(){
+  const copyText=[...document.querySelectorAll(".btn--copy__color")];
+
+  copyText.map(copy=>{
+    copy.addEventListener("click",function(){
+      navigator.clipboard.writeText(this.textContent.slice(1))
+      this.textContent="Copied";
+     setTimeout(()=>this.textContent=this.dataset.color,400)
+    
+    })
+    
+    // setTimeout(copy)
   })
   
-  setTimeout(copy)
-})
+}
+
+copyTextColor()
 
  
 
@@ -280,6 +317,8 @@ btnLinkPages.forEach((btn) => {
           main2.querySelector(`.btn-like__${li}`)?.classList?.add("active");
         })
      }
+     if(this.dataset.content==="collection" || this.dataset.content==="create")document.querySelector(".main--section__3").classList.add("hide")
+     else document.querySelector(".main--section__3").classList.remove("hide")
 
     renderColor(activePage)
     switch (this.dataset.content) {
@@ -291,12 +330,45 @@ btnLinkPages.forEach((btn) => {
         renderDetails(paletteCollection,trendingPalette,btn)
         break;
         case "collection":
+        //  activePage.innerHTML="";
+         
          list=[...selectedPalette.querySelectorAll(".pallete--color")];
-         list.forEach(li=>{
-          console.log(li.dataset.id);
-          activePage.appendChild() 
+         
+        //  if(list.length)activePage.querySelector(".container--empty-palette").classList.add("hidden")
+        //  else activePage.querySelector(".container--empty-palette").classList.remove("hidden")
+        //  list.forEach(li=>{
+        //  likedPalette(colors[+li.dataset.id -1],activePage.querySelector(".container--palette__liked"));
 
-         })
+        //  })
+        //  const btnLiked=activePage.querySelectorAll(".btn-like");
+        //  btnLiked.forEach(btn=>btn.addEventListener("click",function(){
+        //    removeActiveButton(btn);
+        //    removeClassActive(paletteCollection,btn);
+        //    console.log(btn.dataset.id);
+        //    removeClassActive(trendingPalette,btn)
+        //    btn.parentElement.remove()
+        //  }))
+    const containerEmptyPalette=activePage.querySelector(".container--empty-palette");
+ const counterPalette=activePage.querySelector(".counter-palette");
+  if(list.length)containerEmptyPalette.classList.add("hidden")
+  else containerEmptyPalette.classList.remove("hidden")
+  counterPalette.textContent=list.length;
+  activePage.querySelector(".container--palette__liked").innerHTML="";
+  list.forEach(li=>{
+
+  likedPalette(colors[+li.dataset.id -1],activePage.querySelector(".container--palette__liked"));
+
+  })
+  const btnLiked=activePage.querySelectorAll(".btn-like");
+  btnLiked.forEach(btn=>btn.addEventListener("click",function(){
+    removeActiveButton(btn);
+    removeClassActive(paletteCollection,btn);
+    removeClassActive(trendingPalette,btn)
+    btn.parentElement.remove()
+  }))
+
+         
+         copyTextColor()
         break;
 
     }
@@ -323,7 +395,27 @@ timed=setInterval(()=>{
   
 }
  
+function collectionLiked(list,wrapper){
+ const containerEmptyPalette=wrapper.querySelector(".container--empty-palette");
+ const counterPalette=wrapper.querySelector(".counter-palette");
+  if(list.length)containerEmptyPalette.classList.add("hidden")
+  else containerEmptyPalette.classList.remove("hidden")
+  list.forEach(li=>{
 
+  likedPalette(colors[+li.dataset.id -1],containerEmptyPalette);
+
+  })
+  const btnLiked=wrapper.querySelectorAll(".btn-like");
+  btnLiked.forEach(btn=>btn.addEventListener("click",function(){
+    removeActiveButton(btn);
+    removeClassActive(paletteCollection,btn);
+    
+    removeClassActive(trendingPalette,btn)
+    btn.parentElement.remove()
+  }))
+
+
+}
 
 window.addEventListener("load",function(){
   loadActivePallete()
@@ -346,36 +438,40 @@ window.addEventListener("load",function(){
 
 
 
-const createTemp=[...document.querySelectorAll(".create--temp")]
-createTemp.map(temp=>{
-  temp.addEventListener("click",function(e){
+const userSelected=[...document.querySelectorAll(".user--selected")];
+const btnSubmitPalette=document.querySelector(".btn--submit__palette");
+console.log(userSelected);
+userSelected.map(selected=>{
+  selected.addEventListener("click",function(e){
+    console.log(selected);
    document.querySelector(".inputColor")?.remove()
    const inputColor=document.createElement("input");
    inputColor.type = 'color';
    inputColor.classList.add("inputColor","opacity-effect");
-   inputColor.value=temp.dataset.color;
+   inputColor.value=selected.dataset.color;
    document.querySelector(".container--picker").appendChild(inputColor);
 
    inputColor.addEventListener("input",function(){
-    temp.style.background=this.value;
-    temp.dataset.color=this.value;
-
-   const buttonSubmit=document.createElement("button");
-   buttonSubmit.textContent="Submit"
-
-    document.querySelector(".container-btn").appendChild(buttonSubmit)
+    selected.style.background=this.value;
+    selected.dataset.color=this.value;
    })
    
   
   })
 })
 
+btnSubmitPalette.addEventListener("click",function(){
+  
+})
 
 function hiddenElement(className,el){
   document.body.addEventListener("click",function(e){
-    if(!e.target.closest(`.${className}`))el.style.opacity="0" 
+    console.log();
+    if(!e.target.closest(`.${className}`))el.classList.add("hidden") 
   })
 }
+
+hiddenElement("btn--open__menu",document.querySelector(".menu"))
 
 document.querySelector(".btn--link__page").addEventListener("click",function(){
   console.log();
