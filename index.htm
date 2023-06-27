@@ -49,6 +49,11 @@
                 min-width:var(--width--sm);
                 max-width:var(--width--sm);
             }
+            .active {
+            background: rgba(0, 0, 0, .08);
+            transition:background .4s;
+            
+        }
         }
         @media (max-width:600px) {
             :root{
@@ -58,6 +63,9 @@
                 min-width:var(--width--sm);
                  max-width:var(--width--sm);
             }
+            li.active {
+            background:white;
+        }
         }
 
         .inputColor{
@@ -101,10 +109,9 @@
         }
         .active {
             background: rgba(0, 0, 0, .08);
-            transition:background .4s;
-            
+            transition:background .4s;   
         }
-        .active:hover{
+        .active:not(.btn--link__page):hover{
             background: rgba(0, 0, 0, .07);
         }
          .hide{
@@ -118,18 +125,22 @@
         .active svg {
             fill: black;
             color: black;
+            transition:background .4s;
+            animation:opacity .3 ease-in;   
         }
         .btn-like.active{
-            animation:btn .3s ease-in;
+            animation:btn .6s;
         }
         @keyframes btn {
             0%{transform: scale(.9)};
           100%{transform: scale(1)};
-            }
+        }
+        @keyframes opacity {
+            0%{opacity:.5};
+          100%{opacity:1};
+        }
             li.active {
-            font-weight:400;
-    
-            }
+            font-weight:400;}
   
     
  
@@ -255,7 +266,7 @@
 
     <main class="main min-h-full flex justify-between ">
         <section class="main--section__1 pl-[2.5rem] z-50  width-lg absolute sm:sticky    h-[85vh] top-[8rem] mt-[8rem] overflow-y-scroll">
-            <menu class="control--pallete fixed sm:relative left-1/2 bottom-0  -translate-x-1/2 gap-[.5rem] w-full flex sm:flex-col items-center justify-around p-[.5rem] bg-red-400 sm:p-[1rem]  sm:items-start  bg-white z-10 text-gray-800 text-[1.6rem]">
+            <menu class="control--pallete border-t-[.1rem] border-t-[#f8f8f8] sm:border-t-0 fixed sm:relative left-1/2 bottom-0  -translate-x-1/2 gap-[.5rem] w-full flex sm:flex-col items-center justify-around p-[.5rem] bg-red-400 sm:p-[1rem]  sm:items-start  bg-white z-10 text-gray-800 text-[1.6rem]">
                 <li class="active new btn--link__page w-full  mb-[.5rem]   rounded-[.8rem] sm:rounded-[1rem]" data-btn="btn" data-content="new">
                     <a href="#" class="flex  flex-col sm:flex-row gap-[.8rem] px-[.8rem]  py-[1rem] text-[1.7rem] items-center">
                         <span>
@@ -327,7 +338,7 @@
              <div class="container-main__palettes w-full  mt-[8rem] px-[2.5rem]">
                     <div class="w-[45%] text-[1.4rem] flex items-center justify-center flex-col mx-auto" data-active="0"></div>
                     <!-- Container Pallete in deffernt places -->
-                    <section class="container--color__palette mb-[55rem] sm:mb-0 grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] section--new   h-full active-page w-full  justify-between gap-[1rem]" data-active="1"></section>
+                    <section class="container--color__palette mb-[56rem] sm:mb-0 grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] section--new   h-full active-page w-full  justify-between gap-[1rem]" data-active="1"></section>
                     <section class="container--color__palette mb-[35rem] sm:mb-0 grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] section--popular h-full hide w-full justify-between gap-[1rem]" data-active="1"></section>
                   
                     <section class="container--color__palette mx-auto sm:mx-0 relative  w-full  mb-[10rem] sm:mb-0  section--collection hide  h-full active-page gap-[1rem]" data-active="1">

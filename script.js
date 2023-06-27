@@ -167,13 +167,13 @@ function createPalette (color, parent) {
       <div style="background:#${color.color_1};" class="container-color group  rounded-tr-[1rem]  rounded-tl-[1rem]  relative cursor-pointer">
           <button type="button" class="btn btn--copy__color w-max  absolute group-hover:opacity-100 opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_1}">#${color.color_1}</button>
       </div>
-      <div style="background:#${color.color_2};" class="container-color group animate-[translateUp_1s_ease_forwards] relative cursor-pointer">
+      <div style="background:#${color.color_2};" class="container-color group animate-[translateUp_1.5s_ease_forwards] relative cursor-pointer">
           <button type="button" class="btn btn--copy__color  w-max group-hover:opacity-100  absolute opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md   px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_2}">#${color.color_2}</button>
       </div>
-      <div style="background:#${color.color_3};" class="container-color group animate-[translateUp_1s_ease_forwards] cursor-pointer">
+      <div style="background:#${color.color_3};" class="container-color group animate-[translateUp_1.5s_ease_forwards] cursor-pointer">
           <button type="button" class="btn btn--copy__color   w-max group-hover:opacity-100  absolute opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_3}">#${color.color_3}</button>
       </div>
-      <div style="background:#${color.color_4};" class="container-color group animate-[translateUp_1s_ease_forwards] cursor-pointer">
+      <div style="background:#${color.color_4};" class="container-color group animate-[translateUp_1.5s_ease_forwards] cursor-pointer">
           <button type="button" class="btn btn--copy__color w-max  group-hover:opacity-100 absolute opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_4}">#${color.color_4}</button>
       </div>
   </div>
