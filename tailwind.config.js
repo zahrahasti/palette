@@ -11,36 +11,16 @@ module.exports = {
 
       'lg': '1200px',
       // => @media (min-width: 1280px) { ... }
+      "xl":"1500px"
     },
     extend: {
-      keyframes: {
-         fadeAndTranslate: {
-          '0%': { opacity: '1',
-                 transform:"translateY(-1rem)"
-           },
-           '80%': { opacity: '1',
-           transform:"translateY(0rem)"
-          },
-          '100%': { opacity: '0',
-          transform:"translateY(0)",
-          display:"none"
-        },
-        }
-        ,
-         fade:{
-          "0%":{ opacity:"1"},
-          "100%":{opacity:"0"}
-         },
-          translateUp:{
-          "0%":{
-            transform:"translateY(1.5rem)"
-          },
-          "100%":{
-            transform:"translateY(0rem)"
-          }
-        }
+      maxWidth: {
+        'xs': '20rem',  // Extra Small
+        'sm': '30rem',  // Small
+        'md': '40rem',  // Medium
+        'lg': '50rem',  // Large
+        'xl': '60rem',  // Extra Large
       },
-     
   }
   },
   plugins: [],
