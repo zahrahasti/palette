@@ -42,7 +42,7 @@ const colors =
       "color_2": "4942E4",
       "color_3": "8696FE",
       "color_4": "C4B0FF",
-      "timer": "2023/6/5",
+      "timer": "2023/1/5",
       "likes": 434,
       "popular": true
   },
@@ -53,7 +53,7 @@ const colors =
       "color_2": "D0F5BE",
       "color_3": "FBFFDC",
       "color_4": "A4907C",
-      "timer": "15 hours",
+      "timer": "2023/5/5",
       "likes": 53,
       "popular": true
   },
@@ -64,7 +64,7 @@ const colors =
       "color_2": "488FB1",
       "color_3": "4FD3C4",
       "color_4": "C1F8CF",
-      "timer": "15 hours",
+      "timer": "2023/5/5",
       "likes": 83,
       "popular": true
   },
@@ -75,7 +75,7 @@ const colors =
       "color_2": "7ECA9C",
       "color_3": "40394A",
       "color_4": "1C1427",
-      "timer": "15 hours",
+      "timer": "2023/1/",
       "likes": 673,
       "popular": true
   },
@@ -383,7 +383,6 @@ function removeActiveSelectedPalette(){
     containerSelectedColor.querySelector(".like-counter").textContent--;
    }
 }
-
  
 
 function createPalette(colors,parent,type){
@@ -394,19 +393,20 @@ function createPalette(colors,parent,type){
     const div=document.createElement("div");
     div.classList.add("container--pallete__color","relative","w-full","scale-[.85]","sm:scale-100","h-0","pb-[120%]");
     // div.setAttribute("data-id",`${color.id}`);
+    // 1-5 5-9 9-13 13-16
     // container--pallete__color container--pallete__color-${color.id} relative scale-[.9]  sm:scale-90 w-[35rem] h-[42rem]" data-id="${color.id}"
     child1=`
-    <div style="background:#${color.color_1}" class="pallete--color grid-5 w-full  text-[1.6rem] md:text-[1.4rem] xl:text-[1.5rem] text-white absolute bg-[#${color.color_1}] h-[80%] top-0 rounded-[1rem] overflow-hidden  pallete--color__1" data-id="${color.id}">
-        <div style="background:#${color.color_1};" class="container-color group  rounded-tr-[1rem]  rounded-tl-[1rem]  relative cursor-pointer">
+    <div style="background:#${color.color_1}" class="pallete--color  grid grid-rows-16 w-full  text-[1.6rem] md:text-[1.4rem] xl:text-[1.5rem] text-white absolute bg-[#${color.color_1}] h-[80%] top-0 rounded-[1rem] overflow-hidden  pallete--color__1" data-id="${color.id}">
+        <div style="background:#${color.color_1};" class="container-color group row-[span_6_/_span_16]    rounded-tr-[1rem]  rounded-tl-[1rem]  relative cursor-pointer">
             <button type="button" class="btn btn--copy__color w-max  absolute group-hover:opacity-100 opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_1}">#${color.color_1}</button>
         </div>
-        <div style="background:#${color.color_2};" class="container-color group animate-[translateUp_1.5s_ease_forwards] relative cursor-pointer">
+        <div style="background:#${color.color_2};" class="container-color group  row-[span_5_/_span_13] animate-[translateUp_1.5s_ease_forwards] relative cursor-pointer">
             <button type="button" class="btn btn--copy__color  w-max group-hover:opacity-100  absolute opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md   px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_2}">#${color.color_2}</button>
         </div>
-        <div style="background:#${color.color_3};" class="container-color group animate-[translateUp_1.5s_ease_forwards] cursor-pointer">
+        <div style="background:#${color.color_3};" class="container-color group row-[span_4_/_span_9] animate-[translateUp_1.5s_ease_forwards] cursor-pointer">
             <button type="button" class="btn btn--copy__color   w-max group-hover:opacity-100  absolute opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_3}">#${color.color_3}</button>
         </div>
-        <div style="background:#${color.color_4};" class="container-color group animate-[translateUp_1.5s_ease_forwards] cursor-pointer">
+        <div style="background:#${color.color_4};" class="container-color group row-[span_3_/_span_7] animate-[translateUp_1.5s_ease_forwards] cursor-pointer">
             <button type="button" class="btn btn--copy__color w-max  group-hover:opacity-100 absolute opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_4}">#${color.color_4}</button>
         </div>
     </div>
@@ -417,7 +417,7 @@ function createPalette(colors,parent,type){
       <span><svg class="stroke-[1rem]  stroke-black text-transparent w-[2rem] h-[2rem]"><use href="./img/icon.svg#heart3"></use></svg></span>
       <span id="like-count" class="like-counter">${color.likes}</span>
     </button>
-    <p class="text-[1.4rem] md:text-[1.2rem] text-gray-500">${color.timer}</p>
+    <p class="text-[1.4rem] md:text-[1.2rem] text-gray-500">${formatTimeDifference(new Date(color.timer),new Date())}</p>
    </div>
     `
     if(type==="liked"){
@@ -427,7 +427,7 @@ function createPalette(colors,parent,type){
       <span><svg class="stroke-[1rem]  stroke-black text-transparent w-[2rem] h-[2rem]"><use href="./img/icon.svg#heart3"></use></svg></span>
       <span id="like-count" class="like-counter">Liked</span>
     </button>
-    <p class="text-[1.4rem] md:text-[1.2rem] text-gray-500">${color.timer}</p>
+    <p class="text-[1.4rem] md:text-[1.2rem] text-gray-500">${formatTimeDifference(new Date(color.timer),new Date())}</p>
    </div>
     `
     };
@@ -435,17 +435,17 @@ function createPalette(colors,parent,type){
       div.classList.remove("w-full","scale-[.85]","sm:scale-100","h-0","pb-[120%]");
       div.classList.add("scale-[.9]","sm:scale-90","w-[35rem]","h-[42rem]")
       child1=`
-      <div style="background:#${color.color_1}" class="pallete--color palette-color__container grid-5  text-[1.6rem]  xl:text-[1.5rem] text-white w-[35rem] h-[35rem] bg-[#${color.color_1}]  rounded-[1rem] overflow-hidden  pallete--color__1" data-id="${color.id}">
-              <div style="background:#${color.color_1};" class="container-color group  rounded-tr-[1rem]  rounded-tl-[1rem]  relative cursor-pointer">
+      <div style="background:#${color.color_1}" class="pallete--color palette-color__container  grid grid-rows-16  text-[1.6rem]  xl:text-[1.5rem] text-white w-[35rem] h-[35rem] bg-[#${color.color_1}]  rounded-[1rem] overflow-hidden  pallete--color__1" data-id="${color.id}">
+              <div style="background:#${color.color_1};" class="container-color group row-[span_6_/_span_16] rounded-tr-[1rem]  rounded-tl-[1rem]  relative cursor-pointer">
                   <button type="button" class="btn btn--copy__color w-max  absolute group-hover:opacity-100 opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_1}" data-target="copy">#${color.color_1}</button>
               </div>
-              <div style="background:#${color.color_2};" class="container-color group animate-[translateUp_1.5s_ease_forwards] relative cursor-pointer">
+              <div style="background:#${color.color_2};" class="container-color group row-[span_5_/_span_16] animate-[translateUp_1.5s_ease_forwards] relative cursor-pointer">
                   <button type="button" class="btn btn--copy__color  w-max group-hover:opacity-100  absolute opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md   px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_2}"  data-target="copy">#${color.color_2}</button>
               </div>
-              <div style="background:#${color.color_3};" class="container-color relative group animate-[translateUp_1.5s_ease_forwards] cursor-pointer">
+              <div style="background:#${color.color_3};" class="container-color relative group row-[span_5_/_span_16] animate-[translateUp_1.5s_ease_forwards] cursor-pointer">
                   <button type="button" class="btn btn--copy__color   w-max group-hover:opacity-100  absolute opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_3}"  data-target="copy">#${color.color_3}</button>
               </div>
-              <div style="background:#${color.color_4};" class="container-color relative group animate-[translateUp_1.5s_ease_forwards] cursor-pointer">
+              <div style="background:#${color.color_4};" class="container-color relative group row-[span_4_/_span_16] animate-[translateUp_1.5s_ease_forwards] cursor-pointer">
                   <button type="button" class="btn btn--copy__color w-max  group-hover:opacity-100 absolute opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_4}"  data-target="copy">#${color.color_4}</button>
               </div>
           </div>
@@ -469,7 +469,7 @@ function createPalette(colors,parent,type){
               <span><svg class="w-[2rem] h-[2rem]"><use href="./img/icon.svg#link"></use></svg></span>
               <span>Link</span>
             </button>
-              <p class="text-[1.4rem] md:text-[1.2rem] text-gray-500">${color.timer}</p>
+              <p class="text-[1.4rem] md:text-[1.2rem] text-gray-500">${formatTimeDifference(new Date(color.timer),new Date())}</p>
           </div>
     `
       child3=`
@@ -585,19 +585,19 @@ function downloadPalette(coloor) {
   
 function createSamllPallete(color) {
  
-  const html = `<div  class="pallete--color relative w-[7rem] h-[7rem] grid-5 cursor-pointer  small--palettes-${color.id}" data-id="${color.id}">
+  const html = `<div  class="pallete--color relative w-[7rem] h-[7rem] grid grid-rows-14 cursor-pointer  small--palettes-${color.id}" data-id="${color.id}">
   <div style="background:#${
     color.color_1
-  };" class="container-color rounded-t-[5px] cursor-pointer"></div>
+  };" class="container-color row-[span_6_/_span_16] rounded-t-[5px] cursor-pointer"></div>
   <div style="background:#${
     color.color_2
-  }" class="container-color cursor-pointer"></div>
+  }" class="container-color  row-[span_5_/_span_16] cursor-pointer"></div>
   <div style="background:#${
     color.color_3
-  }" class="container-color cursor-pointer"></div>
+  }" class="container-color row-[span_4_/_span_16] cursor-pointer"></div>
   <div style="background:#${
     color.color_4
-  };" class="container-color rounded-b-[5px] cursor-pointer"></div>
+  };" class="container-color row-[span_2_/_span_16] rounded-b-[5px] cursor-pointer"></div>
   <button type="button" class="remove-item btn-small" data-id="${
   color.id
   }">
@@ -875,6 +875,32 @@ document.querySelector(".btn--link__page").addEventListener("click",function(){
   document.querySelector(".menu").classList.toggle("hidden");
 })
  
+function formatTimeDifference(startDate, endDate) {
+  const timeDifference = endDate - startDate; // Calculate time difference in milliseconds
+  const diHours = Math.floor(timeDifference / (1000 * 60 * 60));
+
+  let targetDate, numDate;
+
+  if (diHours % 24 === 0) {
+    targetDate = "day";
+    numDate = diHours;
+  } else if (diHours % 7 === 0) {
+    targetDate = "week";
+    numDate = Math.floor(diHours / 168);
+  } else if (diHours % 30 === 0) {
+    targetDate = "month";
+    numDate = Math.floor(diHours / 720);
+  } else {
+    targetDate = "hour";
+    numDate = diHours;
+  }
+
+  const formatter = new Intl.RelativeTimeFormat("en-US");
+  const formattedDate = formatter.format(-numDate, targetDate);
+  return formattedDate.split("").slice(0,-4).join("")
+ }
+
+formatTimeDifference(new Date("2000/2/6"),new Date("2000/3/1"));
 
 
 window.addEventListener("load",function(){
