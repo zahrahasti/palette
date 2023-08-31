@@ -266,12 +266,6 @@ function decreaseCounterLike(wrapper,counter){
   if( wrapper.querySelector(`.btn-like__${counter}`))
   wrapper.querySelector(`.btn-like__${counter}`).querySelector(".like-counter").textContent--;
 }
-function addClassActive(parent,btn){
-  parent.querySelector(`.btn-like__${+btn.dataset.id}`)?.classList.add("active");
-  incrementCounterLike(parent,btn.dataset.id);
-  // parent.querySelector(`.btn-like__${+btn.dataset.id}`).querySelector(".like-counter").textContent--;
-}
-
  
 
 // RENDER PALETTES IN MANIN--1 

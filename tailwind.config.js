@@ -14,12 +14,26 @@ module.exports = {
       "xl":"1500px"
     },
     extend: {
-      maxWidth: {
-        'xs': '20rem',  // Extra Small
-        'sm': '30rem',  // Small
-        'md': '40rem',  // Medium
-        'lg': '50rem',  // Large
-        'xl': '60rem',  // Extra Large
+      keyframes: {
+        'fadeAndTranslate': {
+          '0%' : { 
+            transform:"translateY(-3rem)",
+            opacity:1
+           },
+          '100%': { 
+            transform: 'translateY(1rem)',
+            opacity:0
+          },
+        },
+        "scaleAndFade":{
+          "0%":{
+            scale:"1"
+          },
+          "100%":{
+            scale:"0",
+            display:"none"
+          }
+        }
       },
   }
   },

@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+html{
+  @apply  text-[56%] sm:text-[60%] md:text-[62.5%];
+}
 .btn-custom {
   @apply flex items-center gap-[1rem] px-[1rem] 
   py-[.4rem] border-[.1rem] border-gray-200 
@@ -25,4 +28,81 @@
     flex items-center gap-[.6rem] rounded-[4rem];
 }
 
-/* style="position:absolute;top:3px;right:3px;border-radius:50%;background:rgba(0,0,0,.6)"  */
+.active {
+  @apply bg-gray-200 duration-200;
+}
+li.active{
+   @apply bg-white sm:bg-gray-200;
+}
+.active svg {
+  @apply fill-black text-black duration-200;
+}
+
+.active:not(.btn--link__page):hover {
+  background: rgba(0, 0, 0, .07);
+}
+
+.hide {
+  @apply w-0 h-0 opacity-0 absolute left-[-12000rem] -z-[4];
+}
+
+.active svg {
+  @apply fill-black text-black duration-300;
+}
+
+.btn-like.active {
+  animation: btn .6s;
+}
+
+.inputColor {
+  @apply w-20 appearance-none rounded-md outline-none border-none bg-transparent h-20;
+}
+
+.inputColor::-webkit-color-swatch,.inputColor::-moz-color-swatch  {
+  @apply rounded-md border-none;
+}
+
+.main--section__1::-webkit-scrollbar,
+aside::-webkit-scrollbar {
+  @apply w-0;
+}
+.header input:focus+.color--template svg {
+  @apply hidden;
+}
+
+.header input:focus+.color--template>.color--template__items {
+  @apply block;
+}
+@keyframes btn {
+  0% {
+      transform: scale(.9)
+  }
+
+  ;
+
+  100% {
+      transform: scale(1)
+  }
+
+  ;
+}
+
+@keyframes opacity {
+  0% {
+      opacity: .5
+  }
+  100% {
+      opacity: 1
+  }
+
+  ;
+}
+@keyframes scaleAnimation {
+  0% {
+      transform: scale(1);
+  }
+
+  100% {
+      transform: scale(0);
+  }
+}
