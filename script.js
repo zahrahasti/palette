@@ -2,140 +2,23 @@
 import colors from "./colors.json" assert {type:"json"};
 import {downloadPalette} from "./download-img.js";
 import { copyTextColor } from "./copyText.js";
+import {createPalette} from "./createEl.js";
+import {checkSmallButton} from "./checkedActive.js"
+import {createSamllPallete} from "./createSmallPalette.js";
+import {userSelectedInput} from "./createColorInput.js";
+import {hiddenElement} from "./hideEl.js"
 const popularColorPalette = colors.filter((color) => color?.popular === true);
-const paletteCollection=document.querySelector(".section--new");
-const trendingPalette=document.querySelector(".section--popular")
+export const paletteCollection=document.querySelector(".section--new");
+export const trendingPalette=document.querySelector(".section--popular")
 const containerPalettes = [...document.querySelectorAll(".container--color__palette")];
 const btnLinkPages = document.querySelectorAll("li.btn--link__page");
-const selectedPalette = document.querySelector(".collection--user__love");
-const containerSelectedColor=document.querySelector(".container--selected__palette");
+export const selectedPalette = document.querySelector(".collection--user__love");
+export const containerSelectedColor=document.querySelector(".container--selected__palette");
 const containerTrendingColor=document.querySelector(".container--palette__liked")
-
-function removeActiveSelectedPalette(){
-  if(containerSelectedColor.innerHTML!==""){
-    containerSelectedColor.querySelector('[data-target="like"]')?.classList.remove("active")
-    containerSelectedColor.querySelector(".like-counter").textContent--;
-   }
-}
+const userSelected=[...document.querySelectorAll(".user--selected")];
 
 
-function createPalette(colors,parent,type){
-  let child2,child3=``,child1;
- 
-  colors.map(color=>{
-  
-    const div=document.createElement("div");
-    div.classList.add("container--pallete__color","relative","w-full","scale-[.85]","sm:scale-100","h-0","pb-[120%]");
-    // div.setAttribute("data-id",`${color.id}`);
-    // 1-5 5-9 9-13 13-16
-    // container--pallete__color container--pallete__color-${color.id} relative scale-[.9]  sm:scale-90 w-[35rem] h-[42rem]" data-id="${color.id}"
-    child1=`
-    <div style="background:#${color.color_1}" class="pallete--color  grid grid-rows-16 w-full  text-[1.6rem] md:text-[1.4rem] xl:text-[1.5rem] text-white absolute bg-[#${color.color_1}] h-[80%] top-0 rounded-[1rem] overflow-hidden  pallete--color__1" data-id="${color.id}">
-        <div style="background:#${color.color_1};" class="container-color group row-[span_6_/_span_16]    rounded-tr-[1rem]  rounded-tl-[1rem]  relative cursor-pointer">
-            <button type="button" class="btn btn--copy__color w-max  absolute group-hover:opacity-100 opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_1}">#${color.color_1}</button>
-        </div>
-        <div style="background:#${color.color_2};" class="container-color group  row-[span_5_/_span_13] animate-[translateUp_1.5s_ease_forwards] relative cursor-pointer">
-            <button type="button" class="btn btn--copy__color  w-max group-hover:opacity-100  absolute opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md   px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_2}">#${color.color_2}</button>
-        </div>
-        <div style="background:#${color.color_3};" class="container-color group row-[span_4_/_span_9] animate-[translateUp_1.5s_ease_forwards] cursor-pointer">
-            <button type="button" class="btn btn--copy__color   w-max group-hover:opacity-100  absolute opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_3}">#${color.color_3}</button>
-        </div>
-        <div style="background:#${color.color_4};" class="container-color group row-[span_3_/_span_7] animate-[translateUp_1.5s_ease_forwards] cursor-pointer">
-            <button type="button" class="btn btn--copy__color w-max  group-hover:opacity-100 absolute opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_4}">#${color.color_4}</button>
-        </div>
-    </div>
-    `
-    if(type==="palette")child2=`
-    <div class="flex container--btn__pallete container--main__btn justify-between absolute bottom-0 w-full gap-3 items-center my-[1rem]">
-    <button type="button" class="btn btn-like text-[1.8rem]  md:text-[1.6rem] sm:text-[1.4rem] btn-like__${color.id} btn-custom" data-id="${color.id}" data-liked="false">
-      <span><svg class="stroke-[1rem]  stroke-black text-transparent w-[2rem] h-[2rem]"><use href="./img/icon.svg#heart3"></use></svg></span>
-      <span id="like-count" class="like-counter">${color.likes}</span>
-    </button>
-    <p class="text-[1.4rem] md:text-[1.2rem] text-gray-500">${formatTimeDifference(new Date(color.timer),new Date())}</p>
-   </div>
-    `
-    if(type==="liked"){
-    child2=`
-    <div class="flex container--btn__pallete container--main__btn justify-between absolute bottom-0 w-full gap-3 items-center my-[1rem]">
-    <button type="button" class="btn active btn-like text-[1.8rem]  md:text-[1.6rem] sm:text-[1.4rem] btn-like__${color.id} btn-custom" data-id="${color.id}" data-liked="false">
-      <span><svg class="stroke-[1rem]  stroke-black text-transparent w-[2rem] h-[2rem]"><use href="./img/icon.svg#heart3"></use></svg></span>
-      <span id="like-count" class="like-counter">Liked</span>
-    </button>
-    <p class="text-[1.4rem] md:text-[1.2rem] text-gray-500">${formatTimeDifference(new Date(color.timer),new Date())}</p>
-   </div>
-    `
-    };
-    if(type==="clicked"){
-      div.classList.remove("w-full","scale-[.85]","sm:scale-100","h-0","pb-[120%]");
-      div.classList.add("scale-[.9]","sm:scale-90","w-[35rem]","h-[42rem]")
-      child1=`
-      <div style="background:#${color.color_1}" class="pallete--color palette-color__container  grid grid-rows-16  text-[1.6rem]  xl:text-[1.5rem] text-white w-[35rem] h-[35rem] bg-[#${color.color_1}]  rounded-[1rem] overflow-hidden  pallete--color__1" data-id="${color.id}">
-              <div style="background:#${color.color_1};" class="container-color group row-[span_6_/_span_16] rounded-tr-[1rem]  rounded-tl-[1rem]  relative cursor-pointer">
-                  <button type="button" class="btn btn--copy__color w-max  absolute group-hover:opacity-100 opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_1}" data-target="copy">#${color.color_1}</button>
-              </div>
-              <div style="background:#${color.color_2};" class="container-color group row-[span_5_/_span_16] animate-[translateUp_1.5s_ease_forwards] relative cursor-pointer">
-                  <button type="button" class="btn btn--copy__color  w-max group-hover:opacity-100  absolute opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md   px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_2}"  data-target="copy">#${color.color_2}</button>
-              </div>
-              <div style="background:#${color.color_3};" class="container-color relative group row-[span_5_/_span_16] animate-[translateUp_1.5s_ease_forwards] cursor-pointer">
-                  <button type="button" class="btn btn--copy__color   w-max group-hover:opacity-100  absolute opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_3}"  data-target="copy">#${color.color_3}</button>
-              </div>
-              <div style="background:#${color.color_4};" class="container-color relative group row-[span_4_/_span_16] animate-[translateUp_1.5s_ease_forwards] cursor-pointer">
-                  <button type="button" class="btn btn--copy__color w-max  group-hover:opacity-100 absolute opacity-0 bottom-0  hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_4}"  data-target="copy">#${color.color_4}</button>
-              </div>
-          </div>
-      `
-         
-      
-      
-      child2=`
-          <div class="flex container--btn__pallete container--main__btn justify-between absolute bottom-0 w-full gap-3 items-center my-[1rem]">
-   
-              <button type="button" class="btn-container__palette btn-like text-[1.8rem]  md:text-[1.6rem] sm:text-[1.4rem] btn-like__${color.id} btn-custom" data-id="${color.id}" data-target="like">
-                <span><svg class="stroke-[1rem]  stroke-black text-transparent w-[2rem] h-[2rem]"><use href="./img/icon.svg#heart3"></use></svg></span>
-                <span id="like-count" class="like-counter">${color.likes}</span>
-              </button>
-              
-               <button type="button" class="btn-container__palette btn--download__img text-[1.8rem]  md:text-[1.6rem] sm:text-[1.4rem] btn-like__${color.id} btn-custom" data-id="${color.id}" data-target="download">
-                <span><svg class="w-[2rem] h-[2rem]"><use href="./img/icon.svg#download"></use></svg></span>
-                <span>Image</span>
-              </button>
-              <button type="button" class="btn-container__palette btn-link text-[1.8rem]  md:text-[1.6rem] sm:text-[1.4rem] btn-like__${color.id} btn-custom" data-id="${color.id}" data-liked="false" data-target="link">
-              <span><svg class="w-[2rem] h-[2rem]"><use href="./img/icon.svg#link"></use></svg></span>
-              <span>Link</span>
-            </button>
-              <p class="text-[1.4rem] md:text-[1.2rem] text-gray-500">${formatTimeDifference(new Date(color.timer),new Date())}</p>
-          </div>
-    `
-      child3=`
-      
-        <div class="scale-[.9]  sm:scale-90 w-[37rem] sm:w-[40rem]">
-  <div class="flex justify-between items-center py-[1rem] border-b-[.1rem] border-b-gray-50">
-      <span style="background-color: #${color.color_1};" class="block w-[3.5rem] h-[3.5rem] rounded-full bg-red-200"></span>
-      <span style="background-color: #${color.color_2};"  class="block w-[3.5rem] h-[3.5rem] rounded-full bg-red-200"></span>
-      <span style="background-color: #${color.color_3};"  class="block w-[3.5rem] h-[3.5rem] rounded-full bg-red-200"></span>
-      <span style="background-color: #${color.color_4};"  class="block w-[3.5rem] h-[3.5rem] rounded-full bg-red-200"></span>
-  </div>
-  <div class="flex justify-between items-center text-[1.5rem] sm:text-[1.6rem] py-[2rem] border-b-[.1rem] border-b-gray-100">
-      <p class="text-gray-600">#${color.color_1}</p>
-      <p class="text-gray-600">#${color.color_2}</p>
-      <p class="text-gray-600">#${color.color_3}</p>
-      <p class="text-gray-600">#${color.color_4}</p>
-  </div>
-</div>
-      
-      `
-   }
-    div.innerHTML+=child1;
-    div.innerHTML+=child2;
-    
-    parent.appendChild(div);
-    parent.innerHTML+=child3
-})
- 
-}
- 
-
-
+userSelectedInput(userSelected)
 
 
 
@@ -146,10 +29,7 @@ function renderColor(activePage){
   activePage.classList.remove("hide");
  
 }
-function incrementCounterLike(wrapper,counter){
-  if(wrapper.querySelector(`.btn-like__${+counter}`))
-  wrapper.querySelector(`.btn-like__${+counter}`).querySelector(".like-counter").textContent++;
-}
+ 
 
 function hideCollectionUserFavorite(section){
   if(section.dataset.content==="collection" || section.dataset.content==="create"){
@@ -159,93 +39,19 @@ function hideCollectionUserFavorite(section){
     containerSelectedColor.classList.remove("hidden")
     document.querySelector(".main--section__3").classList.remove("hide")}
 }
-
-
-// Used
-function removeSmallActiveButton(btn){
-  document.querySelector(`.small--palettes-${btn.dataset.id}`)?.remove()
-
-}
-
-function checkSmallButton(btn){
-  if(btn.classList.contains("active")){
-    const color=colors.find(color=>color.id===btn.dataset.id);
  
-    createSamllPallete(color)
-  
-  }else removeSmallActiveButton(btn)
-}
-// Function to download the color palette
-
-  
-function createSamllPallete(color) {
- 
-  const html = `<div  class="pallete--color relative w-[7rem] h-[7rem] grid grid-rows-14 cursor-pointer  small--palettes-${color.id}" data-id="${color.id}">
-  <div style="background:#${
-    color.color_1
-  };" class="container-color row-[span_6_/_span_16] rounded-t-[5px] cursor-pointer"></div>
-  <div style="background:#${
-    color.color_2
-  }" class="container-color  row-[span_5_/_span_16] cursor-pointer"></div>
-  <div style="background:#${
-    color.color_3
-  }" class="container-color row-[span_4_/_span_16] cursor-pointer"></div>
-  <div style="background:#${
-    color.color_4
-  };" class="container-color row-[span_2_/_span_16] rounded-b-[5px] cursor-pointer"></div>
-  <button type="button" class="remove-item btn-small" data-id="${
-  color.id
-  }">
-      <svg class="w-[.7rem] h-[.7rem] text-white"><use href="./img/icon.svg#time"></use></svg>
-  </button>
-  <div  class="w-[5rem] top-[7rem] h-[2.5rem] animate-[fadeAndTranslate_1.8s_ease_forwards] rounded-[.4rem] text-[1.2rem] grid place-content-center text-white bg-black  z-20 absolute">Saved
-  <span class="border-r-[.7rem] border-l-[.7rem] w-0 h-0 border-b-[.7rem] border-r-transparent border-l-transparent border-b-black absolute -top-[.5rem] left-3"></span> 
-  </div>
-</div>`;
-selectedPalette.insertAdjacentHTML("afterbegin",html); 
-// selectedPalette.innerHTML+=html;
-  const removeItem=[...document.querySelectorAll(".remove-item")];
-  removeItem.map(rm=>{
-    rm?.addEventListener("click",function(){
-      rm.closest(".pallete--color").classList.add("animate-[scaleAndFade_.3s_forwards]")
-      setTimeout(()=>{rm?.parentElement.remove()},250);
-      removeClassActive(paletteCollection,this)
-      removeClassActive(trendingPalette,this)
-      removeActiveSelectedPalette();
-      
-    })
-  })
-}
- 
-// REMOVE active class
-function removeClassActive(parent,btn){
-  parent.querySelector(`.btn-like__${btn.dataset.id}`)?.classList.remove("active");
-  decreaseCounterLike(parent,btn.dataset.id);
-}
-function decreaseCounterLike(wrapper,counter){
-  console.log(counter);
-  if( wrapper.querySelector(`.btn-like__${counter}`))
-  wrapper.querySelector(`.btn-like__${counter}`).querySelector(".like-counter").textContent--;
-}
- 
-
-// RENDER PALETTES IN MANIN--1 
 createPalette(colors,paletteCollection,"palette")
 createPalette(popularColorPalette,trendingPalette,"palette")
-// RENDER PALETTES IN MANIN--1 *FAVORITE*
-// popularColorPalette.forEach((color) =>createPalette(color,trendingPalette,"palette"));
-
-
-const allPalettes=[...paletteCollection.querySelectorAll(".container--pallete__color")];
+ 
 const containerColor=[...document.querySelectorAll(".container-color")];
-
+  
 containerColor.map(color=>{
 
   color.addEventListener("click",function(e){
     
     containerSelectedColor.innerHTML="";
     if(!e.target.classList.contains("btn")){
-      
+     
     const idColor=color.parentElement.dataset.id;
      
     const colorList=[colors.find(color=>color.id===idColor)];
@@ -341,8 +147,8 @@ function toggleActiveButton(){
     })
    })
   })
-  paletteCollection.querySelectorAll(".btn-like").forEach(btn=>btn.addEventListener("click",()=>checkSmallButton(btn)))
-  trendingPalette.querySelectorAll(".btn-like").forEach(btn=>btn.addEventListener("click",()=>checkSmallButton(btn)))
+  paletteCollection.querySelectorAll(".btn-like").forEach(btn=>btn.addEventListener("click",()=>checkSmallButton(btn,colors)))
+  trendingPalette.querySelectorAll(".btn-like").forEach(btn=>btn.addEventListener("click",()=>checkSmallButton(btn,colors)))
    
 
 }
@@ -372,7 +178,6 @@ btnLinkPages.forEach((btn) => {
         else   document.querySelector(".container--empty-palette").classList.remove("hidden");
   });
 });
-let timed;
  
  
  
@@ -397,69 +202,12 @@ function removeActiveWithAnimaton(btnActive){
 
 
 
-const userSelected=[...document.querySelectorAll(".user--selected")];
-const btnSubmitPalette=document.querySelector(".btn--submit__palette");
-userSelected.map(selected=>{
-  selected.addEventListener("click",function(e){
-   document.querySelector(".inputColor")?.remove()
-   const inputColor=document.createElement("input");
-   inputColor.type = 'color';
-   inputColor.classList.add("inputColor","opacity-effect");
-   inputColor.value=selected.dataset.color;
-   document.querySelector(".container--picker").appendChild(inputColor);
-
-   inputColor.addEventListener("input",function(){
-    selected.style.background=this.value;
-    selected.dataset.color=this.value;
-   })
-   
-  
-  })
-})
-
-function hiddenElement(className,el){
-  document.body.addEventListener("click",function(e){
- 
-    if(!e.target.closest(`.${className}`))el.classList.add("hidden") 
-  })
-}
-
-hiddenElement("btn--open__menu",document.querySelector(".menu"))
 
 document.querySelector(".btn--link__page").addEventListener("click",function(){
  
   document.querySelector(".menu").classList.toggle("hidden");
 })
  
-function formatTimeDifference(startDate, endDate) {
-  const timeDifference = endDate - startDate; // Calculate time difference in milliseconds
-  const diHours = Math.floor(timeDifference / (1000 * 60 * 60));
-
-  let targetDate, numDate;
-
-  if (diHours % 24 === 0) {
-    targetDate = "day";
-    numDate = diHours;
-  } else if (diHours % 7 === 0) {
-    targetDate = "week";
-    numDate = Math.floor(diHours / 168);
-  } else if (diHours % 30 === 0) {
-    targetDate = "month";
-    numDate = Math.floor(diHours / 720);
-  } else {
-    targetDate = "hour";
-    numDate = diHours;
-  }
-
-  const formatter = new Intl.RelativeTimeFormat("en-US");
-  const formattedDate = formatter.format(-numDate, targetDate);
-  return formattedDate.split("").slice(0,-4).join("")
- }
-
-formatTimeDifference(new Date("2000/2/6"),new Date("2000/3/1"));
-
-
-
 function loadActivePallete(){
   timed=setInterval(()=>{
       let collectionActive=[...selectedPalette.querySelectorAll(".pallete--color")];
@@ -476,9 +224,9 @@ function loadActivePallete(){
   }
 function addActive(id){
    trendingPalette.querySelector(`.btn-like__${id}`)?.classList?.add("active");
-   paletteCollection.querySelector(`.btn-like__${id}`)?.classList?.add("active");
-  paletteCollection.querySelector(`.btn-like__${id}`).querySelector(".like-counter").textContent++
-  trendingPalette.querySelector(`.btn-like__${id}`).querySelector(".like-counter").textContent++;
+  paletteCollection.querySelector(`.btn-like__${id}`)?.classList?.add("active");
+   paletteCollection.querySelector(`.btn-like__${id}`).querySelector(".like-counter").textContent++
+   trendingPalette.querySelector(`.btn-like__${id}`).querySelector(".like-counter").textContent++;
   const btnLike=containerSelectedColor.querySelector(".btn-like")
    if(btnLike){
     btnLike.classList.add("active")
@@ -504,31 +252,12 @@ window.addEventListener("load",function(){
   
   if(userFavoriteItem?.length)
    userFavoriteItem.map(li=>{
-    let list=[];
     const color=colors.find(color=>color.id===li);
-    createSamllPallete(color);
+    createSamllPallete(color,selectedPalette);
     const id=color.id;
     addActive(id)
    })
 })
  
  
-
-
-// // todo   static import  
-// import data from "./colors.json" assert {type:"json"};
-// console.log(data);
-
-// //todo   dynamic import  
-// setTimeout(()=>{
-//   console.log("dynamic import");
-//   import("./colors.json",{assert : {type:"json"}}).then(mod=>{
-//     //todo  mod is our modules
-//     console.log(mod.default);
-//   })
-// },1000)
-
-// // why do have to import css file
-
-// import sheet from "./style.css" assert {type:"css"};
-// document.adoptedStyleSheets=[sheet];
+ 
