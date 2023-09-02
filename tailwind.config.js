@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["index.htm","./script.js","./createSmallPalette.js","./createEl.js"],
+  content: ["index.htm","./src/*.js","./script.js","./createEl.js","./createSmallPalette.js"],
   theme: {
     screens: {
       "xs":"360px",
