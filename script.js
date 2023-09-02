@@ -16,7 +16,7 @@ export const selectedPalette = document.querySelector(".collection--user__love")
 export const containerSelectedColor=document.querySelector(".container--selected__palette");
 const containerTrendingColor=document.querySelector(".container--palette__liked")
 const userSelected=[...document.querySelectorAll(".user--selected")];
-
+ 
 
 userSelectedInput(userSelected)
 
@@ -199,7 +199,7 @@ function removeActiveWithAnimaton(btnActive){
     })
   })
 } 
-
+let timed;
 
 
 

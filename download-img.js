@@ -8,6 +8,7 @@ export function downloadPalette(coloor) {
     const paletteHeight = coloor.offsetHeight;
     canvas.width = paletteWidth;
     canvas.height = paletteHeight;
+    canvas.classList.add("scale-90")
   
     // Get the colors from the color palette
     const colorBoxes = coloor.getElementsByClassName('container-color');
