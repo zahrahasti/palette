@@ -32,7 +32,7 @@ export function createPalette(colors,parent,type){
       `
       if(type==="liked"){
       child2=`
-      <div class="flex container--btn__pallete container--main__btn justify-between  mt-9 bg-red-200 w-full gap-3 items-center my-[1rem]">
+      <div class="flex container--btn__pallete container--main__btn justify-between  mt-9 w-full gap-3 items-center my-[1rem]">
       <button type="button" class="btn active btn-like text-[1.8rem]  md:text-[1.6rem] sm:text-[1.4rem] btn-like__${color.id} btn-custom" data-id="${color.id}" data-liked="false">
         <span><svg class="stroke-[1rem]  stroke-black text-transparent w-[2rem] h-[2rem]"><use href="./img/icon.svg#heart3"></use></svg></span>
         <span id="like-count" class="like-counter">Liked</span>
