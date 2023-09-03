@@ -6,7 +6,8 @@ import {createPalette} from "./createEl.js";
 import {checkSmallButton} from "./checkedActive.js"
 import {createSamllPallete} from "./createSmallPalette.js";
 import {userSelectedInput} from "./createColorInput.js";
-import {hiddenElement} from "./hideEl.js"
+import {hiddenElement} from "./hideEl.js";
+import { scrollToTop } from "./scrollToTop.js";
 const popularColorPalette = colors.filter((color) => color?.popular === true);
 export const paletteCollection=document.querySelector(".section--new");
 export const trendingPalette=document.querySelector(".section--popular")
@@ -96,18 +97,7 @@ containerColor.map(color=>{
               case "copy":
                 copyTextColor(parent);
                 break;
-}
-          })
-       
-    }) 
-
-
-
-}
-
-  })
- 
-})
+}})})}})})
 
 
 
@@ -219,11 +209,9 @@ function loadActivePallete(){
         if(collectionActive.length===0)
         localStorage.clear()
    
-    },0)
-    
-  }
+    },0)}
 function addActive(id){
-   trendingPalette.querySelector(`.btn-like__${id}`)?.classList?.add("active");
+  trendingPalette.querySelector(`.btn-like__${id}`)?.classList?.add("active");
   paletteCollection.querySelector(`.btn-like__${id}`)?.classList?.add("active");
    paletteCollection.querySelector(`.btn-like__${id}`).querySelector(".like-counter").textContent++
    trendingPalette.querySelector(`.btn-like__${id}`).querySelector(".like-counter").textContent++;
@@ -260,4 +248,4 @@ window.addEventListener("load",function(){
 })
  
  
- 
+scrollToTop()
