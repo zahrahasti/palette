@@ -5,11 +5,11 @@
     <meta name="language" content="EN">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/style.css">
-    <script defer src="./script.js" type="module"></script>
+    <script defer src="./src/script.js" type="module"></script>
 </head>
 
 <body class="text-[1.6rem]">
-    <header class="header w-full   bg-white fixed left-1/2  -translate-x-1/2 z-[2] py-[.8rem]  ">
+    <header class="header w-full bg-white fixed left-1/2  -translate-x-1/2 z-[2] py-[.8rem]  ">
         <nav class="nav flex justify-between   items-center  border-b-[.1rem] pb-[1rem] border-gray-50">
             <figure class=" min-w-[5rem] max-w-[5rem] sm:max-w-[24rem] sm:min-w-[24rem] pl-[2.5rem]  flex gap-[1rem]  items-center">
                 <img src="./img/Untitled-1.png" alt="" class="w-[3.2rem]">
@@ -18,7 +18,8 @@
 
             <div class="nav--section__2 px-[2.5rem] w-full  relative">
                 <div class="h-full relative rounded-[2rem] ">
-                    <input type="search"
+                    <input type="search" 
+                         aria-label="search bar"
                         class="w-full pl-[3rem] relative z-[3] py-[.8rem] text-gray-800  focus:pl-[1.2rem] rounded-[2rem] border-[.1rem] border-gray-200   duration-100   outline-none "
                         placeholder="Search Palletes">
                     <div class="absolute color--template w-full h-full top-0">
@@ -107,7 +108,7 @@
             class="main--section__1 pl-[2.5rem] z-50  min-w-[5rem] max-w-[5rem] sm:max-w-[24rem] sm:min-w-[24rem] absolute sm:sticky    h-[85vh] top-[8rem] mt-[8rem] overflow-y-scroll">
             <menu
                 class="control--pallete border-t-[.1rem] border-t-[#f8f8f8] sm:border-t-0 fixed sm:relative left-1/2 bottom-0  -translate-x-1/2 gap-[.5rem] w-full flex sm:flex-col items-center justify-around p-[.5rem] bg-red-400 sm:p-[1rem]  sm:items-start  bg-white z-10 text-gray-800 text-[1.6rem]">
-                <li class="active new btn--link__page w-full  mb-[.5rem]   rounded-[.8rem] sm:rounded-[1rem]"
+                <li class="active new btn--link__page w-full mb-[.5rem]   rounded-[.8rem] sm:rounded-[1rem]"
                     data-btn="btn" data-content="new">
                     <a href="#"
                         class="flex  flex-col sm:flex-row gap-[.8rem] px-[.8rem]  py-[1rem] text-[1.7rem] items-center">
@@ -260,6 +261,11 @@
             </section>
         </aside>
     </main>
+     <button class="scrollToTop grid place-content-center animate-[scroll_.4s_ease_forwards] fixed mb-[8rem] sm:mb-0 opacity-0 z-50  translate-y-full right-5 bg-blue-500 rounded-full p-2 sm:p-3">
+         <svg class="w-14 aspect-square sm:w-16 text-white -rotate-90">
+             <use href="./img/icon.svg#upArrow"></use>
+         </svg>
+     </button>
     <canvas class=" w-[20rem] h-[20rem] hidden"></canvas>
 </body>
 
