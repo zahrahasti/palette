@@ -1,4 +1,4 @@
-import {paletteCollection,trendingPalette,containerSelectedColor,selectedPalette} from "./script.js";
+import {paletteCollection,trendingPalette,containerSelectedColor,selectedPalette} from "../script.js";
 export function createSamllPallete(color) {
     const html = `<div  class="pallete--color relative w-[7rem] h-[7rem] grid grid-rows-14 cursor-pointer  small--palettes-${color.id}" data-id="${color.id}">
     <div style="background:#${
@@ -13,7 +13,7 @@ export function createSamllPallete(color) {
     <div style="background:#${
       color.color_4
     };" class="container-color row-[span_2_/_span_16] rounded-b-[5px] cursor-pointer"></div>
-    <button type="button" class="remove-item btn-small" data-id="${
+    <button type="button" class="remove-item remove-item-${color.id} btn-small" data-id="${
     color.id
     }">
         <svg class="w-[.7rem] h-[.7rem] text-white"><use href="./img/icon.svg#time"></use></svg>
@@ -29,10 +29,6 @@ export function createSamllPallete(color) {
       rm?.addEventListener("click",function(){
         rm.closest(".pallete--color").classList.add("animate-[scaleAndFade_.3s_forwards]")
         setTimeout(()=>{rm?.parentElement.remove()},250);
-        removeClassActive(paletteCollection,this)
-        removeClassActive(trendingPalette,this)
-        removeActiveSelectedPalette(containerSelectedColor);
-        
       })
     })
   }
