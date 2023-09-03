@@ -33,6 +33,15 @@ module.exports = {
             scale:"0",
             display:"none"
           }
+        },
+        "scroll":{
+        '0%':{
+          transform: 'translateY(100%)',
+        },
+        "100%":{
+          transform: 'translateY(-100%)',
+           bottom:0
+        }
         }
       },
   }
