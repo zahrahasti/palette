@@ -1,32 +1,38 @@
-# Palette Color App
-  Our Palette Color App is designed to help you explore, create, and organize color palettes effortlessly. It's a fun and user-friendly tool for both design professionals and enthusiasts!
-## Features
-Copy Color Code: Copy the color code.
-Selecting Colors: Use the color picker or predefined palettes to choose colors.
-Creating Palettes: Click on the "New Palette" button in the Create section.
-Save Your Favorite Palette: Click on the like button to save them in the Collection section.
-Scroll To Top Of The Page: Click on the up arrow to scroll to the top.
-## Technologies Used
+# create-svelte
 
-- HTML
-- tailwindcss
-- JavaScript
-- npm
- 
-## Getting Started
-To start using our Palette Color App, simply download or clone the repository and open the index.html file in your favorite web browser.
+Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
 
-## Contributing
-Contributions are welcome! If you'd like to contribute to the Palette Color Project, please follow these steps:
+## Creating a project
 
-1. Fork the repository.
-2. Create your feature branch: git checkout -b feature/my-new-feature.
-3. Commit your changes: git commit -m 'Add some feature'.
-4. Push to the branch: git push origin feature/my-new-feature.
-5. Submit a pull request.
+If you're seeing this, you've probably already done this step. Congrats!
 
-Please ensure that your code follows the project's coding guidelines and includes appropriate tests.
+```bash
+# create a new project in the current directory
+npm create svelte@latest
 
-## Find a bug?
-If you found an issue or would like to submit an improvement to this project, please submit an issue using the issues tab above. If you would like to submit a PR with a fix, reference the issue you created!
-## License
+# create a new project in my-app
+npm create svelte@latest my-app
+```
+
+## Developing
+
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+
+```bash
+npm run dev
+
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
+```
+
+## Building
+
+To create a production version of your app:
+
+```bash
+npm run build
+```
+
+You can preview the production build with `npm run preview`.
+
+> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.

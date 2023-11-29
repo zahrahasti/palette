@@ -1,5 +1,6 @@
-module.exports = {
-  content: ["index.htm","./src/*.js","./*.js","./script.js","./createSmallPalette.js"],
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
     screens: {
       "xs":"360px",
@@ -47,4 +48,4 @@ module.exports = {
   }
   },
   plugins: [],
-}
+};
