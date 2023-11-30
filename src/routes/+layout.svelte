@@ -1,22 +1,55 @@
-<script>
+<script lang="ts">
+      import { invalidateAll } from '$app/navigation'
 	import { json } from "@sveltejs/kit";
     import "../app.css";
 	import Card from "../app/Card.svelte";
     import { onMount } from 'svelte';
+	import LikedCardSamll from '../app/LikedCardSamll.svelte';
     export let data;
-     async function fetchingData(color){
-        console.log(color);
-        const res=await fetch("/",{
+    
+type color<T,U>= {
+    "name": T,
+    "id": T,
+    "color_1": T,
+    "color_2":T,
+    "color_3": T,
+    "color_4":T,
+    "timer":T,
+    "likes": U,
+    "popular": boolean
+}
+  let colors:color<string,number>[] | undefined=data.colors?.filter(color=>color.popular===true);
+  console.log(colors);
+  console.log(colors);
+     let isAdding=false;
+     async function updateDataPalette(e:CustomEvent){
+        let popular=e.detail.color.popular;
+        const form=e.detail.form as HTMLFormElement;
+        const formData=new FormData(form);
+      if(!popular){
+        const res=await fetch(form.action,{
             method:"POST",
-            body:JSON.stringify(color),
-            headers:{
-                // "content-type":"application/json"
-            }
-        })
+            body:formData,         
+         })
+       popular=true;
+      
+       console.log(colors);
+    }
+        else {
+            const res=await fetch(form.action,{
+            method:"DELETE",
+            body:formData,         
+        })  
+        }
+          form.reset()
+          await invalidateAll()
+ 
      }
-     const colors=data.colors
+console.log(data.colors);
+  
  
 </script>
+<slot/>
 <header class="header w-full bg-white fixed left-1/2  -translate-x-1/2 z-[2] py-[.8rem]  ">
     <nav class="nav flex justify-between   items-center  border-b-[.1rem] pb-[1rem] border-gray-50">
         <figure class="min-w-[5rem] max-w-[5rem] sm:max-w-[24rem] sm:min-w-[24rem] pl-[2.5rem]  flex gap-[1rem]  items-center">
@@ -192,8 +225,8 @@
             <li class="py-4 px-[.8rem] text-gray-600 text-[1.4rem]"><a href="#">link</a></li>
         </ul>
     </section>
-
-
+       
+   
 
     <div class="container-main__palettes w-full  mt-[8rem] px-[2.5rem]">
         <div class="h-auto w-full sm:w-1/2 md:w-3/5 lg:w-1/3 text-[1.4rem] container--selected__palette flex items-center justify-center flex-col mx-auto"
@@ -204,14 +237,17 @@
         <section
             class="container--color__palette mb-[8rem] sm:mb-0 grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] h-max section--new  active-page w-full  justify-between gap-[1rem]"
             data-active="1">
-        {#each colors as color}
-              <Card on:click={()=>fetchingData(color)}   {color}/>
+        {#each data.colors as color}
+              <Card on:customsubmit={updateDataPalette}  {color}/>
         {/each}
            
+       
         </section>
         <section
             class="container--color__palette mb-[8rem] sm:mb-0 grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] h-max section--popular hide w-full justify-between gap-[1rem]"
-            data-active="1"></section>
+            data-active="1">
+          
+        </section>
 
         <section
             class="container--color__palette mx-auto sm:mx-0 relative  w-full  mb-[10rem] sm:mb-0 h-max section--collection hide    active-page gap-[1rem]"
@@ -234,6 +270,7 @@
             </section>
             <section
                 class="container--palette__liked grid gap-[1rem] grid-cols-[repeat(auto-fill,minmax(200px,1fr))] h-max">
+              
             </section>
         </section>
 
@@ -270,7 +307,14 @@
         </div>
          <section class="my-[1.5rem]">
             <h3 class="font-semibold text-[1.8rem] mb-[1rem]">Collection</h3>
-            <div class="collection--user__love h-[30rem] flex flex-wrap gap-[.5rem]"></div>
+            <div class="collection--user__love h-[30rem] flex flex-wrap gap-[.5rem]">
+                {#if colors}
+                {#each colors as color}
+                 <LikedCardSamll {color} />
+                 {/each}     
+                {/if}
+
+            </div>
         </section>
     </aside>
 </main>

@@ -11,7 +11,17 @@
       "likes":0,
       "popular":true
   }
- 
+  import { createEventDispatcher } from 'svelte';
+
+     const dispatch = createEventDispatcher();
+
+     function handleButtonClick(e,color) {
+      e.preventDefault()
+      console.log("submit is happend");
+      //  event.preventDefault(); // Prevent the default form submission
+       // Here you can perform any additional logic if needed
+       dispatch('customsubmit', {form:e.target,color /* pass any necessary data */ });
+     }
 </script>
 
 <div class="relative w-full scale-[.85] sm:scale-100">
@@ -30,12 +40,20 @@
         </div>
     </div>
       <div class="flex container--btn__pallete container--main__btn justify-between w-full gap-3 items-center my-[1rem]">
-        <!-- <form method="post" on:submit|preventDefault> -->
-          <button on:click type="button" class="btn btn-like text-[1.8rem]  md:text-[1.6rem] sm:text-[1.4rem] btn-like__{color.id} btn-custom" data-id="${color.id}" data-liked="false">
+        <form method="post" on:submit|preventDefault={function(e){handleButtonClick(e,color)}}>
+          <input type="hidden" name="data" value="{color.id}">
+          <button class:like={color.popular} on:click type="submit" class="btn btn-like text-[1.8rem]  md:text-[1.6rem] sm:text-[1.4rem] btn-like__{color.id} btn-custom" data-id="${color.id}" data-liked="false">
             <span><svg class="stroke-[1rem]  stroke-black text-transparent w-[2rem] h-[2rem]"><use href="./img/icon.svg#heart3"></use></svg></span>
             <span id="like-count" class="like-counter">{color.likes}</span>
           </button>
-        <!-- </form> -->
+        </form>
         <time class="text-[1.4rem] md:text-[1.2rem] text-gray-500">{formatTimeDifference(new Date(color.timer),new Date())}</time>
       </div>
 </div>
+
+
+<style>
+  .like{
+    background:#999;
+  }
+</style>

@@ -1,6 +1,6 @@
 
 <script>
-    	import { formatTimeDifference } from "$lib/utils";
+    import { formatTimeDifference } from "$lib/utils";
     export let color= {
       "name": "blue",
       "id": "111",
