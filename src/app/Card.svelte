@@ -1,59 +1,136 @@
-<script>
-    import { formatTimeDifference } from "$lib/utils";
-    export let color= {
+<script lang="ts">
+   import { slide } from 'svelte/transition';
+   import { onMount } from 'svelte';
+    type color<T,U>= {
+    "name": T,
+    "id": T,
+     "colors":[T,T,T,T],
+    "timer":T,
+    "likes": U,
+    "popular": boolean,
+    "isLike":boolean
+}
+let element:HTMLElement
+    export let color:color<string,number>= {
       "name": "",
       "id": "",
-      "color_1": "",
-      "color_2": "",
-      "color_3": "",
-      "color_4": "",
+      "colors":["","","",""],
       "timer":"",
       "likes":0,
-      "popular":true
+      "popular":false,
+       "isLike":false
   }
+  onMount(()=>{
+    const observer=new IntersectionObserver((entries)=>{
+      for (const entry of entries) {
+      
+          if (entry.intersectionRatio >= 0.5) { // Display the element when it's at least 50% visible
+              const el=entry.target as HTMLElement
+             el.classList.remove("card");
+             el.classList.add("card-animated")
+             
+    }}
+    },{
+       threshold:.5
+    })
+    
+    observer.observe(element)
+  })
+ let codeColorBase:string;
   import { createEventDispatcher } from 'svelte';
-
+ 
      const dispatch = createEventDispatcher();
 
-     function handleButtonClick(e,color) {
-      e.preventDefault()
-      console.log("submit is happend");
-      //  event.preventDefault(); // Prevent the default form submission
+     function handleButtonClick(e:Event,color:color<string,number>) {
+       e.preventDefault()
+       //  event.preventDefault(); // Prevent the default form submission
        // Here you can perform any additional logic if needed
        dispatch('customsubmit', {form:e.target,color /* pass any necessary data */ });
-     }
+ }
+
+function handleClicked(e:Event,color:color<string,number>){
+ 
+  
+  dispatch('showComponent', {visible:true,color});
+}
+ 
 </script>
 
-<div class="relative w-full scale-[.85] sm:scale-100">
-    <div style="background:#{color.color_1}" class="pallete--color  grid grid-rows-16 w-full  text-[1.6rem] md:text-[1.4rem] xl:text-[1.5rem] text-white  bg-[#${color.color_1}] aspect-square top-0 rounded-[1rem] overflow-hidden  pallete--color__1" data-id="${color.id}">
-        <div style="background:#{color.color_1};" class="container-color group row-[span_5_/_span_16]  flex rounded-tr-[1rem]  rounded-tl-[1rem] cursor-pointer">
-            <button type="button" class="btn btn--copy__color w-max group-hover:opacity-100  self-end opacity-0 hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_1}">#${color.color_1}</button>
-        </div>
-        <div style="background:#{color.color_2};" class="container-color group row-[span_4_/_span_16] flex animate-[translateUp_1.5s_ease_forwards] cursor-pointer">
-            <button type="button" class="btn btn--copy__color  w-max group-hover:opacity-100 opacity-0  self-end hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md   px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_2}">#${color.color_2}</button>
-        </div>
-        <div style="background:#{color.color_3};" class="container-color group row-[span_3_/_span_16] animate-[translateUp_1.5s_ease_forwards] flex cursor-pointer">
-            <button type="button" class="btn btn--copy__color w-max group-hover:opacity-100 opacity-0 hover:bg-[rgba(0,0,0,.2)] duration-150 self-end rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_3}">#${color.color_3}</button>
-        </div>
-        <div style="background:#{color.color_4};" class="container-color group row-[span_2_/_span_16] animate-[translateUp_1.5s_ease_forwards] flex cursor-pointer">
-            <button type="button" class="btn btn--copy__color w-max group-hover:opacity-100 opacity-0 hover:bg-[rgba(0,0,0,.2)] duration-150 self-end rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]" data-color="#${color.color_4}">#${color.color_4}</button>
-        </div>
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<div bind:this={element} class="relative card animated-translate-y w-full scale-[.85] sm:scale-100">
+    <div   on:click={(e)=>handleClicked(e,color)}  class="w-full relative  text-[1.6rem] md:text-[1.4rem] xl:text-[1.5rem] text-white   aspect-square bottom-0 rounded-[1rem] overflow-hidden  pallete--color__1">
+      {#if color}
+      {#each color.colors as codeColor , id}
+      <div style="animation-delay:{(id+1)*.05}s; background-color:#{codeColor};height:{100-(10+(id)*4)*id}%;" class=" decrease-height  absolute  z-[{id+10}] w-full group flex  cursor-pointer">
+       <button on:click={
+           function(){
+        codeColorBase=codeColor
+      codeColor="copy text";
+      navigator.clipboard.writeText(String(codeColor));
+      setTimeout(()=>codeColor=codeColorBase,500)
+       }
+       } type="button" class="btn btn--copy__color w-max group-hover:opacity-100  self-end opacity-0 hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]">
+         #{codeColor} 
+       </button>
+        
+      </div>
+     {/each} 
+      {/if}
     </div>
       <div class="flex container--btn__pallete container--main__btn justify-between w-full gap-3 items-center my-[1rem]">
         <form method="post" on:submit|preventDefault={function(e){handleButtonClick(e,color)}}>
           <input type="hidden" name="data" value="{color.id}">
-          <button class:like={color.popular} on:click type="submit" class="btn btn-like text-[1.8rem]  md:text-[1.6rem] sm:text-[1.4rem] btn-like__{color.id} btn-custom" data-id="${color.id}" data-liked="false">
-            <span><svg class="stroke-[1rem]  stroke-black text-transparent w-[2rem] h-[2rem]"><use href="./img/icon.svg#heart3"></use></svg></span>
+          <button on:click class:like={color.isLike} on:click type="submit" class="btn btn-like text-[1.8rem]  md:text-[1.6rem] sm:text-[1.4rem] btn-like__{color.id} btn-custom" data-id="${color.id}" data-liked="false">
+            <span>
+               <svg class="stroke-[1rem]  stroke-black text-transparent w-[2rem] h-[2rem]">
+                 <use href="./icon.svg#heart3"></use></svg></span>
             <span id="like-count" class="like-counter">{color.likes}</span>
           </button>
         </form>
-        <time class="text-[1.4rem] md:text-[1.2rem] text-gray-500">{formatTimeDifference(new Date(color.timer),new Date())}</time>
+        <!-- <time class="text-[1.4rem] md:text-[1.2rem] text-gray-500">{formatTimeDifference(new Date(color.timer),new Date())}</time> -->
       </div>
 </div>
 
 
 <style>
+  .card{
+    opacity:0;
+    transition:.3s;
+    transform: translateY(3rem);
+  }
+  .card-animated{
+    animation:card .3s ease-in;
+  }
   .like{
-    background:#999;
+    background:rgba(0,0,0,.1);
+  }
+  .animated-translate-y{
+    transition:.3s;
+    animation:translate-y .4s ease-in forwards;
+  }
+  .decrease-height{
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+    animation:dc-height .5s ease-in   forwards;
+    /* transform-origin:bottom; */
+    transition:height .3s;
+  }
+  @keyframes dc-height{
+      0%{
+         scale:1 1.5;
+         opacity:.9;
+      }
+     
+      100%{
+        scale:1;
+      }
+  }
+ 
+  @keyframes card{
+    0%{
+      transform: translate(3rem);
+    }
+    100%{
+      transform: translateY(0);
+    }
   }
 </style>

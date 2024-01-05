@@ -1,6 +1,6 @@
-export function downloadPalette(coloor) {
+export function downloadPalette(coloor,canvas) {
     // Create a new canvas element
-    const canvas = document.querySelector("canvas");
+    // const canvas = document.querySelector("canvas");
     const ctx = canvas.getContext('2d');
   
     // Set canvas dimensions based on the color palette size

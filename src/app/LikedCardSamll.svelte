@@ -1,36 +1,51 @@
 
-<script>
-    export let color= {
+<script lang="ts">
+   import { createEventDispatcher } from "svelte";
+   const dispatch = createEventDispatcher();
+   import { slide,fade,blur } from 'svelte/transition';
+	import { quintOut } from 'svelte/easing'
+   type color<T,U>= {
+    "name": T,
+    "id": T,
+     "colors":[T,T,T,T],
+    "timer":T,
+    "likes": U,
+    "popular": boolean
+}
+    export let color:color<string,number>= {
       "name": "",
       "id": "",
-      "color_1": "",
-      "color_2": "",
-      "color_3": "",
-      "color_4": "",
+      "colors":["","","",""],
       "timer":"",
       "likes":0,
-      "popular":true
+      "popular":false
   }
+  function handleButtonClick(e:Event,color:color<string,number>) {
+       e.preventDefault()
+      console.log("submit is happend");
+      //  event.preventDefault(); // Prevent the default form submission
+       // Here you can perform any additional logic if needed
+       dispatch('customsubmit', {form:e.target,color /* pass any necessary data */ });
+     }
+
 </script>
 
-<div  class="pallete--color relative w-[7rem] h-[7rem] grid grid-rows-14 cursor-pointer  small--palettes-{color.id}" data-id="${color.id}">
-    <div style="background:#{
-      color.color_1
-    };" class="container-color row-[span_6_/_span_16] rounded-t-[5px] cursor-pointer"></div>
-    <div style="background:#${
-      color.color_2
-    }" class="container-color  row-[span_5_/_span_16] cursor-pointer"></div>
-    <div style="background:#{
-      color.color_3
-    }" class="container-color row-[span_4_/_span_16] cursor-pointer"></div>
-    <div style="background:#{
-      color.color_4
-    };" class="container-color row-[span_2_/_span_16] rounded-b-[5px] cursor-pointer"></div>
-    <button type="button" class="remove-item btn-small" data-id="{
-    color.id
-    }">
-        <svg class="w-[.7rem] h-[.7rem] text-white"><use href="./img/icon.svg#time"></use></svg>
-    </button>
+ 
+<div in:blur={{amount:2}} out:fade={{ delay: 100, duration: 300, easing: quintOut}} class="relative w-[7rem] group h-[7.5rem] rounded-md   cursor-pointer ">
+   {#each color.colors  as baseColor , id}
+   <div style="background:#{
+    baseColor
+  };height:{100-(10+(id)*4)*id}%;" class=" rounded-t-md container-color absolute w-full  cursor-pointer">
+   </div>
+   {/each}
+ 
+     <form method="post"  on:submit|preventDefault={function(e){handleButtonClick(e,color)}}>
+       <button on:click type="submit" class="absolute bg-[rgba(0,0,0,.5)] w-6  hidden group-hover:block transition-all duration-150 h-6 rounded-full top-2 right-2">
+           <svg class="w-[.7rem] h-[.7rem] text-white mx-auto">
+              <use href="./icon.svg#delete"></use>
+            </svg>
+       </button>
+     </form>
     <div  class="w-[5rem] top-[7rem] h-[2.5rem] animate-[fadeAndTranslate_1.8s_ease_forwards] rounded-[.4rem] text-[1.2rem] grid place-content-center text-white bg-black  z-20 absolute">Saved
     <span class="border-r-[.7rem] border-l-[.7rem] w-0 h-0 border-b-[.7rem] border-r-transparent border-l-transparent border-b-black absolute -top-[.5rem] left-3"></span> 
     </div>

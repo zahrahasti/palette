@@ -16,36 +16,13 @@ export default {
     },
     extend: {
       keyframes: {
-        'fadeAndTranslate': {
-          '0%' : { 
-            transform:"translateY(-3rem)",
-            opacity:1
-           },
-          '100%': { 
-            transform: 'translateY(1rem)',
-            opacity:0
-          },
-        },
-        "scaleAndFade":{
-          "0%":{
-            scale:"1"
-          },
-          "100%":{
-            scale:"0",
-            display:"none"
-          }
-        },
-        "scroll":{
-        '0%':{
-          transform: 'translateY(100%)',
-        },
-        "100%":{
-          transform: 'translateY(-100%)',
-           bottom:0
-        }
+        "load":{
+          '0%': { gridRow: `span 4 / span 16`}
         }
       },
   }
   },
-  plugins: [],
+  plugins: [
+    require("tailwindcss-animation-delay"),
+  ],
 };
