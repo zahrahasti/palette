@@ -210,12 +210,11 @@ export function updateDataPalette(colorLiked?:color<string,number>){
     }
  
     export function removeUpdata(colorLiked?:color<string,number>){
-        console.log("remove is happend");
-        if(colorLiked!==undefined){
+         if(colorLiked!==undefined){
              colorLiked.isLike=false;
             +colorLiked.likes--
              const colorIndex=colors.findIndex(color=>color.id===colorLiked.id);
-             if(colorIndex!==-1){
+              if(colorIndex!==-1){
                 colors[colorIndex]=colorLiked;  
                 return colors
              }

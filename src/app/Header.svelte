@@ -23,7 +23,6 @@ function handleBodyClick(event: MouseEvent) {
         listColor.style.display="none"
         listColorExist=false
     }
-   
   }
 let filterColor:boolean=false;
   function filterSearchText(e:Event){
@@ -44,7 +43,6 @@ let filterColor:boolean=false;
         
         const input=(e?.target as HTMLFormElement).search! as HTMLInputElement || "";
         const [color]=copyColors.filter(color=>color.name===input.value);
-        console.log("color",color); 
         goto(`./${input.value}${color.id}`);
         resetListColor(input.value)
         // Reset input value & colors objects
@@ -60,6 +58,7 @@ let filterColor:boolean=false;
     listColor.style.display="none"
     listColorExist=false
  }
+ let showNavList:boolean=false
 </script>
 <svelte:body lang="ts" on:click={handleBodyClick}/>
  
@@ -121,7 +120,7 @@ let filterColor:boolean=false;
                               <button on:click={(e)=>{
                                 e.preventDefault()
                                 e.stopPropagation() //not sure about this
-                                goto(`./${color.name}${color.id}`)
+                                goto(`./${color.name}`)
                                  inputDetail=optionInputDetail
                                   resetListColor(color.name)
                                 }}   class="small-color capitalize">
@@ -131,8 +130,6 @@ let filterColor:boolean=false;
                                {/each}
                          </div>
                      </div>
-                         
-                      
                     </div>
                 </div>
             </div>
@@ -145,7 +142,8 @@ let filterColor:boolean=false;
                 <span>Add to Chrome</span>
             </a>
             <button type="button"
-                class="btn  flex self-end items-end justify-end btn--open__menu p-3  btn--link__page   rounded-full transition-all duration-300 hover:bg-gray-50"
+                on:click={()=>{showNavList=!showNavList}}
+                class="btn btn-nav-list  flex self-end items-end justify-end btn--open__menu p-3  btn--link__page   rounded-full transition-all duration-300 hover:bg-gray-50"
                 data-content="open">
                 <svg class="w-[2rem] h-[2rem] text-gray-600">
                     <use href="./icon.svg#bar"></use>
@@ -153,10 +151,22 @@ let filterColor:boolean=false;
             </button>
 
             <ul
-                class="absolute text-[1.4rem] hidden   menu bg-white min-w-[12rem] md:min-w-[15rem] rounded-sm shadow-sm px-[.5rem] py-[1.2rem] top-[5rem] right-[2rem] border-[.1rem] border-gray-50">
-                <li class="py-[.5rem] px-[1rem] active rounded-[.8rem]"><a href="#">palettes</a></li>
-                <li class="py-[.5rem] px-[1rem] rounded-[.8rem]"><a href="#">create</a></li>
-                <li class="py-[.5rem] px-[1rem] rounded-[.8rem]"><a href="#">collection</a></li>
+                class="absolute text-[1.4rem] {showNavList ? `block`: `hidden`}  menu bg-white min-w-[12rem] md:min-w-[15rem] rounded-sm shadow-sm px-[.5rem] py-[1.2rem] top-[5rem] right-[2rem] border-[.1rem] border-gray-50">
+                <li class="py-[.5rem] px-[1rem] active rounded-[.5rem]">
+                    <a href="./">
+                        palettes
+                    </a>
+                </li>
+                <li class="py-[.5rem] px-[1rem] rounded-[.5rem]">
+                    <a href="./create">
+                      create
+                    </a>
+                </li>
+                <li class="py-[.5rem] px-[1rem] rounded-[.5rem]">
+                    <a href="./collection">
+                        collection
+                    </a>
+                </li>
             </ul>
 
         </div>

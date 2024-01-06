@@ -22,6 +22,6 @@ export function formatTimeDifference(startDate: Date, endDate: Date): string {
   
     const formatter = new Intl.RelativeTimeFormat("en-US");
     const formattedDate = formatter.format(-numDate, targetDate);
-  
+     
     return formattedDate;
   }

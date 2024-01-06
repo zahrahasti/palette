@@ -49,9 +49,12 @@
 <p class="font-semibold text-[1.8rem] my-4 pb-6 border-b-gray-100 border-b-[1px]">My collection</p>
 {#if data.filterColors?.length!==0}   
 <section class="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] h-max section--new  active-page w-full  justify-between gap-[1rem]">
+
+{#if data.filterColors!==undefined}
 {#each data.filterColors as color}
- <LikedCard on:customsubmit={updateDataPalette} {color} />
+<LikedCard on:customsubmit={updateDataPalette} {color} />
 {/each}
+{/if}
 </section>
 
 {:else}

@@ -13,47 +13,47 @@
     "popular": boolean,
     "isLike":boolean
 }
-let colors:color<string,number>[] |undefined;
-    const idPage=$page.params.id;
- 
+     const idPage=$page.params.id;
+    console.log(idPage);
    export let data;
    let res;
-    colors=data.colors?.filter((color)=>{
-        if(color.name+color.id===idPage)return color 
-     });
+    
 
      async function updateDataPalette(e:CustomEvent){
+
        let color=e.detail.color;
-        let isLike=color.isLike;
- 
-        
-        const form=e.detail.form as HTMLFormElement;
+        let isLike=e.detail.color.isLike;
+         const form=e.detail.form as HTMLFormElement;
         const formData=new FormData(form);
-        console.log(formData);
+        console.log(isLike);
       if(!isLike){
-         res=await fetch(form.action,{
-            method:"PUT",
+       res=await fetch(form.action,{
+            method:"POST",
             body:JSON.stringify(color),
             headers:{
               "content-type":"application/json"
             }
          })
        isLike=true;
-   
+     console.log(
+      "liked"
+     );
     }
         else {
-              res=await fetch(form.action,{
+          console.log("delrete is hapeeding");
+         res=await fetch(form.action,{
             method:"DELETE",
             body:JSON.stringify(color),
             headers:{
               "content-type":"application/json"
             }        
         })  
+        console.log("remove liked");
         }
           form.reset()
           await invalidateAll()
  
-     }
+     } 
 </script>
  
 
@@ -61,9 +61,9 @@ let colors:color<string,number>[] |undefined;
 <section  
  class="mb-[8rem] mt-10 sm:mb-0 grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] h-max section--new  active-page w-full  justify-between gap-[1rem]"
  data-active="1">
- {#if colors!==undefined}
+ {#if data.colors!==undefined}
     
- {#each colors as color}
+ {#each data.colors as color}
      <Card  on:showComponent={()=>{}}
       on:customsubmit={updateDataPalette}  {color}/>
  {/each}   

@@ -60,7 +60,7 @@ async function updateDataPalette(e:CustomEvent){
         const formData=new FormData(form);
         console.log(formData);
       if(!isLike){
-         res=await fetch(form.action,{
+        const res=await fetch(form.action,{
             method:"PUT",
             body:JSON.stringify(color),
             headers:{
@@ -71,7 +71,7 @@ async function updateDataPalette(e:CustomEvent){
    
     }
         else {
-              res=await fetch(form.action,{
+            const   res=await fetch(form.action,{
             method:"DELETE",
             body:JSON.stringify(color),
             headers:{
@@ -83,9 +83,11 @@ async function updateDataPalette(e:CustomEvent){
           await invalidateAll()
  
      }
-console.log("colors",colors);
-  </script>
+   </script>
+{#if colors!==undefined}
+    
 <Header {colors} />
+{/if}
 <main class="main min-h-full flex justify-between ">
     <section
         class="main--section__1 pl-[2.5rem] z-50  min-w-[5rem] max-w-[5rem] sm:max-w-[24rem] sm:min-w-[24rem] absolute sm:sticky    h-[85vh] top-[8rem] mt-[8rem] overflow-y-scroll">

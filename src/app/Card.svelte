@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { formatTimeDifference } from '$lib/utils';
    import { slide } from 'svelte/transition';
    import { onMount } from 'svelte';
     type color<T,U>= {
@@ -87,7 +88,7 @@ function handleClicked(e:Event,color:color<string,number>){
             <span id="like-count" class="like-counter">{color.likes}</span>
           </button>
         </form>
-        <!-- <time class="text-[1.4rem] md:text-[1.2rem] text-gray-500">{formatTimeDifference(new Date(color.timer),new Date())}</time> -->
+        <time class="text-[1.4rem] md:text-[1.2rem] text-gray-500">{formatTimeDifference(new Date(color.timer),new Date())}</time>
       </div>
 </div>
 
