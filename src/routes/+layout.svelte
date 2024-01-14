@@ -90,7 +90,7 @@ async function updateDataPalette(e:CustomEvent){
     const {target,currentTarget}=e;
     if(target===currentTarget)return;
     links.forEach((link)=>link.classList.remove("active"));
-     target?.closest(".link-page").classList.add("active")
+     target?.closest(".link-page")?.classList.add("active")
   } 
    </script>
 {#if colors!==undefined}
@@ -102,7 +102,7 @@ async function updateDataPalette(e:CustomEvent){
         class="main--section__1 pl-[2.5rem] z-50  min-w-[5rem] max-w-[5rem] sm:max-w-[24rem] sm:min-w-[24rem] absolute sm:sticky    h-[85vh] top-[8rem] mt-[8rem] overflow-y-scroll">
         <menu
             on:click={toggleActiveClasses}
-            class="control--pallete border-t-[.1rem] border-t-[#f8f8f8] sm:border-t-0 fixed sm:relative left-1/2 bottom-0  -translate-x-1/2 gap-[.5rem] w-full flex sm:flex-col items-center justify-around p-[.5rem] bg-red-400 sm:p-[1rem]  sm:items-start  bg-white z-10 text-gray-800 text-[1.6rem]">
+            class="bg-white control--pallete border-t-[.1rem] border-t-[#f8f8f8] sm:border-t-0 fixed sm:relative left-1/2 bottom-0  -translate-x-1/2 gap-[.5rem] w-full flex sm:flex-col items-center justify-around p-[.5rem] bg-red-400 sm:p-[1rem]  sm:items-start   bg-wh ite z-10 text-gray-800 text-[1.6rem]">
            
             {#each listItems as item}
             <li  class="link-page w-full mb-[.5rem] rounded-[.8rem] sm:rounded-[1rem]"
