@@ -18,7 +18,10 @@
     "popular": boolean,
      "isLike":boolean
 }
+   export let loading:number
      async function updateDataPalette(e:CustomEvent){
+       console.log(data.timer);
+      loading=data.timer!;
        let color=e.detail.color;
         let isLike=e.detail.color.isLike;
          const form=e.detail.form as HTMLFormElement;
@@ -53,23 +56,19 @@
        selectedColor=color
     }
     let canvas:HTMLCanvasElement;
-
-   
+    
 </script>
 
-<section class="w-full md:w-2/3 mx-auto">
-   {#if isVisibleLikedCardSelected}
-    <SelectedCard color={selectedColor} />
-   {/if}
-</section>
+
 <section  
  class="mb-[8rem] mt-10 sm:mb-0 grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] h-max section--new  active-page w-full  justify-between gap-[1rem]"
  data-active="1">
  {#if data.colors}
-  {#each data.colors as color}
+  {#each data.colors as color, i}
        <Card  on:showComponent={()=>
        showComponent(color)
        }
+       
         on:customsubmit={updateDataPalette}  {color}/>
   {/each}   
  {/if}

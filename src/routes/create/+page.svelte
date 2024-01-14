@@ -30,13 +30,10 @@ let  pickerEl:HTMLDivElement,picker;
             <div on:click={userSelectedInput} class="relative cursor-pointer bg-[#DDDDDD]" data-index="2" data-color="#DDDDDD"></div>
             <div on:click={userSelectedInput} class="relative cursor-pointer bg-[#EEEEEE]" data-index="3" data-color="#EEEEEE"></div>
             <div bind:this={pickerEl} class="absolute top-0">
-               <input type="color" bind:this={picker} class=" absolute left-10 md:left-[200%] top-0 opacity-0">
-               <input type="color" bind:this={picker} class="opacity-0">
-
-               <input type="color" bind:this={picker} class="opacity-0">
-
-               <input type="color" bind:this={picker} class="opacity-0">
-
+               <input type="color" bind:this={picker} class=" absolute left-[30rem] top-0 opacity-0">
+               <input type="color" bind:this={picker} class=" absolute left-[30rem] top-0 opacity-0">
+               <input type="color" bind:this={picker} class=" absolute left-[30rem] top-0 opacity-0">
+               <input type="color" bind:this={picker} class=" absolute left-[30rem] top-0 opacity-0">
             </div>
         </div>
      

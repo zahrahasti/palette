@@ -10,6 +10,7 @@
     "likes": U,
     "popular": boolean,
     "isLike":boolean
+     
 }
 let element:HTMLElement
     export let color:color<string,number>= {
@@ -19,7 +20,8 @@ let element:HTMLElement
       "timer":"",
       "likes":0,
       "popular":false,
-       "isLike":false
+       "isLike":false,
+      
   }
   onMount(()=>{
     const observer=new IntersectionObserver((entries)=>{
@@ -39,21 +41,21 @@ let element:HTMLElement
   })
  let codeColorBase:string;
   import { createEventDispatcher } from 'svelte';
+	import { goto } from '$app/navigation';
  
      const dispatch = createEventDispatcher();
-
+      let loading:boolean=false;
      function handleButtonClick(e:Event,color:color<string,number>) {
-       e.preventDefault()
-       //  event.preventDefault(); // Prevent the default form submission
-       // Here you can perform any additional logic if needed
+       e.preventDefault();
+       loading=true;
+       setTimeout(()=>loading=false,500)
+       console.log("color",color);
        dispatch('customsubmit', {form:e.target,color /* pass any necessary data */ });
  }
 
 function handleClicked(e:Event,color:color<string,number>){
- 
-  
-  dispatch('showComponent', {visible:true,color});
-}
+   goto(`./${color.name}${color.id}`)   
+} 
  
 </script>
 
@@ -83,8 +85,10 @@ function handleClicked(e:Event,color:color<string,number>){
           <input type="hidden" name="data" value="{color.id}">
           <button on:click class:like={color.isLike} on:click type="submit" class="btn btn-like text-[1.8rem]  md:text-[1.6rem] sm:text-[1.4rem] btn-like__{color.id} btn-custom" data-id="${color.id}" data-liked="false">
             <span>
-               <svg class="stroke-[1rem]  stroke-black text-transparent w-[2rem] h-[2rem]">
-                 <use href="./icon.svg#heart3"></use></svg></span>
+               <svg class="{!loading ? `block` : `hidden`} stroke-[1rem]  stroke-black text-transparent w-[2rem] h-[2rem]">
+                 <use href="./icon.svg#heart3"></use></svg>
+             </span>
+             <div  class="{loading ? `block` : `hidden`} w-8 h-8 rounded-full animate-spin border-2 border-b-white border-t-white border-r-transparent  border-l-transparent"></div>
             <span id="like-count" class="like-counter">{color.likes}</span>
           </button>
         </form>

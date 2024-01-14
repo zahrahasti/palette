@@ -120,7 +120,7 @@ let filterColor:boolean=false;
                               <button on:click={(e)=>{
                                 e.preventDefault()
                                 e.stopPropagation() //not sure about this
-                                goto(`./${color.name}`)
+                                goto(`/${color.name}`)
                                  inputDetail=optionInputDetail
                                   resetListColor(color.name)
                                 }}   class="small-color capitalize">

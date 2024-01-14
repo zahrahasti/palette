@@ -81,8 +81,17 @@ async function updateDataPalette(e:CustomEvent){
         }
           form.reset()
           await invalidateAll()
- 
+
      }
+  function toggleActiveClasses(e:CustomEvent){
+    //  console.log(e.target);
+    const links=document.querySelectorAll(".active")!
+    //  console.log(e.currentTarget);
+    const {target,currentTarget}=e;
+    if(target===currentTarget)return;
+    links.forEach((link)=>link.classList.remove("active"));
+     target?.closest(".link-page").classList.add("active")
+  } 
    </script>
 {#if colors!==undefined}
     
@@ -92,10 +101,11 @@ async function updateDataPalette(e:CustomEvent){
     <section
         class="main--section__1 pl-[2.5rem] z-50  min-w-[5rem] max-w-[5rem] sm:max-w-[24rem] sm:min-w-[24rem] absolute sm:sticky    h-[85vh] top-[8rem] mt-[8rem] overflow-y-scroll">
         <menu
+            on:click={toggleActiveClasses}
             class="control--pallete border-t-[.1rem] border-t-[#f8f8f8] sm:border-t-0 fixed sm:relative left-1/2 bottom-0  -translate-x-1/2 gap-[.5rem] w-full flex sm:flex-col items-center justify-around p-[.5rem] bg-red-400 sm:p-[1rem]  sm:items-start  bg-white z-10 text-gray-800 text-[1.6rem]">
            
             {#each listItems as item}
-            <li class="link-page w-full mb-[.5rem] rounded-[.8rem] sm:rounded-[1rem]"
+            <li  class="link-page w-full mb-[.5rem] rounded-[.8rem] sm:rounded-[1rem]"
             data-btn="btn" data-content="new">
             <a href="/{item.link}"
                 class="flex  flex-col sm:flex-row gap-[.8rem] px-[.8rem]  py-[1rem] text-[1.7rem] items-center">
@@ -126,16 +136,7 @@ async function updateDataPalette(e:CustomEvent){
             data-active="0">
       
         </div>
-        <!-- Container Pallete in deffernt places -->
-        <!-- <section
-            class="container--color__palette mb-[8rem] sm:mb-0 grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] h-max section--new  active-page w-full  justify-between gap-[1rem]"
-            data-active="1">
-            {#if data.colors}
-           {#each data.colors as color}
-                  <Card  on:showComponent={()=>showComponent(color)} on:customsubmit={updateDataPalette}  {color}/>
-            {/each}   
-            {/if}
-        </section> -->
+      
          <slot/>
         <section
             class="container--color__palette mb-[8rem] sm:mb-0 grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] h-max section--popular hide w-full justify-between gap-[1rem]"

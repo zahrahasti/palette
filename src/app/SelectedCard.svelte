@@ -62,8 +62,20 @@
     // Programmatically click the link to trigger the download
     link.click();
   }
-  let parentEl:HTMLElement,containerColor:HTMLElement;
+  import { createEventDispatcher } from 'svelte';
+	import { goto } from '$app/navigation';
+ 
+     const dispatch = createEventDispatcher();
 
+  function handleButtonClick(e:Event,color:color<string,number>) {
+       e.preventDefault()
+       //  event.preventDefault(); // Prevent the default form submission
+       // Here you can perform any additional logic if needed
+       dispatch('customsubmit', {form:e.target,color /* pass any necessary data */ });
+ }
+
+  let parentEl:HTMLElement,containerColor:HTMLElement;
+ let cliked:string;
  </script>
 <canvas style="width:100px;" class="hidden w-[300px]" bind:this={canvas}></canvas>
 <div  class="relative w-full scale-[.85] sm:scale-100">
@@ -78,14 +90,17 @@
        {/each} 
     </div>
     <div class="flex container--btn__pallete container--main__btn justify-between  mt-9 w-full gap-3 items-center my-[1rem]">
-        <button type="button" class="btn-container__palette btn-like text-[1.8rem]  md:text-[1.6rem] sm:text-[1.4rem] btn-like__${color.id} btn-custom" data-id="${color.id}" data-target="like">
-          <span>
-            <svg class="stroke-[1rem]  stroke-black text-transparent w-[2rem] h-[2rem]">
-              <use href="./icon.svg#heart3"></use>
-            </svg>
-          </span>
-          <span id="like-count" class="like-counter">{color.likes}</span>
-        </button>
+        <form method="post" on:submit|preventDefault={function(e){handleButtonClick(e,color)}}>
+          <input type="hidden" name="data" value="{color.id}">
+          <button on:click class:like={color.isLike} on:click type="submit" class="btn btn-like text-[1.8rem]  md:text-[1.6rem] sm:text-[1.4rem] btn-like__{color.id} btn-custom" data-id="${color.id}" data-liked="false">
+            <span>
+               <svg class="stroke-[1rem]  stroke-black text-transparent w-[2rem] h-[2rem]">
+                 <use href="./icon.svg#heart3"></use>
+                </svg>
+            </span>
+            <span id="like-count" class="like-counter">{color.likes}</span>
+          </button>
+        </form>
          <button on:click={downloadPalette} type="button" class="btn-container__palette  text-[1.8rem]  md:text-[1.6rem] sm:text-[1.4rem] btn-custom">
           <span>
             <svg class="w-[2rem] h-[2rem]">
@@ -105,16 +120,34 @@
         <!-- <time class="text-[1.4rem] md:text-[1.2rem] text-gray-500">{formatTimeDifference(new Date(color.timer),new Date())}</time> -->
     </div>
 <div>
-<div class="flex justify-between items-center py-[1rem] border-b-[.1rem] border-b-gray-50">
+<div class="flex justify-between cursor-pointer items-center py-[1rem] border-b-[.1rem] border-b-gray-100">
 {#each color.colors as baseColor}
-<span style="background-color: #{baseColor};" class="block w-[3.5rem] h-[3.5rem] rounded-full bg-red-200"></span>
-    
+    <div class="w-full">
+      <span style="background-color: #{baseColor};" class="block mx-auto w-[3.5rem] h-[3.5rem] rounded-full bg-red-200"></span>
+    </div>
 {/each}
 </div>
-       <div class="flex justify-between gap-5 items-center text-[1.5rem] sm:text-[1.6rem] py-[2rem] border-b-[.1rem] border-b-gray-100">
+       <div class="flex w-full justify-between  items-center text-[1.5rem] sm:text-[1.6rem] py-[2rem] border-b-[.1rem] border-b-gray-100">
        {#each color.colors as baseColor}
-             <p class="text-gray-600">#{baseColor}</p>  
-       {/each}
+             <button 
+                  on:click={function(){
+                        navigator.clipboard.writeText(String(baseColor));
+                         const copyColor=baseColor;
+                         baseColor="copied"
+                         
+                         setTimeout(()=>baseColor=copyColor,1000)
+                         }} 
+                   
+                     type="button"
+                     class="w-full px-3 rounded-5 btn btn--copy__color group-hover:opacity-100    duration-150 rounded-t-md">
+   
+                     <!-- <span class="block w-max"> -->
+                       {baseColor}
+                     <!-- </span> -->
+                   
+</button>
+
+        {/each}
        </div>
 </div>
 </div>
