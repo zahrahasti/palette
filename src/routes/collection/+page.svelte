@@ -12,36 +12,6 @@
     "isLike":boolean
    }
      export let data;
-     async function updateDataPalette(e:CustomEvent){
-       let color=e.detail.color;
-         let isLike=e.detail.color.isLike;
-         const form=e.detail.form as HTMLFormElement;
-        const formData=new FormData(form);
-        
-      if(!isLike){
-        const res=await fetch(form.action,{
-            method:"POST",
-            body:JSON.stringify(color),
-            headers:{
-              "content-type":"application/json"
-            }
-         })
-       isLike=true;
-   
-    }
-        else {
-            const res=await fetch(form.action,{
-            method:"DELETE",
-            body:JSON.stringify(color),
-            headers:{
-              "content-type":"application/json"
-            }        
-        })  
-        }
-          form.reset()
-          await invalidateAll()
- 
-     }
  
  </script>
 
@@ -52,7 +22,7 @@
 
 {#if data.filterColors!==undefined}
 {#each data.filterColors as color}
-<LikedCard on:customsubmit={updateDataPalette} {color} />
+<LikedCard  {color} />
 {/each}
 {/if}
 </section>

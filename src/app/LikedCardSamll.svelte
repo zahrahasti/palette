@@ -4,13 +4,16 @@
    const dispatch = createEventDispatcher();
    import { slide,fade,blur } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing'
-   type color<T,U>= {
+	import { enhance } from "$app/forms";
+  type color<T,U>= {
     "name": T,
     "id": T,
      "colors":[T,T,T,T],
     "timer":T,
     "likes": U,
-    "popular": boolean
+    "popular": boolean,
+    "isLike":boolean
+     
 }
     export let color:color<string,number>= {
       "name": "",
@@ -18,16 +21,10 @@
       "colors":["","","",""],
       "timer":"",
       "likes":0,
-      "popular":false
+      "popular":false,
+       "isLike":false
   }
-  function handleButtonClick(e:Event,color:color<string,number>) {
-       e.preventDefault()
-      console.log("submit is happend");
-      //  event.preventDefault(); // Prevent the default form submission
-       // Here you can perform any additional logic if needed
-       dispatch('customsubmit', {form:e.target,color /* pass any necessary data */ });
-     }
-
+ 
 </script>
 
  
@@ -39,7 +36,8 @@
    </div>
    {/each}
  
-     <form method="post"  on:submit|preventDefault={function(e){handleButtonClick(e,color)}}>
+     <form method="post"  action="?/removeColor" use:enhance >
+      <input type="hidden" id="hidden" name="hidden" value="{JSON.stringify(color)}">
        <button on:click type="submit" class="absolute bg-[rgba(0,0,0,.5)] w-6  hidden group-hover:block transition-all duration-150 h-6 rounded-full top-2 right-2">
            <svg class="w-[.7rem] h-[.7rem] text-white mx-auto">
               <use href="./icon.svg#delete"></use>
@@ -50,3 +48,5 @@
     <span class="border-r-[.7rem] border-l-[.7rem] w-0 h-0 border-b-[.7rem] border-r-transparent border-l-transparent border-b-black absolute -top-[.5rem] left-3"></span> 
     </div>
   </div>
+
+ 

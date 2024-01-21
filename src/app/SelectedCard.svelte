@@ -64,6 +64,7 @@
   }
   import { createEventDispatcher } from 'svelte';
 	import { goto } from '$app/navigation';
+	import { enhance } from "$app/forms";
  
      const dispatch = createEventDispatcher();
 
@@ -90,9 +91,9 @@
        {/each} 
     </div>
     <div class="flex container--btn__pallete container--main__btn justify-between  mt-9 w-full gap-3 items-center my-[1rem]">
-        <form method="post" on:submit|preventDefault={function(e){handleButtonClick(e,color)}}>
-          <input type="hidden" name="data" value="{color.id}">
-          <button on:click class:like={color.isLike} on:click type="submit" class="btn btn-like text-[1.8rem]  md:text-[1.6rem] sm:text-[1.4rem] btn-like__{color.id} btn-custom" data-id="${color.id}" data-liked="false">
+        <form method="post" action="?/addColor" use:enhance>
+          <input type="hidden" name="hidden" id="hidden" value="{JSON.stringify(color)}">
+          <button on:click class:like={color.isLike} formaction="?/addColor" on:click type="submit" class="btn btn-like text-[1.8rem]  md:text-[1.6rem] sm:text-[1.4rem] btn-like__{color.id} btn-custom" data-id="${color.id}" data-liked="false">
             <span>
                <svg class="stroke-[1rem]  stroke-black text-transparent w-[2rem] h-[2rem]">
                  <use href="./icon.svg#heart3"></use>
@@ -151,3 +152,9 @@
        </div>
 </div>
 </div>
+
+<style>
+  .like{
+    background:rgba(0,0,0,.15);
+  }
+</style>

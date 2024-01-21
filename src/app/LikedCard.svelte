@@ -1,5 +1,6 @@
 
 <script lang="ts">
+	import { enhance } from "$app/forms";
     import { formatTimeDifference } from "$lib/utils";
     type color<T,U>= {
     "name": T,
@@ -19,18 +20,7 @@
       "popular":false,
        "isLike":false
   } 
-   import { createEventDispatcher } from 'svelte';
  
-   const dispatch = createEventDispatcher();
-
-  function handleButtonClick(e:Event,color:color<string,number>) {
-        e.preventDefault()
-        console.log(color);
-        console.log(e);
-       //  event.preventDefault(); // Prevent the default form submission
-       // Here you can perform any additional logic if needed
-        dispatch('customsubmit', {form:e.target,color /* pass any necessary data */ });
-     }
 
      import { fade } from "svelte/transition";
 </script>
@@ -48,9 +38,9 @@
           {/if}
         </div>
         <div class="flex container--btn__pallete container--main__btn justify-between  mt-9 w-full gap-3 items-center my-[1rem]">
-            <form method="post" on:submit|preventDefault={function(e){handleButtonClick(e,color)}}>
-                <input type="hidden" name="data" value="{color.id}">
-                <button on:click class:like={color.popular} on:click type="submit" class="bg-gray-200 flex items-center gap-[1rem] px-[.7rem] 
+            <form method="post" action="?/removeColor" use:enhance>
+                <input type="hidden" name="hidden" id="hidden" value="{JSON.stringify(color)}">
+                <button  on:click class:like={color.popular} formaction="?/removeColor" on:click type="submit" class="bg-gray-200 flex items-center gap-[1rem] px-[.7rem] 
                 py-[.4rem] border-[.1rem] border-gray-200 
                 rounded-[.5rem] duration-300"  data-liked="false">
                     <span><svg class="stroke-[1rem]  stroke-black text-transparent w-[2rem] h-[2rem]"><use href="./img/icon.svg#heart3"></use></svg></span>

@@ -220,3 +220,5 @@ export function updateDataPalette(colorLiked?:color<string,number>){
              }
         } else return colors
   }
+
+  

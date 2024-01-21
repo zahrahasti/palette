@@ -104,8 +104,8 @@ async function updateDataPalette(e:CustomEvent){
             on:click={toggleActiveClasses}
             class="bg-white control--pallete border-t-[.1rem] border-t-[#f8f8f8] sm:border-t-0 fixed sm:relative left-1/2 bottom-0  -translate-x-1/2 gap-[.5rem] w-full flex sm:flex-col items-center justify-around p-[.5rem] bg-red-400 sm:p-[1rem]  sm:items-start   bg-wh ite z-10 text-gray-800 text-[1.6rem]">
            
-            {#each listItems as item}
-            <li  class="link-page w-full mb-[.5rem] rounded-[.8rem] sm:rounded-[1rem]"
+            {#each listItems as item,id}
+            <li  class="{id===0 ? `active`:``} link-page w-full mb-[.5rem] rounded-[.8rem] sm:rounded-[1rem]"
             data-btn="btn" data-content="new">
             <a href="/{item.link}"
                 class="flex  flex-col sm:flex-row gap-[.8rem] px-[.8rem]  py-[1rem] text-[1.7rem] items-center">
@@ -207,7 +207,7 @@ async function updateDataPalette(e:CustomEvent){
         
 {#if data.filterColors}
   {#each data.filterColors as color}
-   <LikedCardSamll on:customsubmit={updateDataPalette} {color} />
+   <LikedCardSamll   {color} />
   {/each}     
 {/if}   
 

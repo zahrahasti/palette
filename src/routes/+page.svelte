@@ -5,8 +5,8 @@
 	import LikedCard from '../app/LikedCard.svelte';
 	import SelectedCard from '../app/SelectedCard.svelte';
     export let data;
-    console.log(data.colors);
-    console.log(data.filterColors);
+    // console.log(data.colors);
+    // console.log(data.filterColors);
   // localStorage.setItem("colors",JSON.stringify(data.colors)) 
   // console.log("parse",JSON.parse(localStorage.getItem("colors")));
     type color<T,U>= {
@@ -19,37 +19,7 @@
      "isLike":boolean
 }
    export let loading:number
-     async function updateDataPalette(e:CustomEvent){
-       console.log(data.timer);
-      loading=data.timer!;
-       let color=e.detail.color;
-        let isLike=e.detail.color.isLike;
-         const form=e.detail.form as HTMLFormElement;
-        const formData=new FormData(form);
-      if(!isLike){
-        const res=await fetch(form.action,{
-            method:"PUT",
-            body:JSON.stringify(color),
-            headers:{
-              "content-type":"application/json"
-            }
-         })
-       isLike=true;
-   
-    }
-        else {
-            const res=await fetch(form.action,{
-            method:"DELETE",
-            body:JSON.stringify(color),
-            headers:{
-              "content-type":"application/json"
-            }        
-        })  
-        }
-          form.reset()
-          await invalidateAll()
- 
-     }
+     
     let isVisibleLikedCardSelected:boolean,selectedColor:color<string,number>;
     function showComponent(color:color<string,number>){
        isVisibleLikedCardSelected=true;
@@ -65,11 +35,7 @@
  data-active="1">
  {#if data.colors}
   {#each data.colors as color, i}
-       <Card  on:showComponent={()=>
-       showComponent(color)
-       }
-       
-        on:customsubmit={updateDataPalette}  {color}/>
+       <Card  {color}/>
   {/each}   
  {/if}
 </section>
