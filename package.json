@@ -32,6 +32,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"chroma-js": "^2.4.2",
 		"rollup-plugin-json": "^4.0.0",
 		"tailwindcss-animation-delay": "^1.2.0"
 	}
