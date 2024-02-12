@@ -1,29 +1,12 @@
 <script lang="ts">
   import { navigating } from '$app/stores';
       import { invalidateAll } from '$app/navigation'
-	import { removeUpdata } from '$lib';
-    import "../app.css";
+     import "../app.css";
 	import Header from '../app/Header.svelte';
-// 	import Card from "../app/Card.svelte";
-//     import { onMount } from 'svelte';
+ 
 	import LikedCardSamll from '../app/LikedCardSamll.svelte';
-    type color<T,U>= {
-    "name": T,
-    "id": T,
-     "colors":[T,T,T,T],
-    "timer":T,
-    "likes": U,
-    "popular": boolean,
-    "isLike":boolean
-}
-export let data;
-let res;
-export const colors=data.colors?.map(({name,id})=>{
-    return {name,id}
-    
-})
- 
- 
+	import { colorsBase } from '$lib';
+
 const listItems:{[prop:string]:string}[]=[
     {
       icon:"star2",
@@ -33,16 +16,16 @@ const listItems:{[prop:string]:string}[]=[
     },
     {
       icon:"moon",
-      text:"popular",
+      text:"gradient",
       stroke:".5rem",
-      link:"./popular"
+      link:"./gradient"
      
     },
     {
       icon:"random3",
-      text:"random",
+      text:"create",
       stroke:".7rem",
-      link:"./random"
+      link:"./create"
     },
     {
       icon:"heart3",
@@ -51,38 +34,7 @@ const listItems:{[prop:string]:string}[]=[
       link:"./collection"
     }
 ]
-async function updateDataPalette(e:CustomEvent){
-       let color=e.detail.color;
-        let isLike=e.detail.color.isLike;
  
-        
-        const form=e.detail.form as HTMLFormElement;
-        const formData=new FormData(form);
-        console.log(formData);
-      if(!isLike){
-        const res=await fetch(form.action,{
-            method:"PUT",
-            body:JSON.stringify(color),
-            headers:{
-              "content-type":"application/json"
-            }
-         })
-       isLike=true;
-   
-    }
-        else {
-            const   res=await fetch(form.action,{
-            method:"DELETE",
-            body:JSON.stringify(color),
-            headers:{
-              "content-type":"application/json"
-            }        
-        })  
-        }
-          form.reset()
-          await invalidateAll()
-
-     }
   function toggleActiveClasses(e:CustomEvent){
     //  console.log(e.target);
     const links=document.querySelectorAll(".active")!
@@ -92,10 +44,11 @@ async function updateDataPalette(e:CustomEvent){
     links.forEach((link)=>link.classList.remove("active"));
      target?.closest(".link-page")?.classList.add("active")
   } 
+
+
    </script>
-{#if colors!==undefined}
-    
-<Header {colors} />
+{#if colorsBase!==undefined}
+<Header {colorsBase} />
 {/if}
 <main class="main min-h-full flex justify-between ">
     <section
@@ -191,30 +144,7 @@ async function updateDataPalette(e:CustomEvent){
                 Submit Palette
             </button>
         </section>
-
     </div>
-
-
-    <aside class="main--section__3 pr-[2.5rem] md:block hidden min-w-[5rem] max-w-[5rem] md:max-w-[28rem] md:min-w-[28rem] xl:max-w-[32rem] xl:min-w-[32rem] overflow-y-scroll sticky h-[80vh] top-[8rem]">
-        <div class=" border-b-[.1rem] pb-[2rem] border-gray-100">
-            <h3 class="font-semibold text-[1.8rem]">Color Palettes for <br> Designers and Artists</h3>
-            <p class="text-[1.3rem] mt-[.5rem]">Discover the newest hand-picked <br> palettes of Color Hunt</p>
-        </div>
-         <section class="my-[1.5rem]">
-            <h3 class="font-semibold text-[1.8rem] mb-[1rem]">Collection</h3>
-            
-<div class="collection--user__love h-[30rem] flex flex-wrap gap-[.5rem]">
-        
-{#if data.filterColors}
-  {#each data.filterColors as color}
-   <LikedCardSamll   {color} />
-  {/each}     
-{/if}   
-
-</div>
-
-         </section>
-    </aside>
 </main>
  <button class="scrollToTop grid place-content-center animate-[scroll_.4s_ease_forwards] fixed mb-[8rem] sm:mb-0 opacity-0 z-50  translate-y-full right-5 bg-blue-500 rounded-full p-2 sm:p-3">
      <svg class="w-14 aspect-square sm:w-16 text-white -rotate-90">
