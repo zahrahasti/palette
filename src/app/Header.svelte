@@ -16,6 +16,7 @@ let listColor:HTMLElement,listColorExist:boolean=false;
 let showButtonTag:boolean=false;
 const defalultInputDetail={placeholderText:"Search Palette",padding:1.2};
 const optionInputDetail={placeholderText:"Add tag",padding:1.2};
+
 let inputDetail:{placeholderText:string,padding:number}=defalultInputDetail;
 function handleBodyClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
@@ -59,6 +60,7 @@ let filterColor:boolean=false;
     listColorExist=false
  }
  let showNavList:boolean=false
+ export let colorsBase:string[];
 </script>
 <svelte:body lang="ts" on:click={handleBodyClick}/>
  
@@ -115,17 +117,17 @@ let filterColor:boolean=false;
                         <div bind:this={listColor}
                         class="bg-white  top-[3.5rem] hidden duration-200  absolute p-[2rem]  w-full  rounded-b-2xl   border-gray-100 border-[.1rem] border-t-transparent ">
                         <p class="font-semibold mt-5">Colors</p>
-                        <div class="flex flex-wrap items-center gap-2 py-[1rem] text-[1.2rem]">
-                            {#each colors as color}
+                        <div class="flex flex-wrap items-center gap-5 py-[1rem] text-[1.2rem]">
+                            {#each colorsBase as color}
                               <button on:click={(e)=>{
                                 e.preventDefault()
                                 e.stopPropagation() //not sure about this
-                                goto(`/${color.name}`)
+                               
                                  inputDetail=optionInputDetail
-                                  resetListColor(color.name)
-                                }}   class="small-color capitalize">
-                                <span style="display: block; background-color: {color.name}" class="block w-[1.5rem] h-[1.5rem] shadow-sm bg-blue-400 rounded-full"></span>
-                                <span>{color.name}</span>
+                                   
+                                }}   class="capitalize">
+                                <span style="display: block; background-color: {color}" class="block w-[2rem] h-[2rem] shadow-sm rounded-full"></span>
+                                
                               </button>
                                {/each}
                          </div>

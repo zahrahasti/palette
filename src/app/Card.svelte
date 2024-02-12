@@ -13,16 +13,7 @@
      
 }
 let element:HTMLElement
-    export let color:color<string,number>= {
-      "name": "",
-      "id": "",
-      "colors":["","","",""],
-      "timer":"",
-      "likes":0,
-      "popular":false,
-       "isLike":false,
-      
-  }
+ 
   onMount(()=>{
     const observer=new IntersectionObserver((entries)=>{
       for (const entry of entries) {
@@ -42,6 +33,7 @@ let element:HTMLElement
  let codeColorBase:string;
  	import { goto } from '$app/navigation';
 	import { enhance } from '$app/forms';
+	import LikedCard from './LikedCard.svelte';
  
    
       let loading:boolean=false;
@@ -49,15 +41,16 @@ let element:HTMLElement
 function handleClicked(e:Event,color:color<string,number>){
    goto(`./${color.name}${color.id}`)   
 } 
- 
+// @ts-nocheck
+ export let color:{isLike:boolean,colors:string[]};
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div bind:this={element} class="relative card animated-translate-y w-full scale-[.85] sm:scale-100">
+<div data-color={color} bind:this={element} class="relative card animated-translate-y w-full scale-[.85] sm:scale-100">
     <div   on:click={(e)=>handleClicked(e,color)}  class="w-full relative  text-[1.6rem] md:text-[1.4rem] xl:text-[1.5rem] text-white   aspect-square bottom-0 rounded-[1rem] overflow-hidden  pallete--color__1">
       {#if color}
       {#each color.colors as codeColor , id}
-      <div style="animation-delay:{(id+1)*.05}s; background-color:#{codeColor};height:{100-(10+(id)*4)*id}%;" class=" decrease-height  absolute  z-[{id+10}] w-full group flex  cursor-pointer">
+      <div style="animation-delay:{(id+1)*.05}s; background-color:{codeColor};height:{100-(10+(id)*4)*id}%;" class=" decrease-height  absolute  z-[{id+10}] w-full group flex  cursor-pointer">
        <button on:click={
            function(){
        codeColorBase=codeColor
@@ -74,17 +67,21 @@ function handleClicked(e:Event,color:color<string,number>){
       {/if}
     </div>
       <div class="flex container--btn__pallete container--main__btn justify-between w-full gap-3 items-center my-[1rem]">
-        <form use:enhance action="?/addColor" method="post">
+        <form on:submit|preventDefault={()=>{
+           if(color.isLike) color.isLike=false
+           else color.isLike=true
+           
+        }} use:enhance action="{color.isLike ? `?/addColor`:`?/removeColor`}" method="post">
           <input type="hidden" name="hidden" id="hidden" value="{JSON.stringify(color)}">
-          <button   class:like={color.isLike}   formaction="?/addColor" type="submit" class="btn btn-like text-[1.8rem]  md:text-[1.6rem] sm:text-[1.4rem] btn-like__{color.id} btn-custom" data-id="${color.id}" data-liked="false">
+          <button    formaction="{color.isLike ? `?/addColor`:`?/removeColor`}" type="submit" class="{color.isLike? `bg-gray-200`:``} btn btn-like text-[1.8rem]  md:text-[1.6rem] sm:text-[1.4rem]  btn-custom">
             <span>
                <svg class="{!loading ? `block` : `hidden`} stroke-[1rem]  stroke-black text-transparent w-[2rem] h-[2rem]">
                  <use href="./icon.svg#heart3"></use></svg>
              </span>
-             <span id="like-count" class="like-counter">{color.likes}</span>
+             <span id="like-count" class="like-counter">Like</span>
           </button>
         </form>
-        <time class="text-[1.4rem] md:text-[1.2rem] text-gray-500">{formatTimeDifference(new Date(color.timer),new Date())}</time>
+        <time class="text-[1.4rem] md:text-[1.2rem] text-gray-500"> </time>
       </div>
 </div>
 
