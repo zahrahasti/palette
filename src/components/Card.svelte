@@ -1,53 +1,56 @@
 <script lang="ts">
-  import { formatTimeDifference } from '$lib/utils';
-   import { slide } from 'svelte/transition';
-   import { onMount } from 'svelte';
-    type color<T,U>= {
-    "name": T,
-    "id": T,
-     "colors":[T,T,T,T],
-    "timer":T,
-    "likes": U,
-    "popular": boolean,
-    "isLike":boolean
-     
+	 import { enhance } from '$app/forms';
+    import { onMount } from 'svelte';
+let cardContainer:HTMLElement
+ const cardInformation={
+    codeColorBase:"",
+    loading:false
+ }
+ let {codeColorBase,loading}=cardInformation;
+// let cardContainer:HTMLElement, 
+//    codeColorBase:string;
+
+ 
+// let loading:boolean=false;;
+class CardObserver {
+  _cardContainer;
+  _threshold=.5
+  _beforeAnimatedClassName="before-animated"
+  _AnimatedClassName="card-animated";
+    constructor(cardContainer:HTMLElement) {
+        this._cardContainer=cardContainer
+        this.initIntersectionObserver();
+    }
+
+    initIntersectionObserver() {
+      onMount(()=>{
+        const observer = new IntersectionObserver((entries) => {
+            for (const entry of entries) {
+                if (entry.intersectionRatio >= 0.5) {
+                    const card = entry.target;
+                    this.AnimatedCard(card);
+                }
+            }
+        }, {
+            threshold: this._threshold
+        });
+
+        observer.observe(cardContainer);
+    }
+      )
+    }
+   AnimatedCard(card:Element){
+      card.classList.remove(this._beforeAnimatedClassName);
+      card.classList.add(this._AnimatedClassName)
+   }
 }
-let element:HTMLElement
- 
-  onMount(()=>{
-    const observer=new IntersectionObserver((entries)=>{
-      for (const entry of entries) {
-      
-          if (entry.intersectionRatio >= 0.5) { // Display the element when it's at least 50% visible
-              const el=entry.target as HTMLElement
-             el.classList.remove("card");
-             el.classList.add("card-animated")
-             
-    }}
-    },{
-       threshold:.5
-    })
-    
-    observer.observe(element)
-  })
- let codeColorBase:string;
- 	import { goto } from '$app/navigation';
-	import { enhance } from '$app/forms';
-	import LikedCard from './LikedCard.svelte';
- 
-   
-      let loading:boolean=false;
- 
-function handleClicked(e:Event,color:color<string,number>){
-   goto(`./${color.name}${color.id}`)   
-} 
-// @ts-nocheck
+ const card=new CardObserver(cardContainer);
  export let color:{isLike:boolean,colors:string[]};
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<div data-color={color} bind:this={element} class="relative card animated-translate-y w-full scale-[.85] sm:scale-100">
-    <div   on:click={(e)=>handleClicked(e,color)}  class="w-full relative  text-[1.6rem] md:text-[1.4rem] xl:text-[1.5rem] text-white   aspect-square bottom-0 rounded-[1rem] overflow-hidden  pallete--color__1">
+<!-- svelte-ignore a11y-no-static-CardContainer-interactions -->
+<div data-color={color} bind:this={cardContainer} class="relative before-animated animated-translate-y w-full scale-[.85] sm:scale-100">
+    <div  class="w-full relative  text-[1.6rem] md:text-[1.4rem] xl:text-[1.5rem] text-white   aspect-square bottom-0 rounded-[1rem] overflow-hidden  pallete--color__1">
       {#if color}
       {#each color.colors as codeColor , id}
       <div style="animation-delay:{(id+1)*.05}s; background-color:{codeColor};height:{100-(10+(id)*4)*id}%;" class=" decrease-height  absolute  z-[{id+10}] w-full group flex  cursor-pointer">
@@ -59,7 +62,7 @@ function handleClicked(e:Event,color:color<string,number>){
        setTimeout(()=>codeColor=codeColorBase,500)
        }
        } type="button" class="btn btn--copy__color w-max group-hover:opacity-100  self-end opacity-0 hover:bg-[rgba(0,0,0,.2)] duration-150 rounded-t-md  px-[1rem] bg-[rgba(0,0,0,.15)]">
-         #{codeColor} 
+         {codeColor} 
        </button>
         
       </div>
@@ -81,19 +84,19 @@ function handleClicked(e:Event,color:color<string,number>){
              <span id="like-count" class="like-counter">Like</span>
           </button>
         </form>
-        <time class="text-[1.4rem] md:text-[1.2rem] text-gray-500"> </time>
+        <time class="text-[1.4rem] md:text-[1.2rem] text-gray-500"></time>
       </div>
 </div>
 
 
 <style>
-  .card{
+  .before-animated{
     opacity:0;
     transition:.3s;
     transform: translateY(3rem);
   }
   .card-animated{
-    animation:card .3s ease-in;
+    animation:card .5s ease-in;
   }
   .like{
     background:rgba(0,0,0,.1);

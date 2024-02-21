@@ -1,8 +1,9 @@
 <script lang="ts">
-	import GradientCard from "../../app/GradientCard.svelte";
-     import { darkenColor,colorsBase } from "$lib";
-	import Box from "../../app/Box.svelte";
-	import InputBox from "../../app/inputBox.svelte";
+	import GradientCard from "$components/GradientCard.svelte";
+ 
+	import Box from "$components/GradinetBox.svelte";
+	import InputBox from "$components/InputStyled.svelte";
+	import { splitArrayToSmallerArrays } from "$lib";
 	const gradient={
 		 Color:{
 			 title:"color",
@@ -39,8 +40,28 @@
 	thump_color_2="#4F4ED7",
 	input_range_1:HTMLInputElement,
 	input_range_2:HTMLInputElement
+    let count=24
+	import randomcolor from "randomcolor";
+    let colors=splitArrayToSmallerArrays(2,randomcolor({
+     count
+    }))
 </script>
- 
+<svelte:window on:scroll={()=>{ 
+	const totalHeight = document.documentElement.scrollHeight; 
+   // Calculate the current scroll position of the viewport 
+   const scrollPosition = window.scrollY + window.innerHeight; 
+   if (scrollPosition >= totalHeight - 10) { 
+	  count+=6
+	  colors=splitArrayToSmallerArrays(
+		2
+		,randomcolor({
+     count
+    }))
+	 } 
+   }} /> 
+ <svelte:head>
+	 <title>collection</title>
+ </svelte:head>
 <section class="grid grid-cols-1 md:grid-cols-2 relative w-full gap-5 items-center justify-between">
 	<div class="relative border-gray-100 rounded-xl  border-[1px] p-8 border-1 w-full border-b-gray-200">
 		<section class="z-20 relative range-slider">
@@ -135,17 +156,17 @@
 	</div>
 	<div 
        style="background-image:{type}-gradient({type==="radial"?`circle`: `${gradient.Rotation.value}deg`}, {color_1} {color_num_1}%,{color_2} {color_num_2}%);" 
-	   class="w-full h-full"> 
+	   class="w-full h-80 rounded-lg md:h-full"> 
 	</div>
 </section>
 
 <section  
  class="mt-10 mb-10 grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] h-max section--new  active-page w-full  justify-between gap-[1rem]"
  data-active="1">
- {#each colorsBase as colorBase}
-    {@const color=darkenColor().toString()}
-    <GradientCard {color}/>
- {/each}
+    {#each colors as color}
+      <GradientCard {color}/>
+	{/each}
+ 
 </section>
 
  <style >

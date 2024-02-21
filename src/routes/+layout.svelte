@@ -1,13 +1,10 @@
-<script lang="ts">
-  import { navigating } from '$app/stores';
-      import { invalidateAll } from '$app/navigation'
-     import "../app.css";
-	import Header from '../app/Header.svelte';
- 
-	import LikedCardSamll from '../app/LikedCardSamll.svelte';
-	import { colorsBase } from '$lib';
-
-const listItems:{[prop:string]:string}[]=[
+  <script lang="ts">
+    import "../app.css";
+	import Header from '$components/Header.svelte';
+ 	import { json } from "@sveltejs/kit";
+    let colorBase;
+    import { baseColors } from "$lib";
+     const listItems:{[key:string]:string}[]=[
     {
       icon:"star2",
       text:"new",
@@ -36,26 +33,29 @@ const listItems:{[prop:string]:string}[]=[
 ]
  
   function toggleActiveClasses(e:CustomEvent){
-    //  console.log(e.target);
-    const links=document.querySelectorAll(".active")!
-    //  console.log(e.currentTarget);
+    const activeLinks=document.querySelectorAll(".active") as NodeListOf<HTMLElement>;
     const {target,currentTarget}=e;
     if(target===currentTarget)return;
-    links.forEach((link)=>link.classList.remove("active"));
-     target?.closest(".link-page")?.classList.add("active")
+    activeLinks.
+               forEach((activeLink)=>activeLink.classList.remove("active"));
+    if(target instanceof Element)
+    target.closest(".link-page")?.classList.add("active")
   } 
 
+    </script>
+ 
+    
+ 
+ <Header {baseColors} />
+ 
 
-   </script>
-{#if colorsBase!==undefined}
-<Header {colorsBase} />
-{/if}
+ 
 <main class="main min-h-full flex justify-between ">
     <section
         class="main--section__1 pl-[2.5rem] z-50  min-w-[5rem] max-w-[5rem] sm:max-w-[24rem] sm:min-w-[24rem] absolute sm:sticky    h-[85vh] top-[8rem] mt-[8rem] overflow-y-scroll">
         <menu
             on:click={toggleActiveClasses}
-            class="bg-white control--pallete border-t-[.1rem] border-t-[#f8f8f8] sm:border-t-0 fixed sm:relative left-1/2 bottom-0  -translate-x-1/2 gap-[.5rem] w-full flex sm:flex-col items-center justify-around p-[.5rem] bg-red-400 sm:p-[1rem]  sm:items-start   bg-wh ite z-10 text-gray-800 text-[1.6rem]">
+            class="bg-white capitalize control--pallete border-t-[.1rem] border-t-[#f8f8f8] sm:border-t-0 fixed sm:relative left-1/2 bottom-[-.5rem]  -translate-x-1/2 gap-[.5rem] w-full flex sm:flex-col items-center justify-around p-[.5rem] bg-red-400 sm:p-[1rem]  sm:items-start   bg-wh ite z-10 text-gray-800 text-[1.6rem]">
            
             {#each listItems as item,id}
             <li  class="{id===0 ? `active`:``} link-page w-full mb-[.5rem] rounded-[.8rem] sm:rounded-[1rem]"
@@ -150,4 +150,5 @@ const listItems:{[prop:string]:string}[]=[
      <svg class="w-14 aspect-square sm:w-16 text-white -rotate-90">
          <use href="./img/icon.svg#upArrow"></use>
      </svg>
- </button>
+ </button>  
+ 

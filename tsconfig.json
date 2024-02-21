@@ -11,7 +11,7 @@
 		"strict": true,
 		"moduleResolution": "bundler",
 		 "types":["svelte"],
-		 "module": "ES2015"
+		 "module": "ES2015",
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//

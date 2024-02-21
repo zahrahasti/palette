@@ -1,51 +1,44 @@
-//fetching the data 
-//we can accsess the data in +layout.svelte.ts 
-//we can getColors;
-//we need to update data that user clicked
-//actually first we need to say when click is happend the fethcing the data in +server.js 
-//in server.js we need post function
-//after update we need a function to tell if the button click on that again re updatte data;
-//defind base color;
  
-
-
+ export const baseColors=[
+  "white",
+  "gray",
+  "silver",
+  "nevy",
+  "blue",
+  "Aqua",
+ "Teal",
+ "Lime",
+ "fuchsia",
+ "purple",
+ "green",
+ "olive",  
+ "yellow",  
+  "orange",
+ "red",
+ "maroon"
+]
+type color={isLike:boolean,colors:string[]}
+import { randomNumber } from "./randomColor";
+export function splitArrayToSmallerArrays<T>(chunkSize: number, array: Array<T>): Array<Array<T>> {
+  // Calculate the number of chunks needed
+  const chunkCount = Math.ceil(array.length / chunkSize);
+  // Create an array of empty arrays with the chunk count
+  const chunks = Array.from({ length: chunkCount }, () => []);
+  // Loop over the original array and push each item to the corresponding chunk
+  array.forEach((item, index) => {
+    const chunkIndex = Math.floor(index / chunkSize);
+    chunks[chunkIndex].push(item);
+  });
+  // Return the array of chunks
+  return chunks;
+}
+import chroma from "chroma-js"
  
-import { randomColor, randomNumber  } from "./randomColor";
-import chroma from "chroma-js";
-export const colorsBase:string[]=["#FFFFFF","#FF0000",
-"#800000","#FFFF00",
-"#808000","#00FF00",
-"#008000","#00FFFF",
-"#008080","#0000FF",
-"#000080","#FF00FF"];
+export function generatedColors<T>(color:T[]){
+  return [  `${chroma.mix(...color,.5).brighten()}`,
+      ...color,
+      `${chroma.average(color).darken(randomNumber(3,1))}`
+       ] 
+}
 
-  export function generateSimilarColors([color1,color2]:string[]):string[] {
-    const palette = [];
-    
-    // Convert the colors to chroma instances
-    const c1 = chroma(color1).hex();
-    const c2 = chroma(color2).hex();
-    
-    // Interpolate between the two colors to generate two additional colors
-    const c3 = chroma.mix(c1, c2, 0.33, 'lab').hex();
-    const c4 = chroma.mix(c1, c2, 0.66, 'lab').hex();
-    
-    palette.push(c1, c3, c4,c2);
-    return  palette
-    }
-    
-     
-   export function generatedColors(color:string):string[] {
-    // Convert the color to a chroma instance
-    const chromaColor = chroma(color)
-    const darkerColor = chromaColor.darken(randomNumber(5,3)).hex();
-    const generatedColorPalette=generateSimilarColors([color,darkerColor])
-    
-    return generatedColorPalette;
-    }
-
-  export const darkenColor=():string[]=>{
-      const  chromeColor=chroma(randomColor()).brighten(.3).hex()
-      const darkenColor=chroma(randomColor()).darken(.3).hex();
-      return  [chromeColor,darkenColor]
-  }
+export const isEqual = (obj1:color, obj2:color) => JSON.stringify(obj1.colors) === JSON.stringify(obj2.colors); 

@@ -1,10 +1,8 @@
 
 <script lang="ts">
-	import { enhance } from "$app/forms";
- 
- 
-     import { fade } from "svelte/transition";
-     export let color:{isLike:boolean,colors:string[]}
+	import { enhance } from "$app/forms"; 
+  import { fade } from "svelte/transition";
+  export let color:{isLike:boolean,colors:string[]}
 </script>
 
     <div transition:fade={{duration:300,delay:150}}  class="relative w-full scale-[.85] sm:scale-100">

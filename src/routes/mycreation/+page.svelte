@@ -1,6 +1,6 @@
 
 <script>
-	import Card from "../../app/Card.svelte";
+	import Card from "../../components/Card.svelte";
 
    export let data;
    console.log(data);

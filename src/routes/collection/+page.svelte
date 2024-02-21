@@ -1,7 +1,7 @@
 
  
 <script lang="ts">
-	import LikedCard from "../../app/LikedCard.svelte";
+	import LikedCard from "$components/LikedCard.svelte";
     export let data;
     
  </script>
@@ -12,7 +12,7 @@
 
 {#if data.colors.length}
 <section class="mb-[10rem] grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] h-max section--new  active-page w-full  justify-between gap-[1rem]">
-    {#each data.colors as color}
+    {#each new Set(data.colors) as color}
         <LikedCard {color}/>
     {/each}
 </section>

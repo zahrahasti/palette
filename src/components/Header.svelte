@@ -1,19 +1,27 @@
-
 <script lang="ts">
-    import { goto } from '$app/navigation';
-    let selectedColor:string;
+  import { goto } from '$app/navigation';
+  import { v4 } from 'uuid';
+
   import { createEventDispatcher } from 'svelte';
- const dispatch=createEventDispatcher()
- type color={name:string;id:string}
-export let colors:color[];
-  function handleClicked(color:string){
-     console.log(color);
-    dispatch("selectedColor",{color})
- }
- console.log(colors);
-let copyColors=colors;
-let listColor:HTMLElement,listColorExist:boolean=false;
-let showButtonTag:boolean=false;
+  let selectedColor:string;
+  export let baseColors:string[]
+//   const DETAILS__EVENTS={
+//      selectedColor:"",
+//      showButtonTag:false,
+//      defaultPadding:1.2,
+//      defalultInputDetails:{
+//         placeholderText:"Search Palette",
+//         padding:this.defaultPadding
+//      },
+//      optionInputDetail:{
+//         placeholderText:"Add tag",
+//         padding:this.defaultPadding
+//      }
+
+//   }
+  const dispatch=createEventDispatcher()
+  let listColor:HTMLElement,listColorExist=false;
+  let showButtonTag=false;
 const defalultInputDetail={placeholderText:"Search Palette",padding:1.2};
 const optionInputDetail={placeholderText:"Add tag",padding:1.2};
 
@@ -25,32 +33,28 @@ function handleBodyClick(event: MouseEvent) {
         listColorExist=false
     }
   }
+  const copyBaseColor=baseColors;
+
 let filterColor:boolean=false;
-  function filterSearchText(e:Event){
+function filterSearchText(e:Event){
     const text=(e?.target as HTMLInputElement).value.toLowerCase();
-    const patternRegex = new RegExp(`^${text}$`, "i");
-    const colorsNames=colors.map(color=>color.name)
-     if(colorsNames.indexOf(text)>=0){
-        
-        colors=colors.filter(color=>patternRegex.test(color.name.toLowerCase()))
-        filterColor=true;
+     if(text.length > 0){
+       baseColors= baseColors.filter(color=>color.toLowerCase().startsWith(text))
+       filterColor=true;
     }
-     else colors=copyColors
+     else baseColors= copyBaseColor
   }
+
  function checkValue(e:Event){
     e.preventDefault();
     if(filterColor){
-       
-        
         const input=(e?.target as HTMLFormElement).search! as HTMLInputElement || "";
-        const [color]=copyColors.filter(color=>color.name===input.value);
-        goto(`./${input.value}${color.id}`);
-        resetListColor(input.value)
-        // Reset input value & colors objects
-        input.value="";
-        colors=copyColors;
-        //
-      
+        console.log(input);
+        const [color]=copyBaseColor.filter(color=>color.toLowerCase().startsWith(input.value));
+         
+        goto(`./${color}`);
+        resetListColor(color)
+        
     }
  }
  function resetListColor(value:string){
@@ -60,17 +64,15 @@ let filterColor:boolean=false;
     listColorExist=false
  }
  let showNavList:boolean=false
- export let colorsBase:string[];
+
 </script>
 <svelte:body lang="ts" on:click={handleBodyClick}/>
  
-<header  class="header flex items-center justify-between w-full bg-white fixed left-1/2  -translate-x-1/2 z-[2] py-[.8rem]  ">
-    <!-- <nav class="nav flex justify-between   items-center  border-b-[.1rem] pb-[1rem] border-gray-50"> -->
-        <figure class="min-w-[5rem] max-w-[5rem] sm:max-w-[24rem] sm:min-w-[24rem] pl-[2.5rem]  flex gap-[1rem]  items-center">
+<header  class="flex items-center justify-between w-full bg-white fixed   left-1/2  -translate-x-1/2 z-[2] py-[.8rem]  ">
+         <figure class="min-w-[5rem] max-w-[5rem] sm:max-w-[24rem] sm:min-w-[24rem] pl-[2.5rem]  flex gap-[1rem]  items-center">
             <img src="./logo.png" alt="" class="w-[3.2rem]">
             <strong class="font-semibold hidden sm:inline-block text-[2rem]">Color Hunt</strong>
-        </figure>
-         
+        </figure> 
          <nav class="w-full nav">
             <div class="parent px-[2.5rem] w-full  relative">
                 <div class="h-full relative rounded-[2rem] ">
@@ -82,9 +84,10 @@ let filterColor:boolean=false;
                         </div>
                     
                         <button class="ml-2" on:click={()=>{
-                            inputDetail=defalultInputDetail;
-                            showButtonTag=false;
-                            goto("./")
+                             selectedColor=""
+                             showButtonTag=false
+                             inputDetail=defalultInputDetail
+                            goto("/")
                             }}>
                            <svg class="w-4 aspect-square text-gray-400">
                               <use href="./icon.svg#delete"></use>
@@ -96,7 +99,7 @@ let filterColor:boolean=false;
                     <form on:submit={checkValue} class="relative {listColor ? ``:`pl-[3rem] focus:pl-[1.2rem]`} focus:bg-blue-600">
                         <input 
                          on:input={filterSearchText}
-                       on:focus={
+                         on:focus={
                           ()=>{
                               listColor.style.display="block";
                               listColorExist=true;
@@ -104,7 +107,7 @@ let filterColor:boolean=false;
                        } type="search" 
                            aria-label="search bar"
                            id="search"
-                          class="w-full {showButtonTag ? `pl-[10rem] `:`pl-[3rem] focus:pl-[1.2rem]`} relative z-[3] py-[.8rem] text-gray-800 rounded-[2rem] border-[.1rem] border-gray-200   duration-100   outline-none "
+                          class="w-full {showButtonTag ? `pl-[12rem] `:`pl-[3rem] focus:pl-[1.2rem]`} relative z-[3] py-[.8rem] text-gray-800 rounded-[2rem] border-[.1rem] border-gray-200   duration-100   outline-none "
                           placeholder="{inputDetail.placeholderText}">
                     </form>
                     
@@ -118,16 +121,17 @@ let filterColor:boolean=false;
                         class="bg-white  top-[3.5rem] hidden duration-200  absolute p-[2rem]  w-full  rounded-b-2xl   border-gray-100 border-[.1rem] border-t-transparent ">
                         <p class="font-semibold mt-5">Colors</p>
                         <div class="flex flex-wrap items-center gap-5 py-[1rem] text-[1.2rem]">
-                            {#each colorsBase as color}
+                            {#each baseColors as color}
                               <button on:click={(e)=>{
                                 e.preventDefault()
                                 e.stopPropagation() //not sure about this
-                               
+                                goto(`/${color}`)
+                                selectedColor=color
+                                 showButtonTag=true;
                                  inputDetail=optionInputDetail
-                                   
-                                }}   class="capitalize">
-                                <span style="display: block; background-color: {color}" class="block w-[2rem] h-[2rem] shadow-sm rounded-full"></span>
-                                
+                                }}   class="capitalize flex gap-2 items-center">
+                                <span style="display: block; background-color:{color}" class="block w-[2rem] h-[2rem] border-[1px] border-gray-100 shadow-sm rounded-full"></span>
+                                {color}
                               </button>
                                {/each}
                          </div>
@@ -137,7 +141,7 @@ let filterColor:boolean=false;
             </div>
          </nav>
 
-        <div class="nav--section__3 pr-[2.5rem] min-w-[5rem] max-w-[5rem] md:max-w-[28rem] md:min-w-[28rem] xl:max-w-[32rem] xl:min-w-[32rem] relative flex items-center justify-between gap-4">
+        <div class="pr-[2.5rem] min-w-[5rem] max-w-[5rem] md:max-w-[28rem] md:min-w-[28rem] xl:max-w-[32rem] xl:min-w-[32rem] relative flex items-center justify-between gap-4">
             <a href="../file.htm"
                 class="btn-chrome hidden px-[1.2rem] h-full py-[.6rem] w-max md:flex items-center gap-[1rem] duration-200 hover:bg-[rgba(0,0,0,.01)] rounded-[1rem] border-[.1rem] border-gray-200">
                 <img src="./chrome.png" alt="" class="w-[1.8rem]  h-[1.8rem]">
