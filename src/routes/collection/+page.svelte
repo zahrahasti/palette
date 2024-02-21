@@ -28,5 +28,5 @@
         </a>
     </div>
 {/if}
- <input type="color" name="" id="">
+  
  
