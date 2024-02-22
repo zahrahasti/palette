@@ -70,14 +70,7 @@
             </a>
         </li>
             {/each}
-           
         </menu>
-
-        <ul class="control--pallete__color p-[1rem] hidden sm:block ">
-            
-            <li class="py-4 px-[.8rem] text-gray-600 text-[1.4rem]"><a href="#">link</a></li>
-       
-        </ul>
     </section>
        
    
