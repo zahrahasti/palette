@@ -58,8 +58,6 @@ if (scrollPosition >= totalHeight - 10) {
   >
   {#each stordColors as color} 
   <Card {color}/> 
-  {/each} 
- 
-    
+  {/each}    
 </section>
  

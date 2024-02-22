@@ -141,40 +141,9 @@ function filterSearchText(e:Event){
             </div>
          </nav>
 
-        <div class="pr-[2.5rem] min-w-[5rem] max-w-[5rem] md:max-w-[28rem] md:min-w-[28rem] xl:max-w-[32rem] xl:min-w-[32rem] relative flex items-center justify-between gap-4">
-            <a href="../file.htm"
-                class="btn-chrome hidden px-[1.2rem] h-full py-[.6rem] w-max md:flex items-center gap-[1rem] duration-200 hover:bg-[rgba(0,0,0,.01)] rounded-[1rem] border-[.1rem] border-gray-200">
+             <a href="../file.htm"
+                class="btn-chrome mr-5 min-w-max hidden px-[1.2rem] h-full py-[.6rem] w-max md:flex items-center gap-[1rem] duration-200 hover:bg-[rgba(0,0,0,.01)] rounded-[1rem] border-[.1rem] border-gray-200">
                 <img src="./chrome.png" alt="" class="w-[1.8rem]  h-[1.8rem]">
                 <span>Add to Chrome</span>
-            </a>
-            <button type="button"
-                on:click={()=>{showNavList=!showNavList}}
-                class="btn btn-nav-list  flex self-end items-end justify-end btn--open__menu p-3  btn--link__page   rounded-full transition-all duration-300 hover:bg-gray-50"
-                data-content="open">
-                <svg class="w-[2rem] h-[2rem] text-gray-600">
-                    <use href="./icon.svg#bar"></use>
-                </svg>
-            </button>
-
-            <ul
-                class="absolute text-[1.4rem] {showNavList ? `block`: `hidden`}  menu bg-white min-w-[12rem] md:min-w-[15rem] rounded-sm shadow-sm px-[.5rem] py-[1.2rem] top-[5rem] right-[2rem] border-[.1rem] border-gray-50">
-                <li class="py-[.5rem] px-[1rem] active rounded-[.5rem]">
-                    <a href="./">
-                        palettes
-                    </a>
-                </li>
-                <li class="py-[.5rem] px-[1rem] rounded-[.5rem]">
-                    <a href="./create">
-                      create
-                    </a>
-                </li>
-                <li class="py-[.5rem] px-[1rem] rounded-[.5rem]">
-                    <a href="./collection">
-                        collection
-                    </a>
-                </li>
-            </ul>
-
-        </div>
-    <!-- </nav> -->
+            </a>         
 </header>
