@@ -1,11 +1,8 @@
  
  
  <script lang="ts">
-	import { json } from "@sveltejs/kit";
-  import "../app.css";  
-  import chroma from "chroma-js"
-  import randomcolor from 'randomColor';
-  import { randomNumber } from '$lib/randomColor';
+   import "../app.css";  
+   import randomcolor from 'randomcolor';
   import {isEqual,generatedColors,splitArrayToSmallerArrays} from "$lib";
 	import Card from "$components/Card.svelte";
   export let data

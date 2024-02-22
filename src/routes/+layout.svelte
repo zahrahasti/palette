@@ -1,9 +1,7 @@
   <script lang="ts">
     import "../app.css";
 	import Header from '$components/Header.svelte';
- 	import { json } from "@sveltejs/kit";
-    let colorBase;
-    import { baseColors } from "$lib";
+     import { baseColors } from "$lib";
      const listItems:{[key:string]:string}[]=[
     {
       icon:"star2",

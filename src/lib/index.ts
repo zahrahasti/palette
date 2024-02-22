@@ -18,7 +18,7 @@
  "maroon"
 ]
 type color={isLike:boolean,colors:string[]}
-import { randomNumber } from "./randomColor";
+import { randomNumber } from "./randomNum";
 export function splitArrayToSmallerArrays<T>(chunkSize: number, array: Array<T>): Array<Array<T>> {
   // Calculate the number of chunks needed
   const chunkCount = Math.ceil(array.length / chunkSize);
