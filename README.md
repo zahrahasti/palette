@@ -11,7 +11,7 @@
 </blockquote>
 
 <figure>
-   <img src="https://github.com/zahrahasti/palette/blob/main/view-page" alt="Online Image Editor preview" />
+   <img src="https://github.com/zahrahasti/palette/blob/main/static/view-page.JPG" alt="Online Image Editor preview" />
 </figure>
  
  <h2>Features</h2>
