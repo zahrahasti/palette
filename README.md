@@ -56,7 +56,7 @@
 <h3>Links</h3>
 <ul>
    <li>
-      <a href="https://color-palette-2013.netlify.app/">Project homepage</a>
+      <a href="https://palette-hunt.netlify.app/">Project homepage</a>
    </li>
    <li>
       <a href="https://github.com/zahrahasti/palette">GitHub repository</a>
