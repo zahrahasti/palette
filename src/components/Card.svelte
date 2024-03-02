@@ -9,7 +9,47 @@ let cardContainer:HTMLElement
  let {codeColorBase,loading}=cardInformation;
 // let cardContainer:HTMLElement, 
 //    codeColorBase:string;
+let canvas:HTMLCanvasElement,colorWrapper:HTMLElement;
+export function downloadPalette(containerPaletteColors:HTMLElement) {
+    // Create a new canvas element
+     const ctx:CanvasRenderingContext2D  = canvas.getContext('2d');
+  
+    // Set canvas dimensions based on the color palette size
+    const paletteWidth = containerPaletteColors.offsetWidth;
+    const paletteHeight = containerPaletteColors.offsetHeight;
+    canvas.width = paletteWidth;
+    canvas.height = paletteHeight;
+  
+    // Get the colors from the color palette
+    const colorBoxes = containerPaletteColors.getElementsByClassName('container-color');
+    console.log(colorBoxes);
+    // Loop through the color boxes and draw them on the canvas
+    let yPos = 0;
+    for (let i = 0; i < colorBoxes.length; i++) {
+      const colorBox = colorBoxes[i] as HTMLElement;
+      const color = colorBox.style.backgroundColor;
+       const boxHeight = colorBox.offsetHeight;
+      
+      // Draw the color box on the canvas
+      ctx.fillStyle = color;
+      ctx.fillRect(0, 0, paletteWidth, boxHeight);
 
+      // Increment the y-position for the next color box
+      yPos += boxHeight;
+    }
+  
+    // Convert the canvas content to a data URL
+    const dataUrl = canvas.toDataURL('image/png');
+  
+    // Create a temporary anchor element
+    const link = document.createElement('a');
+    link.href = dataUrl;
+    link.download = 'color-palette.png'; // Set the desired file name
+  
+    // Programmatically click the link to trigger the download
+    link.click();
+  }
+   
  
 // let loading:boolean=false;;
 class CardObserver {
@@ -47,13 +87,13 @@ class CardObserver {
  const card=new CardObserver(cardContainer);
  export let color:{isLike:boolean,colors:string[]};
 </script>
-
+<canvas bind:this={canvas} class="hidden"></canvas>
 <!-- svelte-ignore a11y-no-static-CardContainer-interactions -->
 <div data-color={color} bind:this={cardContainer} class="relative before-animated animated-translate-y w-full scale-[.85] sm:scale-100">
-    <div  class="w-full relative  text-[1.6rem] md:text-[1.4rem] xl:text-[1.5rem] text-white   aspect-square bottom-0 rounded-[1rem] overflow-hidden  pallete--color__1">
+    <div bind:this={colorWrapper}  class="w-full relative  text-[1.6rem] md:text-[1.4rem] xl:text-[1.5rem] text-white   aspect-square bottom-0 rounded-[1rem] overflow-hidden  pallete--color__1">
       {#if color}
       {#each color.colors as codeColor , id}
-      <div style="animation-delay:{(id+1)*.05}s; background-color:{codeColor};height:{100-(10+(id)*4)*id}%;" class=" decrease-height  absolute  z-[{id+10}] w-full group flex  cursor-pointer">
+      <div style="animation-delay:{(id+1)*.05}s; background-color:{codeColor};height:{100-(10+(id)*4)*id}%;" class="container-color decrease-height  absolute  z-[{id+10}] w-full group flex  cursor-pointer">
        <button on:click={
            function(){
        codeColorBase=codeColor
@@ -84,7 +124,10 @@ class CardObserver {
              <span id="like-count" class="like-counter">Like</span>
           </button>
         </form>
-        <time class="text-[1.4rem] md:text-[1.2rem] text-gray-500"></time>
+      <button 
+      type="button" 
+      class="btn text-[1.8rem]  md:text-[1.6rem] sm:text-[1.4rem]  btn-custom"
+      on:click={()=>downloadPalette(colorWrapper)}>Download</button>
       </div>
 </div>
 
