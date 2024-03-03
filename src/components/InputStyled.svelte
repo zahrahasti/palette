@@ -10,25 +10,22 @@
     }
     let ul;
 </script>
- <svelte:body on:click={(e)=>{
-  console.log(e);
-   if(e.target){
-      console.log("click on l");
-   }
- }} />
-  <form class="flex"  on:submit|preventDefault={()=>{
-    console.log(details.value);
-    changePosition(details.value)}}>
+  <form class="flex"  on:submit|preventDefault={()=>{changePosition(details.value)}}>
     <input 
-    type="text" 
+    type="number" 
     min="0" 
     max="${details.optionValues[-1]}"  
     bind:value={details.value}
-    class="w-full border-0 outline-0 text-center">  
-    
+    class="w-full border-0 outline-0 text-center"
+    on:input={()=>changePosition(details.value)}
+    >  
   </form>
    
-       <button on:click={()=>show=!show} >?</button>
+       <button on:click={()=>show=!show} >
+         <svg class="w-8 h-8">
+            <use href="icon.svg#downArrow"></use>
+         </svg>
+      </button>
        {#if show}
        <ul bind:this={ul}
       class="absolute p-5 rounded-2xl  bg-white w-4/5 right-0 z-20 top-full">
