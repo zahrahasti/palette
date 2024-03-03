@@ -68,7 +68,7 @@ function filterSearchText(e:Event){
 </script>
 <svelte:body lang="ts" on:click={handleBodyClick}/>
  
-<header  class="flex items-center justify-between w-full bg-white fixed   left-1/2  -translate-x-1/2 z-[2] py-[.8rem]  ">
+<header  class="flex items-center justify-between w-full bg-white fixed   left-1/2  -translate-x-1/2 z-[100] py-[.8rem]  ">
          <figure class="min-w-[5rem] max-w-[5rem] sm:max-w-[24rem] sm:min-w-[24rem] pl-[2.5rem]  flex gap-[1rem]  items-center">
             <img src="./logo.png" alt="" class="w-[3.2rem]">
             <strong class="font-semibold hidden sm:inline-block text-[2rem]">Color Hunt</strong>
@@ -141,7 +141,7 @@ function filterSearchText(e:Event){
             </div>
          </nav>
 
-             <a href="../file.htm"
+             <a href="javascript:void(0)"
                 class="btn-chrome mr-5 min-w-max hidden px-[1.2rem] h-full py-[.6rem] w-max md:flex items-center gap-[1rem] duration-200 hover:bg-[rgba(0,0,0,.01)] rounded-[1rem] border-[.1rem] border-gray-200">
                 <img src="./chrome.png" alt="" class="w-[1.8rem]  h-[1.8rem]">
                 <span>Add to Chrome</span>
