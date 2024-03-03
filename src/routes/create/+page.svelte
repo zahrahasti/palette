@@ -44,18 +44,22 @@
               method="post"
               
               on:submit|preventDefault={async ()=>{
-                goto("./mycreation")
+                goto("/mycreation")
                 // setTimeout(()=>goto("./mycreation"),0)
               }}
               >
-              <input type="hidden" id="hidden" class="getColor" name="hidden" value="{JSON.stringify({c1,c2,c3,c4})}">
-             <button 
-                     type="submit"
+              <input type="hidden" 
+                     id="hidden" 
+                     class="getColor" 
+                     name="hidden" 
+                     value="{JSON.stringify({c1,c2,c3,c4})}">
+
+             <button  type="submit"
                      formaction="?/addToCreation" 
-                      class="btn btn-custom mx-auto w-max btn--submit__palette">
+                    class="btn btn-custom mx-auto w-max btn--submit__palette">
                   <svg class="w-[2rem] mr-1 h-[2rem]">
                    <use href="./icon.svg#tel"></use>
-                </svg>
+                 </svg>
          Submit Palette
      </button>  
             </form>
