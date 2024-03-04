@@ -1,7 +1,7 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { v4 } from 'uuid';
-
+  import { page } from '$app/stores';
   import { createEventDispatcher } from 'svelte';
   let selectedColor:string;
   export let baseColors:string[]
@@ -86,7 +86,8 @@ function filterSearchText(e:Event){
                         <button class="ml-2" on:click={()=>{
                              selectedColor=""
                              showButtonTag=false
-                             inputDetail=defalultInputDetail
+                             inputDetail=defalultInputDetail;
+                            //  
                             goto("/")
                             }}>
                            <svg class="w-4 aspect-square text-gray-400">
@@ -122,10 +123,14 @@ function filterSearchText(e:Event){
                         <p class="font-semibold mt-5">Colors</p>
                         <div class="flex flex-wrap items-center gap-5 py-[1rem] text-[1.2rem]">
                             {#each baseColors as color}
-                              <button on:click={(e)=>{
+                              <button  on:click={(e)=>{
                                 e.preventDefault()
                                 e.stopPropagation() //not sure about this
+                                // goto(`/${color}`,{ replaceState: true })
+                                goto("/")
+                               setTimeout(() => {
                                 goto(`/${color}`)
+                               },100);
                                 selectedColor=color
                                  showButtonTag=true;
                                  inputDetail=optionInputDetail

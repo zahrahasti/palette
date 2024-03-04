@@ -22,7 +22,6 @@ export function downloadPalette(containerPaletteColors:HTMLElement) {
   
     // Get the colors from the color palette
     const colorBoxes = containerPaletteColors.getElementsByClassName('container-color');
-    console.log(colorBoxes);
     // Loop through the color boxes and draw them on the canvas
     let yPos = 0;
     for (let i = 0; i < colorBoxes.length; i++) {
@@ -116,10 +115,13 @@ class CardObserver {
            
         }} use:enhance action="{color.isLike ? `?/addColor`:`?/removeColor`}" method="post">
           <input type="hidden" name="hidden" id="hidden" value="{JSON.stringify(color)}">
-          <button    formaction="{color.isLike ? `?/addColor`:`?/removeColor`}" type="submit" class="{color.isLike? `bg-gray-200`:``} btn btn-like text-[1.8rem]  md:text-[1.6rem] sm:text-[1.4rem]  btn-custom">
+          <button  formaction="{color.isLike ? `?/addColor`:`?/removeColor`}" 
+                   type="submit" 
+                   class="{color.isLike? `bg-gray-200`:``} btn btn-like text-[1.8rem]  md:text-[1.6rem] sm:text-[1.4rem]  btn-custom">
             <span>
                <svg class="{color.isLike  ? `text-black` : `text-transparent`} stroke-[1rem]  stroke-black w-[2rem] h-[2rem]">
-                 <use href="./icon.svg#heart3"></use></svg>
+                  <use href="./icon.svg#heart3"></use>
+                </svg>
              </span>
              <span id="like-count" class="like-counter">Like</span>
           </button>

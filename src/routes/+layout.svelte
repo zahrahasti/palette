@@ -1,5 +1,8 @@
+  
+
   <script lang="ts">
     import "../app.css";
+    import { page } from "$app/stores";
 	import Header from '$components/Header.svelte';
      import { baseColors } from "$lib";
      const listItems:{[key:string]:string}[]=[
@@ -7,26 +10,30 @@
       icon:"star2",
       text:"new",
       stroke:"1rem",
-      link:""
+      link:"",
+      id:"new"
     },
     {
       icon:"moon",
       text:"gradient",
       stroke:".5rem",
-      link:"./gradient"
+      link:"./gradient",
+      id:"gradient"
      
     },
     {
       icon:"random3",
       text:"create",
       stroke:".7rem",
-      link:"./create"
+      link:"./create",
+      id:"create"
     },
     {
       icon:"heart3",
       text:"collection",
       stroke:"1rem",
-      link:"./collection"
+      link:"./collection",
+      id:"collection"
     }
 ]
  
@@ -41,13 +48,17 @@
   } 
 
     </script>
- 
-    
- 
- <Header {baseColors} />
- 
 
- 
+<svelte:window on:popstate={(e)=>{
+    const id=e.target.location.pathname.replace(/^\/|\/$/g, "").trim()
+    // console.log('id',id);
+    document.querySelectorAll(".active").forEach(item=>item.classList.remove("active"));
+    if(id===""){
+        document.querySelector("#new")?.classList.add("active")
+    }
+    document.querySelector(`#${id}`)?.classList.add("active");
+}}/>
+ <Header {baseColors} />
 <main class="main min-h-full flex justify-between ">
     <section
         class="main--section__1 pl-[2.5rem] z-50  min-w-[5rem] max-w-[5rem] sm:max-w-[24rem] sm:min-w-[24rem] absolute sm:sticky    h-[85vh] top-[8rem] mt-[8rem] overflow-y-scroll">
@@ -56,7 +67,7 @@
             class="bg-white capitalize control--pallete border-t-[.1rem] border-t-[#f8f8f8] sm:border-t-0 fixed sm:relative left-1/2 bottom-[-.5rem]  -translate-x-1/2 gap-[.5rem] w-full flex sm:flex-col items-center justify-around p-[.5rem] bg-red-400 sm:p-[1rem]  sm:items-start   bg-wh ite z-10 text-gray-800 text-[1.6rem]">
            
             {#each listItems as item,id}
-            <li  class="{id===0 ? `active`:``} link-page w-full mb-[.5rem] rounded-[.8rem] sm:rounded-[1rem]"
+            <li id={item.id} class="{id===0 ? `active`:``} link-page w-full mb-[.5rem] rounded-[.8rem] sm:rounded-[1rem]"
             data-btn="btn" data-content="new">
             <a href="/{item.link}"
                 class="flex  flex-col sm:flex-row gap-[.8rem] px-[.8rem]  py-[1rem] text-[1.7rem] items-center">
@@ -143,3 +154,5 @@
      </svg>
  </button>  
  
+
+  

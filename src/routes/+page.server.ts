@@ -1,6 +1,5 @@
  
  const colors:{isLike:boolean,colors:string[]}[]=[];
-
 export function load(){
     return  {colors};
 }

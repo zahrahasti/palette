@@ -2,8 +2,7 @@
  
 <script lang="ts">
 	import LikedCard from "$components/LikedCard.svelte";
-    export let data;
-    console.log("liked",data.liked);
+    export let data
  </script>
 
 

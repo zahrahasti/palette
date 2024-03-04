@@ -1,5 +1,4 @@
  
-  // @ts-nocheck
  import {load as loadColors} from "../../routes/+page.server";
  const {colors}=loadColors()
  export function load(){

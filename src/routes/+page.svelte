@@ -1,12 +1,11 @@
- 
- 
+
  <script lang="ts">
    import "../app.css";  
    import randomcolor from 'randomcolor';
   import {isEqual,generatedColors,splitArrayToSmallerArrays} from "$lib";
 	import Card from "$components/Card.svelte";
   export let data
-  console.log(data.colors);
+  console.log(data.params);
   let count=200;
   type paletteColorType={isLike:boolean,colors:string[]}[]; 
   let colorsPalette:paletteColorType=[],stordColors:paletteColorType; 
