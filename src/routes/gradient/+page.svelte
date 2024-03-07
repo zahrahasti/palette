@@ -1,3 +1,4 @@
+
 <script lang="ts">
 	import GradientCard from "$components/GradientCard.svelte";
  

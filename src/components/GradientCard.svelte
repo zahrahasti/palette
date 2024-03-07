@@ -9,7 +9,7 @@
     <div on:click={function(){
         codeColorBase=color[0]
         color[0]="copy text";
-        navigator.clipboard.writeText(String(color[0]));
+        navigator.clipboard.writeText(String(codeColorBase));
         setTimeout(()=>color[0]=codeColorBase,500)
         }
         }  
@@ -17,10 +17,10 @@
         class="text-gray-500 duration-300 group-hover:opacity-100 opacity-0 grid  ease-in-ou absolute top-0 left-0  place-content-center h-full w-1/2 z-10 cursor-pointer bg-[{color[0]}]">{color[0]}</div>
     <div 
      on:click={function(){
-        codeColorBase=color[0]
-        color[0]="copy text";
-        navigator.clipboard.writeText(String(color[0]));
-        setTimeout(()=>color[0]=codeColorBase,500)
+        codeColorBase=color[1]
+        color[1]="copy text";
+        navigator.clipboard.writeText(String(codeColorBase));
+        setTimeout(()=>color[1]=codeColorBase,500)
         }
         }
      style="background:{color[1]};" 

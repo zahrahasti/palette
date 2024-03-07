@@ -3,22 +3,9 @@
   import { v4 } from 'uuid';
   import { page } from '$app/stores';
   import { createEventDispatcher } from 'svelte';
-  let selectedColor:string;
+  let selectedColor:string,inputSearch:HTMLInputElement;
   export let baseColors:string[]
-//   const DETAILS__EVENTS={
-//      selectedColor:"",
-//      showButtonTag:false,
-//      defaultPadding:1.2,
-//      defalultInputDetails:{
-//         placeholderText:"Search Palette",
-//         padding:this.defaultPadding
-//      },
-//      optionInputDetail:{
-//         placeholderText:"Add tag",
-//         padding:this.defaultPadding
-//      }
-
-//   }
+  
   const dispatch=createEventDispatcher()
   let listColor:HTMLElement,listColorExist=false;
   let showButtonTag=false;
@@ -52,7 +39,12 @@ function filterSearchText(e:Event){
         console.log(input);
         const [color]=copyBaseColor.filter(color=>color.toLowerCase().startsWith(input.value));
          
-        goto(`./${color}`);
+        dispatch("handleColor",{color})
+        goto("/")
+        selectedColor=color
+         showButtonTag=true;         
+         inputDetail=optionInputDetail
+         inputSearch.value=""
         resetListColor(color)
         
     }
@@ -68,7 +60,7 @@ function filterSearchText(e:Event){
 </script>
 <svelte:body lang="ts" on:click={handleBodyClick}/>
  
-<header  class="flex items-center justify-between w-full bg-white fixed   left-1/2  -translate-x-1/2 z-[100] py-[.8rem]  ">
+<header  class="flex items-center top-0 justify-between w-full bg-white fixed   left-1/2  -translate-x-1/2 z-[100] py-[.8rem]  ">
          <figure class="min-w-[5rem] max-w-[5rem] sm:max-w-[24rem] sm:min-w-[24rem] pl-[2.5rem]  flex gap-[1rem]  items-center">
             <img src="./logo.png" alt="" class="w-[3.2rem]">
             <strong class="font-semibold hidden sm:inline-block text-[2rem]">Color Hunt</strong>
@@ -99,6 +91,7 @@ function filterSearchText(e:Event){
                
                     <form on:submit={checkValue} class="relative {listColor ? ``:`pl-[3rem] focus:pl-[1.2rem]`} focus:bg-blue-600">
                         <input 
+                        bind:this={inputSearch}
                          on:input={filterSearchText}
                          on:focus={
                           ()=>{
@@ -124,14 +117,9 @@ function filterSearchText(e:Event){
                         <div class="flex flex-wrap items-center gap-5 py-[1rem] text-[1.2rem]">
                             {#each baseColors as color}
                               <button  on:click={(e)=>{
-                                e.preventDefault()
-                                e.stopPropagation() //not sure about this
-                                // goto(`/${color}`,{ replaceState: true })
-                                goto("/")
-                               setTimeout(() => {
-                                goto(`/${color}`)
-                               },100);
-                                selectedColor=color
+                                 dispatch("handleColor",{color})
+                                 goto("/")
+                                 selectedColor=color
                                  showButtonTag=true;
                                  inputDetail=optionInputDetail
                                 }}   class="capitalize flex gap-2 items-center">
