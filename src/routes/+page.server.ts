@@ -1,6 +1,8 @@
  
  const colors:{isLike:boolean,colors:string[]}[]=[];
-export function load(){
+ 
+ export function load(){
+  
     return  {colors};
 }
  
@@ -9,6 +11,7 @@ export const actions={
         const formData=await request.formData();
         const hiddenData: FormDataEntryValue | null = `${formData.get("hidden")}`;
         const data = hiddenData ? JSON.parse(hiddenData) : {}
+
         colors.push(data);
     },
     removeColor:async ({request})=>{
@@ -18,6 +21,7 @@ export const actions={
         const foundObjectIndex = colors.findIndex(obj => {
             return obj.isLike !== data.isLike && obj.colors.every((color, index) => color === data.colors[index]);
         });
+        console.log(data);
         if (foundObjectIndex !== -1)
             colors.splice(foundObjectIndex, 1);   
     }

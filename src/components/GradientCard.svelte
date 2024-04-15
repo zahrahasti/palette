@@ -26,15 +26,4 @@
      style="background:{color[1]};" 
      class="text-white duration-300 group-hover:opacity-100 opacity-0 grid  ease-in-ou child absolute top-0 right-0  place-content-center  h-full w-1/2 z-10 cursor-pointer bg-[{color[1]}]">{color[1]}</div>
 </div>
-  
-
-<style>
-    .group div{
-        /* transition:all .3s; */
-        opacity:0;
-    }
-    .group:hover div{
-        visibility: visible;
-        opacity:1;
-    }
-</style>
+ 

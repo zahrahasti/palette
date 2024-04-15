@@ -5,7 +5,6 @@
   import { createEventDispatcher } from 'svelte';
   let selectedColor:string,inputSearch:HTMLInputElement;
   export let baseColors:string[]
-  
   const dispatch=createEventDispatcher()
   let listColor:HTMLElement,listColorExist=false;
   let showButtonTag=false;
@@ -41,6 +40,7 @@ function filterSearchText(e:Event){
          
         dispatch("handleColor",{color})
         goto("/")
+        console.log("remove color");
         selectedColor=color
          showButtonTag=true;         
          inputDetail=optionInputDetail
@@ -56,7 +56,6 @@ function filterSearchText(e:Event){
     listColorExist=false
  }
  let showNavList:boolean=false
-
 </script>
 <svelte:body lang="ts" on:click={handleBodyClick}/>
  
@@ -75,12 +74,14 @@ function filterSearchText(e:Event){
                             <span>{selectedColor}</span>
                         </div>
                     
-                        <button class="ml-2" on:click={()=>{
-                             selectedColor=""
+                        <button on:click={()=>{
+                            selectedColor=""
                              showButtonTag=false
                              inputDetail=defalultInputDetail;
-                            //  
-                            goto("/")
+                             goto("/")
+                            dispatch("delete",{selectedColor})
+                        }} class="ml-2" on:click={()=>{
+                             
                             }}>
                            <svg class="w-4 aspect-square text-gray-400">
                               <use href="./icon.svg#delete"></use>
@@ -121,6 +122,7 @@ function filterSearchText(e:Event){
                                  goto("/")
                                  selectedColor=color
                                  showButtonTag=true;
+                                 
                                  inputDetail=optionInputDetail
                                 }}   class="capitalize flex gap-2 items-center">
                                 <span style="display: block; background-color:{color}" class="block w-[2rem] h-[2rem] border-[1px] border-gray-100 shadow-sm rounded-full"></span>

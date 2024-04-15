@@ -17,7 +17,7 @@
  "red",
  "maroon"
 ]
-type color={isLike:boolean,colors:string[]}
+ 
 import { randomNumber } from "./randomNum";
 export function splitArrayToSmallerArrays<T>(chunkSize: number, array: Array<T>): Array<Array<T>> {
   // Calculate the number of chunks needed
@@ -34,11 +34,11 @@ export function splitArrayToSmallerArrays<T>(chunkSize: number, array: Array<T>)
 }
 import chroma from "chroma-js"
  
-export function generatedColors<T>(color:T[]){
+export function generatedColors(color:string[]):string[]{
   return [  `${chroma.mix(...color,.5).brighten()}`,
       ...color,
       `${chroma.average(color).darken(randomNumber(3,1))}`
        ] 
 }
 
-export const isEqual = (obj1:color, obj2:color) => JSON.stringify(obj1.colors) === JSON.stringify(obj2.colors); 
+ 

@@ -6,6 +6,7 @@ let cardContainer:HTMLElement
     codeColorBase:"",
     loading:false
  }
+ 
  let {codeColorBase,loading}=cardInformation;
 // let cardContainer:HTMLElement, 
 //    codeColorBase:string;
@@ -115,7 +116,9 @@ class CardObserver {
            
         }} use:enhance action="{color.isLike ? `?/addColor`:`?/removeColor`}" method="post">
           <input type="hidden" name="hidden" id="hidden" value="{JSON.stringify(color)}">
-          <button  formaction="{color.isLike ? `?/addColor`:`?/removeColor`}" 
+          <button on:click={()=>{
+            console.log(color.isLike);
+          }} formaction="{color.isLike ? `?/addColor`:`?/removeColor`}" 
                    type="submit" 
                    class="{color.isLike? `bg-gray-200`:``} btn btn-like text-[1.8rem]  md:text-[1.6rem] sm:text-[1.4rem]  btn-custom">
             <span>
