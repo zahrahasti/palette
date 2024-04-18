@@ -13,6 +13,24 @@
 	aside::-webkit-scrollbar {
 		@apply w-0;
 	}
+	input[type='range'] {
+		appearance: none;
+		-webkit-appearance: none;
+		/* background: #000; */
+	}
+	input::-webkit-slider-thumb {
+		pointer-events: all;
+		position: relative;
+		background: var(--color);
+		z-index: 1;
+		width: 25px;
+		height: 25px;
+		-webkit-appearance: none;
+		border: 6px solid #fff;
+		outline: 1px solid var(--active);
+		/* outline-offset:2px; */
+		border-radius: 50%;
+	}
 }
 @layer components {
 	.btn-custom {

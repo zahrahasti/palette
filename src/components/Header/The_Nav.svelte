@@ -58,7 +58,7 @@
 	//    import ThLogo from './Header/Th_Logo.svelte';
 	import DeleteTagcolorButton from '../Button/Delete_Tagcolor_Button.svelte';
 	//   import ChromeButton from './Button/Chrome_Button.svelte';
-	//   import TheNav from './Header/The_Nav.svelte';
+	//   import TheNav from './Header/Th./Delete_Tagcolor_Button.svelte
 </script>
 
 <nav class="w-full nav">

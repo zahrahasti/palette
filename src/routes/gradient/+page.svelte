@@ -1,7 +1,7 @@
 <script lang="ts">
-	import GradientCard from '$components/GradientCard.svelte';
+	import GradientCard from '$components/Gradient/Gradient_Color_Card.svelte';
 
-	import Box from '$components/GradinetBox.svelte';
+	import Box from '$components/Gradient/Gradinet_Color_Box.svelte';
 	import InputBox from '$components/InputStyled.svelte';
 	import { splitArrayToSmallerArrays } from '$lib';
 	const gradient = {
@@ -71,7 +71,7 @@
 	<div
 		class="relative border-gray-100 rounded-xl border-[1px] p-8 border-1 w-full border-b-gray-200"
 	>
-		<section class="z-20 relative range-slider">
+		<section class="z-20  relative range-slider">
 			<div class="absolute top-0 bg-black w-full">
 				<input
 					bind:this={input_range_2}
@@ -187,23 +187,4 @@
 	{/each}
 </section>
 
-<style>
-	input[type='range'] {
-		appearance: none;
-		-webkit-appearance: none;
-		/* background: #000; */
-	}
-	input::-webkit-slider-thumb {
-		pointer-events: all;
-		position: relative;
-		background: var(--color);
-		z-index: 1;
-		width: 25px;
-		height: 25px;
-		-webkit-appearance: none;
-		border: 6px solid #fff;
-		outline: 1px solid var(--active);
-		/* outline-offset:2px; */
-		border-radius: 50%;
-	}
-</style>
+ 

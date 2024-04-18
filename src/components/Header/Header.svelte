@@ -74,11 +74,11 @@
 		dispatch('delete', { selectedColor });
 	}
 
-	import ThLogo from './Header/Th_Logo.svelte';
-	import ChromeButton from './Button/Chrome_Button.svelte';
-	import SearchInput from './Input/Search_Input.svelte';
-	import ColorTag from './Container/Color_Tag.svelte';
-	import TagColorShown from './Container/Color_Tag_Active.svelte';
+	import ThLogo from './Th_Logo.svelte';
+	import ChromeButton from './BaseButton/Chrome_Btn.svelte';
+	import SearchInput from '../Gradient/Search_Input.svelte';
+	import ColorTag from './Color_Tag.svelte';
+	import TagColorShown from './Color_Tag_Active.svelte';
 </script>
 
 <svelte:body lang="ts" on:click={handleBodyClick} />

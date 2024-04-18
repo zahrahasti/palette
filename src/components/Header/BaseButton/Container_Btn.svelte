@@ -3,7 +3,7 @@
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
 	let { selectedColor, inputDetail } = navEventElements;
-	import TagColorButton from '$components/Button/Tag_Color_Button.svelte';
+	import TagColorButton from '$components/Header/BaseButton/Tag_Color_Button.svelte';
 	function setTagColor(color: string) {
 		dispatch('handleColor', { color });
 		selectedColor = color;

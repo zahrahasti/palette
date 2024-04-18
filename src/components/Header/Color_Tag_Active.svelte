@@ -1,7 +1,6 @@
 <script lang="ts">
 	export let showButtonTag: boolean, selectedColor: string;
-	//   import DeleteTagcolorButton from "$components/Button/Delete_Tagcolor_Button.svelte";
-	import { createEventDispatcher } from 'svelte';
+ 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
 </script>
 

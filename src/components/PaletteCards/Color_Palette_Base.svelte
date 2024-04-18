@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { onMount } from 'svelte';
-	import DownloadImgButton from './Button/Color_Download_Button.svelte';
-	import CopyHexButton from './Button/Copy_Hex_Button.svelte';
-	import ColorLikeBtn from './Button/Color_Like_Btn.svelte';
+	import DownloadImgButton from './BaseButtons/Color_Download_Btn.svelte';
+	import CopyHexButton from './BaseButtons/Copy_Hex_Btn.svelte';
 	let cardContainer: HTMLElement;
 	const cardInformation = {
 		codeColorBase: '',
@@ -11,11 +10,7 @@
 	};
 
 	let { codeColorBase, loading } = cardInformation;
-	// let cardContainer:HTMLElement,
-	//    codeColorBase:string;
 	let canvas: HTMLCanvasElement, colorWrapper: HTMLElement;
-
-	// let loading:boolean=false;;
 	class CardObserver {
 		_cardContainer;
 		_threshold = 0.5;
@@ -67,11 +62,11 @@
 		<CopyHexButton colors={color.colors} {codeColorBase} />
 	</div>
 	<div
-		class="flex container--btn__pallete container--main__btn justify-between w-full gap-3 items-center my-[1rem]"
-	>
-		<ColorLikeBtn {color} />
+		class="flex container--btn__pallete container--main__btn justify-between w-full gap-3 items-center my-[1rem]">
+          <slot/>
 		<DownloadImgButton {canvas} {colorWrapper} />
 	</div>
+     
 </div>
 
 <style>

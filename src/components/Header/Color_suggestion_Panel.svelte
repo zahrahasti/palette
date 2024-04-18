@@ -6,21 +6,13 @@
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
 	let { selectedColor } = navEventElements;
-	import TagColorButton from '$components/Button/Tag_Color_Button.svelte';
+	import TagColorButton from '$components/Header/BaseButton/Tag_Color_Btn.svelte';
 	function setTagColor(color: string) {
 		dispatch('setTagColor', { color, selectedColor });
 	}
 </script>
 
-<div class="absolute color--template w-full h-full top-0">
-	<svg
-		class="{listColorTagsExist
-			? `hidden`
-			: `block`} text-gray-600 z-[4] left-[.8rem] w-[1.8rem] h-[1.8rem] top-1/2 -translate-y-1/2 absolute"
-	>
-		<use href="./icon.svg#search"></use>
-	</svg>
-
+<div class="absolute w-full h-full top-0">
 	<div
 		bind:this={listColor}
 		class="bg-white top-[3.5rem] hidden duration-200 absolute p-[2rem] w-full rounded-b-2xl border-gray-100 border-[.1rem] border-t-transparent"

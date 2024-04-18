@@ -3,10 +3,10 @@
 	import randomcolor from 'randomcolor';
 	import { baseColors } from '$lib';
 	import { generatedColors, splitArrayToSmallerArrays } from '$lib';
-	import Card from '$components/Card.svelte';
+	import PaletteCard from '$components/PaletteCards/Palette_Card.svelte';
 	let count = 200;
 
-	import Header from '$components/Header.svelte';
+	import Header from '$components/Header/Header.svelte';
 
 	let tagColor = '';
 </script>
@@ -28,13 +28,13 @@
 		{#each [...splitArrayToSmallerArrays(2, randomcolor({ count, hue: tagColor })).map((color) => {
 				return { isLike: false, colors: generatedColors(color) };
 			})] as color}
-			<Card {color} />
+			<PaletteCard {color} />
 		{/each}
 	{:else}
 		{#each [...splitArrayToSmallerArrays(2, randomcolor({ count, hue: tagColor })).map((color) => {
 				return { isLike: false, colors: generatedColors(color) };
 			})] as color}
-			<Card {color} />
+			<PaletteCard {color} />
 		{/each}
 	{/if}
 </section>

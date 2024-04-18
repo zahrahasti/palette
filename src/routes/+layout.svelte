@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 	import { page } from '$app/stores';
-	import Header from '$components/Header.svelte';
+	import Header from '$components/Header/Header.svelte';
 	import { baseColors } from '$lib';
 	const listItems: { [key: string]: string }[] = [
 		{

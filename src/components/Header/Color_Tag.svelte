@@ -5,7 +5,7 @@
 	import ColorSuggestionPanel from './Color_suggestion_Panel.svelte';
 </script>
 
-<div class="absolute color--template w-full h-full top-0">
+<div class="absolute  w-full h-full top-0">
 	<svg
 		class="{listColorTagsExist
 			? `hidden`

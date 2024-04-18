@@ -1,5 +1,5 @@
 <script lang="ts">
-	import LikedCard from '$components/LikedCard.svelte';
+	import LikedCard from '$components/PaletteCards/Liked_Palette_Card.svelte';
 	export let data;
 </script>
 
