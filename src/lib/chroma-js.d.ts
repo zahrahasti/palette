@@ -1,1 +1,1 @@
-declare module "chroma-js";
+declare module 'chroma-js';

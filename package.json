@@ -34,15 +34,9 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@types/nearest-color": "^0.4.1",
 		"@types/randomcolor": "^0.5.9",
-		"@types/uuid": "^9.0.8",
 		"chroma-js": "^2.4.2",
-		"color-name-list": "^10.19.0",
-		"nearest-color": "^0.4.4",
 		"randomcolor": "^0.6.2",
-		"rollup-plugin-json": "^4.0.0",
-		"tailwindcss-animation-delay": "^1.2.0",
-		"uuid": "^9.0.1"
+		"rollup-plugin-json": "^4.0.0"
 	}
 }

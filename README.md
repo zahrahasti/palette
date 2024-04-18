@@ -1,6 +1,4 @@
-
 <h1> </h1>
-
 
 <h1> Palette Color App</h1>
 
@@ -33,7 +31,6 @@
    </li>
  </ul>
 
-
  <h2>Technologies Used</h2>
  <ul>
   <li>
@@ -63,12 +60,6 @@
    </li>
 </ul>
 
- 
-
-
-
-
- 
 <h2>Development setup</h2>
 <p>1. First, you need to clone the project:</p>
 
@@ -99,9 +90,8 @@ npm run dev
 npm run format
 
 npm run build
- ```
- 
- 
+```
+
 <h2>Contribution</h2>
 <p>Your contribution is always welcome, please follow these steps:</p>
 <ol>

@@ -1,1 +1,1 @@
-declare module "randomcolor"
+declare module 'randomcolor';
