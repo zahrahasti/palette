@@ -6,7 +6,6 @@ import LikedCard from '$components/PaletteCards/Liked_Palette_Card.svelte';
 </script>
 
 <p class="font-semibold text-[1.8rem] my-4 pb-6 border-b-gray-100 border-b-[1px]">My collection</p>
-
 {#if data.colors.length}
 	<section
 		class="mb-[10rem] grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] h-max section--new active-page w-full justify-between gap-[1rem]"

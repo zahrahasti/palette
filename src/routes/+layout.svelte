@@ -59,7 +59,7 @@
 	}}
 />
 <Header on:handleColor={setColor} {baseColors} />
-<main class="main min-h-full flex justify-between gap-5">
+<main class="main mb-[10rem] md:mb-0 min-h-full flex justify-between gap-5">
 	<section
 		class="main--section__1 pl-[2.5rem] z-50 min-w-[5rem] max-w-[5rem] sm:max-w-[24rem] sm:min-w-[24rem] absolute sm:sticky h-[85vh] top-[8rem] mt-[8rem] overflow-y-scroll"
 	>
