@@ -21,7 +21,7 @@
 		{
 			icon: 'random3',
 			text: 'create',
-			stroke: '.7rem',
+			stroke: '1rem',
 			link: './create',
 			id: 'create'
 		},
