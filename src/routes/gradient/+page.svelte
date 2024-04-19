@@ -2,7 +2,8 @@
 	import GradientCard from '$components/Gradient/Gradient_Color_Card.svelte';
 
 	import Box from '$components/Gradient/Gradinet_Color_Box.svelte';
-	import InputBox from '$components/InputStyled.svelte';
+	import PositionColor from '$components/Gradient/Position_Color.svelte';
+	import InputBox from '$components/Setting_Gradinet_Color.svelte';
 	import { splitArrayToSmallerArrays } from '$lib';
 	const gradient = {
 		Color: {
@@ -40,12 +41,14 @@
 		input_range_2: HTMLInputElement;
 	let count = 24;
 	import randomcolor from 'randomcolor';
+	import { onMount } from 'svelte';
 	let colors = splitArrayToSmallerArrays(
 		2,
 		randomcolor({
 			count
 		})
 	);
+ 
 </script>
 
 <svelte:window
@@ -67,6 +70,7 @@
 <svelte:head>
 	<title>collection</title>
 </svelte:head>
+ 
 <section class="grid grid-cols-1 md:grid-cols-2 relative w-full gap-5 items-center justify-between">
 	<div
 		class="relative border-gray-100 rounded-xl border-[1px] p-8 border-1 w-full border-b-gray-200"
@@ -76,9 +80,9 @@
 				<input
 					bind:this={input_range_2}
 					on:input={(e) => {
-						gradient.Position.value = e.target.value;
+ 						gradient.Position.value = e.target.value;
 						color_num_2 = e.target.value;
-						console.log(color_num_2);
+						 
 						active = 2;
 					}}
 					style="--color:{thump_color_2};--active:{active === 2 ? `#45caff` : `transparent`}"
@@ -91,8 +95,7 @@
 				<div
 					style="background-image:{type}-gradient({gradient.Rotation
 						.value}deg, {color_1} {color_num_1}%,{color_2} {color_num_2}%);"
-					class="slider absolute w-full h-3"
-				></div>
+					class="slider absolute w-full h-3"></div>
 			</div>
 			<div class="absolute top-0 w-full">
 				<input
@@ -100,8 +103,7 @@
 					on:input={(e) => {
 						gradient.Position.value = e.target?.value;
 						color_num_1 = e.target?.value;
-						console.log(color_num_1);
-						active = 1;
+ 						active = 1;
 					}}
 					style="--color:{thump_color_1};--active:{active === 1 ? `#45caff` : `transparent`}"
 					class="absolute w-full h-3 top-0"
@@ -134,13 +136,14 @@
 				<InputBox
 					on:changePosition={(e) => {
 						if (active === 1) {
+						
 							input_range_1.value = e.detail.value;
 							color_num_1 = +e.detail.value;
 						} else {
 							input_range_2.value = e.detail.value;
 							color_num_2 = +e.detail.value;
 						}
-						//  gradient.Rotation.value=+e.detail.value
+						
 					}}
 					details={gradient.Position}
 				/>
@@ -153,20 +156,11 @@
 					details={gradient.Rotation}
 				/>
 			</Box>
-			<Box details={gradient.Type}>
-				<select
-					on:change={() => {
-						if (type === 'linear') type = 'radial';
-						else type = 'linear';
-					}}
-					class="w-full"
-				>
-					{#each gradient.Type.optionValues as option}
-						<option value={option}>
-							{option}
-						</option>
-					{/each}
-				</select>
+		 	<Box details={gradient.Type}>
+				<PositionColor on:changeType={()=>{
+					 if (type === 'linear') type = 'radial';
+                       else type = 'linear';
+				}} optionValues={gradient.Type.optionValues}/>
 			</Box>
 		</div>
 	</div>
