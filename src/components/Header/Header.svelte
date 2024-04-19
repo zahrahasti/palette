@@ -93,7 +93,7 @@
 
 	<nav class="w-full nav">
 		<div class="parent px-[2.5rem] w-full relative">
-			<div class="h-full relative bg-red-300 rounded-[2rem]">
+			<div class="h-full relative  rounded-[2rem]">
 				<ColorTagActive {selectedColor} {showButtonTag} on:deletetagColor={resetListColor} />
 				<SearchInput
 					on:filterSearchText={(e) => {
