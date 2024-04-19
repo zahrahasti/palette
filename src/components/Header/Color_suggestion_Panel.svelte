@@ -17,7 +17,7 @@
 		class="top-[3.5rem] hidden bg-white min-h-[18rem] duration-200 absolute p-[2rem] w-full rounded-b-2xl border-gray-100 border-[.1rem] border-t-transparent"
 	>
 		<p class="font-semibold mt-5">Colors</p>
-		<div class="flex bg-blue-600 flex-wrap items-center gap-5 py-[1rem] text-[1.2rem]">
+		<div class="flex  flex-wrap items-center gap-5 py-[1rem] text-[1.2rem]">
 			<slot/>
 		</div>
 	</div>
