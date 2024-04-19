@@ -1,20 +1,13 @@
 export const baseColors = [
-	'white',
-	'gray',
-	'silver',
-	'nevy',
 	'blue',
-	'Aqua',
-	'Teal',
-	'Lime',
-	'fuchsia',
+	'pink',
 	'purple',
 	'green',
-	'olive',
 	'yellow',
 	'orange',
 	'red',
-	'maroon'
+	'brown',
+	"monochrome"
 ];
 
 import { randomNumber } from './randomNum';
