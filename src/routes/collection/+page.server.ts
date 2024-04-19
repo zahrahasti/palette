@@ -1,7 +1,8 @@
-import { load as loadColors } from '../../routes/+page.server';
+import { load as loadColors } from '../+page.server';
+ import { load as dynamicColors } from '../create/+page.server';
 const { colors } = loadColors();
 export function load() {
-	return { colors };
+	return { colors ,dynamicColors:dynamicColors().colors};
 }
 
 export const actions = {
