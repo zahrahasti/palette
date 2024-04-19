@@ -46,15 +46,16 @@
 		let text = e?.detail.el.value.toLowerCase();
 		if (text.length > 0) {
 			baseColors = baseColors.filter((color) => color.toLowerCase().startsWith(text));
+			console.log("base color in filtered"),baseColors;
 			filterColorTags = true;
-		} else baseColors = baseColorsCopied;
+		}  else baseColors=baseColorsCopied
 	}
 
 	function checkValue(e: Event) {
 		e.preventDefault();
 		if (filterColorTags) {
 			const input = ((e?.target as HTMLFormElement).search! as HTMLInputElement) || '';
-			const [color] = baseColorsCopied.filter((color) =>
+			const [color] = baseColors.filter((color) =>
 				color.toLowerCase().startsWith(input.value)
 			);
 			setTagColor(color);
@@ -76,9 +77,11 @@
 
 	import ThLogo from './Th_Logo.svelte';
 	import ChromeButton from './BaseButton/Chrome_Btn.svelte';
-	import SearchInput from '../Gradient/Search_Input.svelte';
+	import SearchInput from './BaseButton/Search_Input.svelte';
 	import ColorTag from './Color_Tag.svelte';
-	import TagColorShown from './Color_Tag_Active.svelte';
+	import ColorTagActive from './Color_Tag_Active.svelte';
+	import ColorSuggestionPanel from './Color_suggestion_Panel.svelte';
+	import TagColorBtn from './BaseButton/Tag_Color_Btn.svelte';
 </script>
 
 <svelte:body lang="ts" on:click={handleBodyClick} />
@@ -90,8 +93,8 @@
 
 	<nav class="w-full nav">
 		<div class="parent px-[2.5rem] w-full relative">
-			<div class="h-full relative rounded-[2rem]">
-				<TagColorShown {selectedColor} {showButtonTag} on:deletetagColor={resetListColor} />
+			<div class="h-full relative bg-red-300 rounded-[2rem]">
+				<ColorTagActive {selectedColor} {showButtonTag} on:deletetagColor={resetListColor} />
 				<SearchInput
 					on:filterSearchText={(e) => {
 						filterSearchText(e);
@@ -105,16 +108,18 @@
 				/>
 
 				<ColorTag
-					{listColorTagsExist}
-					bind:listColor
-					{baseColors}
-					{navEventElements}
-					on:setTafColor={(e) => {
-						setTagColor(e.detail.color);
-					}}
-				/>
+				    {listColorTagsExist}>
+				  <ColorSuggestionPanel bind:listColor {baseColors} {navEventElements} >
+                    {#each baseColors as color}
+			      	  <TagColorBtn {color} on:setTagColor={() => setTagColor(color)} />
+		     	    {/each}
+			     </ColorSuggestionPanel>
+			  </ColorTag>
 			</div>
 		</div>
 	</nav>
 	<ChromeButton />
+
 </header>
+
+ 

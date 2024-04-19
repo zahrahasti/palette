@@ -1,8 +1,5 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
-	const dispatch = createEventDispatcher();
-	export let listColorTagsExist: boolean, listColor: HTMLElement, baseColors, navEventElements;
-	import ColorSuggestionPanel from './Color_suggestion_Panel.svelte';
+	export let listColorTagsExist: boolean;
 </script>
 
 <div class="absolute  w-full h-full top-0">
@@ -14,13 +11,6 @@
 		<use href="./icon.svg#search"></use>
 	</svg>
 
-	<ColorSuggestionPanel
-		on:setTagColor={(e) => {
-			dispatch('setTafColor', { color: e.detail.color });
-		}}
-		bind:listColor
-		{listColorTagsExist}
-		{baseColors}
-		{navEventElements}
-	/>
+	 <slot/>
+
 </div>

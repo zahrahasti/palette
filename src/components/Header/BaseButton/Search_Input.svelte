@@ -1,6 +1,5 @@
 <script lang="ts">
-	import type { string } from 'mathjs';
-	export let navEventElements, baseColors: string[];
+ 	export let navEventElements, baseColors: string[];
 	const defalultInputDetail = { placeholderText: 'Search Palette', padding: 1.2 };
 	const optionInputDetail = { placeholderText: 'Add tag', padding: 1.2 };
 	export let listColor: HTMLElement;
@@ -24,6 +23,7 @@
 >
 	<input
 		on:input={filterSearchText}
+		on:blur={filterSearchText}
 		type="search"
 		aria-label="search bar"
 		id="search"
