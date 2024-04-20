@@ -1,12 +1,12 @@
 <script lang="ts">
- 	export let navEventElements, baseColors: string[];
+ 	export let navEventElements,selectedColor:string;
 	const defalultInputDetail = { placeholderText: 'Search Palette', padding: 1.2 };
 	const optionInputDetail = { placeholderText: 'Add tag', padding: 1.2 };
 	export let listColor: HTMLElement;
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
 	let { inputDetail, showButtonTag } = navEventElements;
-
+    
 	function filterSearchText(e: Event) {
 		dispatch('filterSearchText', { el: e.target });
 	}
@@ -27,9 +27,11 @@
 		type="search"
 		aria-label="search bar"
 		id="search"
-		class="w-full {showButtonTag
+		class="w-full {selectedColor!==""
 			? `pl-[12rem] `
 			: `pl-[3rem] focus:pl-[1.2rem]`} relative z-[3] py-[.8rem] text-gray-800 rounded-[2rem] border-[.1rem] border-gray-200 duration-100 outline-none"
-		placeholder={inputDetail.placeholderText}
+		placeholder={selectedColor!==""?"Add Tag":"Search Palette"}
 	/>
 </form>
+
+ 

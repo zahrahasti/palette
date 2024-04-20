@@ -102,8 +102,8 @@
 					on:handleColor={(e) => {
 						checkValue(e.detail.e);
 					}}
-					{listColor}
-					{baseColors}
+					{listColor} 
+					 {selectedColor}
 					{navEventElements}
 				/>
 

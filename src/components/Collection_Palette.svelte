@@ -13,9 +13,7 @@
 	<section
 		class="mb-[10rem] grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] h-max section--new active-page w-full justify-between gap-[1rem]"
 	>
-		{#each new Set(colors) as color}
-         <slot {color}/>
-		{/each}
+	   <slot/>
 	</section>
 {:else}
 	<div class="mb-[5rem] text-center mx-auto">

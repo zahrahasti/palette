@@ -3,6 +3,7 @@
 import ColorPaletteBase from '$components/PaletteCards/Color_Palette_Base.svelte';
      import LikedCard from '$components/PaletteCards/Liked_Palette_Card.svelte';
  	export let data;
+	console.log(data.dynamicColors);
 	 const createPaletteText={
 		title:"My collection",
 		text:"No palettes in favorite collection",
@@ -21,6 +22,14 @@ import ColorPaletteBase from '$components/PaletteCards/Color_Palette_Base.svelte
 	<title>My collection</title>
 </svelte:head>
 
-<CollectionPalette colors={data.colors} colorsContent={createPaletteText}/>
-<CollectionPalette colors={data.dynamicColors} colorsContent={collectionPaletteText}/> 
+<CollectionPalette colors={data.colors} colorsContent={createPaletteText}>
+	{#each (new Set(data.colors)) as color}
+       <LikedCard {color}/>
+   {/each}
+</CollectionPalette>
+<CollectionPalette colors={data.dynamicColors} colorsContent={collectionPaletteText}>
+   {#each (new Set(data.dynamicColors)) as color}
+       <ColorPaletteBase {color}/>
+   {/each}
+</CollectionPalette>
  
