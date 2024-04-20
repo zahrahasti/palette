@@ -1,4 +1,3 @@
-<h1> </h1>
 
 <h1> Palette Color App</h1>
 
@@ -33,6 +32,12 @@
 
  <h2>Technologies Used</h2>
  <ul>
+  
+  <li>
+     <a href="https://kit.svelte.dev/">
+       Semantic HTML
+     </a>
+   </li>
   <li>
      <a href="https://kit.svelte.dev/">
        sveltekit
@@ -45,7 +50,17 @@
    </li>
    <li>
       <a href="https://tailwindcss.com/">
-        tailwindcss 
+        Tailwindcss 
+      </a>
+   </li>
+    <li>
+      <a href="https://www.npmjs.com/package/chroma-js">
+       Chroma.js
+      </a>
+   </li>
+    <li>
+      <a href="https://randomcolor.lllllllllllllllll.com/">
+      
       </a>
    </li>
  </ul>
@@ -58,6 +73,10 @@
    <li>
       <a href="https://github.com/zahrahasti/palette">GitHub repository</a>
    </li>
+     <li>
+      <a href="https://github.com/zahrahasti?tab=repositories">My others projects</a>
+   </li>
+    
 </ul>
 
 <h2>Development setup</h2>

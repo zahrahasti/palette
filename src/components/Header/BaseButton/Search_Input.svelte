@@ -1,12 +1,8 @@
 <script lang="ts">
- 	export let navEventElements,selectedColor:string;
-	const defalultInputDetail = { placeholderText: 'Search Palette', padding: 1.2 };
-	const optionInputDetail = { placeholderText: 'Add tag', padding: 1.2 };
+ 	export let selectedColor:string;
 	export let listColor: HTMLElement;
 	import { createEventDispatcher } from 'svelte';
-	const dispatch = createEventDispatcher();
-	let { inputDetail, showButtonTag } = navEventElements;
-    
+	const dispatch = createEventDispatcher();    
 	function filterSearchText(e: Event) {
 		dispatch('filterSearchText', { el: e.target });
 	}

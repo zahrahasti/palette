@@ -5,9 +5,7 @@
 	import { createEventDispatcher, onMount } from 'svelte';
 	let inputSearch: HTMLInputElement;
 	export let baseColors: string[];
-
-	const defalultInputDetail = { placeholderText: 'Search Palette', padding: 1.2 };
-	const optionInputDetail = { placeholderText: 'Add tag', padding: 1.2 };
+ 
 	let listColor: HTMLElement;
 	let navEventElements = {
 		listColor: null,
@@ -17,10 +15,8 @@
 		filterColorTags: false,
 		selectedColor: '',
 		inputSearch: null,
-		inputDetail: defalultInputDetail
 	};
 	let {
-		inputDetail,
 		showButtonTag,
 		baseColorsCopied,
 		listColorTagsExist,
@@ -70,7 +66,6 @@
 		selectedColor = '';
 		showButtonTag = false;
 		baseColors = baseColorsCopied;
-		inputDetail = defalultInputDetail;
 		listColor.style.display = 'none';
 		dispatch('delete', { selectedColor });
 	}
@@ -103,8 +98,7 @@
 						checkValue(e.detail.e);
 					}}
 					{listColor} 
-					 {selectedColor}
-					{navEventElements}
+					{selectedColor}
 				/>
 
 				<ColorTag
