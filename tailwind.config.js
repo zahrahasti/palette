@@ -1,21 +1,21 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-	content: ['./src/**/*.{html,js,svelte,ts}'],
-	theme: {
-		screens: {
-			xs: '360px',
-			sm: '600px',
-			md: '950px',
-			lg: '1200px',
-			xl: '1500px'
-		},
-		extend: {
-			keyframes: {
-				load: {
-					'0%': { gridRow: `span 4 / span 16` }
-				}
-			}
-		}
-	},
-	plugins: []
-};
+  content: ['./src/**/*.{html,js,svelte,ts}'],
+  theme: {
+    screens: {
+      xs: '360px',
+      sm: '600px',
+      md: '950px',
+      lg: '1200px',
+      xl: '1500px',
+    },
+    extend: {
+      keyframes: {
+        load: {
+          '0%': { gridRow: `span 4 / span 16` },
+        },
+      },
+    },
+  },
+  plugins: [],
+}

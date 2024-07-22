@@ -34,9 +34,7 @@
 }
 @layer components {
 	.btn-custom {
-		@apply flex items-center gap-[1rem] px-[1rem] 
-    py-[.4rem] border-[.1rem] border-gray-200 
-    rounded-[.8rem] duration-300;
+		@apply flex items-center gap-[1rem] rounded-[.8rem] border-[.1rem] border-gray-200 px-[1rem] py-[.4rem] duration-300;
 	}
 
 	.btn-custom:hover {
@@ -44,8 +42,7 @@
 	}
 
 	.btn-small {
-		@apply absolute top-1 right-1 rounded-full
-   bg-[rgba(0,0,0,.45)] p-[.4rem] duration-200;
+		@apply absolute right-1 top-1 rounded-full bg-[rgba(0,0,0,.45)] p-[.4rem] duration-200;
 	}
 	.btn-small:hover {
 		@apply bg-[rgba(0,0,0,.55)];
@@ -54,9 +51,7 @@
 		animation: btn 0.6s;
 	}
 	.small-color {
-		@apply border-gray-200 border-[.05rem]
-    w-max px-[.9rem] mb-[.2rem] py-[.6rem] 
-    flex items-center gap-[.6rem] rounded-[4rem];
+		@apply mb-[.2rem] flex w-max items-center gap-[.6rem] rounded-[4rem] border-[.05rem] border-gray-200 px-[.9rem] py-[.6rem];
 	}
 	.active {
 		@apply bg-gray-200 duration-200;
@@ -71,7 +66,7 @@
 }
 
 .inputColor {
-	@apply w-20 appearance-none rounded-md outline-none border-none bg-transparent h-20;
+	@apply h-20 w-20 appearance-none rounded-md border-none bg-transparent outline-none;
 }
 
 .inputColor::-webkit-color-swatch,

@@ -1,4 +1,3 @@
-
 <h1> Palette Color App</h1>
 
 <blockquote>
@@ -10,11 +9,11 @@
 <figure>
    <img src="https://github.com/zahrahasti/palette/blob/main/static/view-page.JPG" alt="Online Image Editor preview" />
 </figure>
- 
+
  <h2>Features</h2>
  <ul>
    <li>
-      Copy Color Code: Copy the color code. 
+      Copy Color Code: Copy the color code.
    </li>
     <li>
      Selecting Colors: Use the color picker or predefined palettes to choose colors.
@@ -32,7 +31,7 @@
 
  <h2>Technologies Used</h2>
  <ul>
-  
+
   <li>
      <a href="https://kit.svelte.dev/">
        Semantic HTML
@@ -50,7 +49,7 @@
    </li>
    <li>
       <a href="https://tailwindcss.com/">
-        Tailwindcss 
+        Tailwindcss
       </a>
    </li>
     <li>
@@ -60,11 +59,11 @@
    </li>
     <li>
       <a href="https://randomcolor.lllllllllllllllll.com/">
-      
+
       </a>
    </li>
  </ul>
-  
+
 <h3>Links</h3>
 <ul>
    <li>
@@ -76,7 +75,7 @@
      <li>
       <a href="https://github.com/zahrahasti?tab=repositories">My others projects</a>
    </li>
-    
+
 </ul>
 
 <h2>Development setup</h2>
@@ -89,7 +88,7 @@ git clone  https://github.com/zahrahasti/palette.git
 <p>
    Alternatively, you can copy the source of the project directly to your local environment using <a href="https://github.com/Rich-Harris/degit">Degit</a>:
 </p>
- 
+
 <p>2. Then, install required packages:</p>
 
 ```sh
