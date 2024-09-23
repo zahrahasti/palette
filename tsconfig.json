@@ -1,27 +1,17 @@
 {
-	"include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "src/**/*.svelte"],
-	"extends": "./.svelte-kit/tsconfig.json",
-	"compilerOptions": {
-		"strict": true,
-		"baseUrl": ".",
-		"noEmit": true,
-		"checkJs": true,
-		"target": "ESNext",
-		"module": "ESNext",
-		"skipLibCheck": true,
-		"noImplicitAny": true,
-		"noEmitOnError": true,
-		"removeComments": true,
-		"noImplicitReturns": true,
-		"paths": { "@/*": ["./src/*"] },
-		"moduleResolution": "Bundler",
-		"verbatimModuleSyntax": true,
-		"types": ["node"],
-		"typeRoots": ["./node_modules/@types", "../node_modules/@types", "../../node_modules/@types"],
-		"allowArbitraryExtensions": true,
-		"allowImportingTsExtensions": true,
-		"noUncheckedIndexedAccess": true,
-		"noFallthroughCasesInSwitch": true,
-		"exactOptionalPropertyTypes": true
-	}
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.vitest.json"
+    }
+  ],
+  "compilerOptions": {
+    "module": "NodeNext"
+  }
 }
