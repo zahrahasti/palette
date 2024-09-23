@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BaseHexColorContainer from './CardPaletteSystem/BaseHexColorContainer.vue'
 import { ref } from 'vue'
-import LikeBtn from '@/components/common/likeBtn.vue'
+import LikeBtn from '@/components/common/LikeBtn.vue'
 import DowloadPaletteBtn from '@/components/common/DowloadPaletteBtn.vue'
 const props = defineProps(['colors', 'reactiveCliked'])
 const activated = ref(props.reactiveCliked)
