@@ -13,17 +13,18 @@ const activeGradientColors = ref(colors.colors)
   >
     <span v-text="color" class="w-32 text-center"></span>
     <input
-    type="color"
-    name="color picker"
-    id="color-picker"
-    class="appearance-none w-16 mx-auto rounded-[100px] h-16 outline-0 border-none"
-    :value="color"
-    v-on:input="(event) => {
-      const input = event.target as HTMLInputElement; // TypeScript casting
-      activeGradientColors[index] = input.value;
-    }"
-  />
-  
+      type="color"
+      name="color picker"
+      id="color-picker"
+      class="appearance-none w-16 mx-auto rounded-[100px] h-16 outline-0 border-none"
+      :value="color"
+      v-on:input="
+        (event) => {
+          const input = event.target as HTMLInputElement
+          activeGradientColors[index] = input.value
+        }
+      "
+    />
   </div>
 </template>
 

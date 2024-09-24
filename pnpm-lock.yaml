@@ -27,6 +27,9 @@ importers:
       '@tsconfig/node20':
         specifier: ^20.1.4
         version: 20.1.4
+      '@types/chroma-js':
+        specifier: ^2.4.4
+        version: 2.4.4
       '@types/jsdom':
         specifier: ^21.1.7
         version: 21.1.7
@@ -604,6 +607,9 @@ packages:
 
   '@tsconfig/node20@20.1.4':
     resolution: {integrity: sha512-sqgsT69YFeLWf5NtJ4Xq/xAF8p4ZQHlmGW74Nu2tD4+g5fAsposc4ZfaaPixVu4y01BEiDCWLRDCvDM5JOsRxg==}
+
+  '@types/chroma-js@2.4.4':
+    resolution: {integrity: sha512-/DTccpHTaKomqussrn+ciEvfW4k6NAHzNzs/sts1TCqg333qNxOhy8TNIoQCmbGG3Tl8KdEhkGAssb1n3mTXiQ==}
 
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
@@ -3301,6 +3307,8 @@ snapshots:
   '@sinclair/typebox@0.27.8': {}
 
   '@tsconfig/node20@20.1.4': {}
+
+  '@types/chroma-js@2.4.4': {}
 
   '@types/estree@1.0.5': {}
 
