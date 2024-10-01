@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import BaseColorShown from '@/components/Card/CardPaletteSystem/BaseColorShown.vue'
+import ColorCirclePreview from '@/components/common/ColorCirclePreview.vue'
 import InputCreator from '@/components/BaseInputCreator/inputCreator.vue'
-import DowloadPaletteBtn from '@/components/common/DowloadPaletteBtn.vue'
-import LikeBtn from '@/components/common/LikeBtn.vue'
+import DowloadPaletteBtn from '@/components/common/Buttons/DowloadPaletteBtn.vue'
+import LikeBtn from '@/components/common/Buttons/LikeBtn.vue'
 import { ref } from 'vue'
 const colors = ref(['#BBBBBB', '#CCCCCC', '#DDDDDD', '#EEEEEE'])
 const gradientColors = ref(['#EEEEEE', '#999999'])
@@ -17,7 +17,7 @@ const paletteLikedStatus = ref(false)
         <div
           class="grid grid-cols-4 row-span-5 w-full gap-5 text-[1.6rem] md:text-[1.4rem] xl:text-[1.5rem] text-white"
         >
-          <BaseColorShown v-for="color in colors" v-bind:key="color" :item="color" />
+          <ColorCirclePreview v-for="color in colors" v-bind:key="color" :item="color" />
         </div>
         <div class="grid grid-cols-4">
           <InputCreator :customClass="`flex-col gap-5`" :colors="colors" />

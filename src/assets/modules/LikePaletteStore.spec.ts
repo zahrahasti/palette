@@ -47,12 +47,11 @@ it('should add a new palette to the store if not existing', () => {
 it('should not add a duplicate palette to the store', () => {
   const paletteStore = usePaletteStore()
   paletteStore.colorPalettes = []
-  const newPalette = ['#FF5733', '#33FF57', '#3357FF']
 
   // Add the same palette twice
-  paletteStore.addToColorPalette(newPalette)
-  paletteStore.addToColorPalette(newPalette)
-  expect(paletteStore.colorPalettes).toEqual([newPalette])
+  paletteStore.addToColorPalette(colorPalette)
+  paletteStore.addToColorPalette(colorPalette)
+  expect(paletteStore.colorPalettes).toEqual([colorPalette])
 })
 
 it('should remove a palette from the store', () => {

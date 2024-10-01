@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import CreatePallete from '@/views/CreatePallete.vue'
-import VueHome from '@/views/VueHome.vue'
-import NewPalette from '@/views/NewPalette.vue'
-import CollectionPalette from '@/views/CollectionPalette.vue'
-import GradientPalette from '@/views/GradientPalette.vue'
+import CreatePallete from '@/pages/CreatePallete.vue'
+import VueHome from '@/pages/VueHome.vue'
+import NewPalette from '@/pages/NewPalette.vue'
+import CollectionPalette from '@/pages/CollectionPalette.vue'
+import GradientPalette from '@/pages/GradientPalette.vue'
 
 const router = createRouter({
   strict: true,

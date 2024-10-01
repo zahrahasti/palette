@@ -21,15 +21,20 @@
     "test:e2e:dev": "start-server-and-test 'vite dev --port 4173' http://localhost:4173 'cypress open --e2e'",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "story:dev": "histoire dev",
+    "story:build": "histoire build",
+    "story:preview": "histoire preview"
   },
   "dependencies": {
-    "@vueuse/core": "^11.0.3",
+    "@vueuse/components": "^11.1.0",
+    "@vueuse/core": "^11.1.0",
     "pinia": "^2.1.7",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"
   },
   "devDependencies": {
+    "@histoire/plugin-vue": "^0.17.17",
     "@rushstack/eslint-patch": "^1.8.0",
     "@tsconfig/node20": "^20.1.4",
     "@types/chroma-js": "^2.4.4",
@@ -46,6 +51,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-cypress": "^3.3.0",
     "eslint-plugin-vue": "^9.23.0",
+    "histoire": "^0.17.17",
     "jsdom": "^24.1.0",
     "lightvue": "^1.5.1",
     "npm-run-all2": "^6.2.0",

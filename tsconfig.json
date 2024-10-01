@@ -1,17 +1,25 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    },
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.vitest.json"
-    }
-  ],
+  "include": ["env.d.ts", "vite.config.ts", "src/**/*.ts", "src/**/*.vue"],
   "compilerOptions": {
-    "module": "NodeNext"
+    "strict": true,
+    "baseUrl": ".",
+    "noEmit": true,
+    "checkJs": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "noImplicitAny": true,
+    "noEmitOnError": true,
+    "removeComments": true,
+    "noImplicitReturns": true,
+    "paths": { "@/*": ["./src/*"] },
+    "moduleResolution": "Bundler",
+    "verbatimModuleSyntax": true,
+    "types": ["vite/client", "node"],
+    "allowArbitraryExtensions": true,
+    "allowImportingTsExtensions": true,
+    "noUncheckedIndexedAccess": true,
+    "noFallthroughCasesInSwitch": true,
+    "exactOptionalPropertyTypes": true
   }
 }

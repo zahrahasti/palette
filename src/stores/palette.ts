@@ -15,6 +15,7 @@ export const usePaletteStore = defineStore('palette', () => {
     )
 
     if (!isExistingPalette) {
+      //@ts-ignore
       colorPalettes.value.push(value)
     }
 

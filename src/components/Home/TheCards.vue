@@ -54,14 +54,12 @@ const CardContext: CardType[] = [
 </script>
 
 <template>
-  <div
-    v-for="card in CardContext"
-    :key="card.color"
-    class="w-full aspect-square grid gap-2 grid-rows-5 grid-cols-5"
-  >
+  <section class="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 md:gap-8 lg:gap-5 gap-5">
     <div
+      v-for="card in CardContext"
+      :key="card.color"
       :style="{ backgroundColor: card.color }"
-      class="col-start-1 text-white col-end-5 row-start-1 row-end-5 rounded-lg rounded-br-[5rem] py-10 px-5 w-full"
+      class="text-white aspect-square flex flex-col justify-evenly rounded-3xl py-10 px-5"
     >
       <div class="flex gap-2">
         <svg class="w-16 aspect-square text-white p-2 rounded-full">
@@ -73,28 +71,12 @@ const CardContext: CardType[] = [
       <p class="font-semibold my-10">{{ card.text }}</p>
       <RouterLink
         :to="card.LinkTo"
-        class="mt-10 text-center px-4 py-2 block bg-white text-black rounded-full"
+        class="text-center px-4 py-2 block bg-white text-black rounded-full"
       >
         {{ card.btnContext }}
       </RouterLink>
     </div>
-    <div
-      :style="`--color:${card.color};--color-mix:#fff;`"
-      class="parent flex gap-2 col-start-1 col-end-6 row-start-5 row-end-6"
-    >
-      <div style="--percentage: 10%" class="lighter h-full aspect-square grid grid-cols-4"></div>
-      <div style="--percentage: 40%" class="middle h-full aspect-square"></div>
-      <div style="--percentage: 70%" class="darker h-full aspect-square"></div>
-    </div>
-    <div
-      :style="`--color:${card.color};--color-mix:#000;`"
-      class="flex flex-col gap-2 col-start-5 col-end-6 row-start-1 row-end-5"
-    >
-      <div style="--percentage: 80%" class="lighter w-full aspect-square"></div>
-      <div style="--percentage: 40%" class="middle w-full aspect-square"></div>
-      <div style="--percentage: 0%" class="darker w-full aspect-square"></div>
-    </div>
-  </div>
+  </section>
 </template>
 
 <style scoped>

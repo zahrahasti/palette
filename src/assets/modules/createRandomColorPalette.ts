@@ -1,10 +1,10 @@
-import { chromaMixingColor } from './chromaMixingColor'
-function createRandomColorPalette() {
+import { mixTwoColors, averageTwoColors } from './chromaMixingColor'
+function createRandomColorPalette(randomColor?: string): string[] {
   return [
-    chromaMixingColor('rgb'),
-    chromaMixingColor('hsl'),
-    chromaMixingColor('lab'),
-    chromaMixingColor('lch')
+    mixTwoColors('rgb', randomColor),
+    mixTwoColors('hsl', randomColor),
+    averageTwoColors('rgb', randomColor),
+    averageTwoColors('rgb', randomColor)
   ]
 }
 export { createRandomColorPalette }

@@ -10,6 +10,9 @@ export default {
       xl: '1500px'
     },
     extend: {
+      colors: {
+        'base-gray': '#404F65'
+      },
       spacing: {
         normal: '1.5rem'
       },

@@ -1,10 +1,12 @@
 <script lang="ts" setup>
-import TheNav from './components/Nav/TheNav.vue'
+import FooterUi from './components/layouts/Footer/FooterUi.vue'
+import TheNav from './components/layouts/Nav/TheNav.vue'
 import { RouterView } from 'vue-router'
 </script>
 <template>
-  <div class="p-2 mx-auto md:w-5/6 lg:w-4/5">
+  <div class="p-10 mx-auto lg:w-5/6">
     <TheNav />
     <RouterView />
   </div>
+  <FooterUi />
 </template>

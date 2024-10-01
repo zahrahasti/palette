@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { getRandomHexColor } from '@/assets/modules/getRandomHexColor'
-import GradientHex from './GradientHex.vue'
+import GradientHex from '@/components/Base/GradientHex.vue'
+import ColorCopy from '@/components/common/ColorCopyButton.vue'
 function returnTwoRandomColor() {
   const randomColor1 = getRandomHexColor()
   const randomColor2 = getRandomHexColor()
@@ -14,8 +15,16 @@ const colors = [returnTwoRandomColor(), returnTwoRandomColor()]
       :style="{ background: `linear-gradient(to right,${color})` }"
       class="rounded-3xl overflow-hidden group relative aspect-square w-full flex justify-between items-center"
     ></div>
-    <div class="flex justify-between my-5">
-      <GradientHex v-for="item in color" :key="item" :colors="item" />
+
+    <!-- search for more information -->
+    <div class="flex my-5 justify-between">
+      <ColorCopy
+        :customClass="`flex flex-row-reverse flex-row`"
+        :customClassBtn="`w-[6rem]`"
+        v-for="item in color"
+        :key="item"
+        :item="item"
+      />
     </div>
   </div>
 </template>

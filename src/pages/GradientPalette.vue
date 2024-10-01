@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BaseGradientCard from '@/components/Base/BaseGradientCard.vue'
+import BaseGradientCard from '@/components/common/Cards/BaseGradientCard.vue'
 import MainWrapper from '@/components/Base/MainWrapper.vue'
 </script>
 <template>
