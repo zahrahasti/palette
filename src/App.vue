@@ -4,9 +4,11 @@ import TheNav from './components/layouts/Nav/TheNav.vue'
 import { RouterView } from 'vue-router'
 </script>
 <template>
-  <div class="p-10 mx-auto lg:w-5/6">
-    <TheNav />
-    <RouterView />
+  <div class="min-h-[100vh]">
+    <div class="p-10 mx-auto lg:w-5/6">
+      <TheNav />
+      <RouterView />
+    </div>
+    <FooterUi />
   </div>
-  <FooterUi />
 </template>
