@@ -14,11 +14,14 @@ export default defineConfig({
     }),
     vueDevTools()
   ],
+  server: {
+    open: true,
+    port: 3000,
+    host: '127.0.0.1'
+  },
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-      '@assets': fileURLToPath(new URL('./src/assets', import.meta.url)),
-      '@stores': fileURLToPath(new URL('./src/stores', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   }
 })

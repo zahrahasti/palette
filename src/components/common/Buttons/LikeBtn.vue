@@ -24,6 +24,7 @@ function toggleLikedPalette() {
     :class="propsValue ? `bg-gray-100` : ''"
     class="btn btn-like text-center text-[1.8rem] md:text-[1.6rem] sm:text-[1.4rem] btn-custom"
     @click="toggleLikedPalette"
+    data-test="btn-like"
   >
     <span>
       <svg

@@ -33,7 +33,7 @@ const filteredColors = computed(() => {
     >
       <label for="search">
         <svg class="text-black w-[1.8rem] h-[1.8rem]">
-          <use href="@assets/Icon/icon.svg#search"></use>
+          <use href="@/assets/Icon/icon.svg#search"></use>
         </svg>
       </label>
       <input
@@ -55,7 +55,7 @@ const filteredColors = computed(() => {
         :show-list-color="showListColor"
         @setTagColor="
           (color) => {
-            defoneInputStoreValue.textInput(color)
+            defoneInputStoreValue.updateHexColor(color)
           }
         "
       />

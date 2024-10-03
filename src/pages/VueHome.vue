@@ -2,7 +2,6 @@
 import { RouterLink, RouterView } from 'vue-router'
 import ContainerSearchBar from '@/components/layouts/Nav/subcomponents/ContainerSearchBar.vue'
 import TheCards from '@/components/Home/TheCards.vue'
-import MainWrapper from '@/components/Base/MainWrapper.vue'
 import HomePageParagraph from '@/components/Base/Paragraphs/HomePageParagraph.vue'
 </script>
 <template>

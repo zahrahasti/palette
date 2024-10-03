@@ -2,7 +2,7 @@ import { it, expect, beforeEach } from 'vitest'
 import { setActivePinia, createPinia } from 'pinia'
 import { usePaletteStore } from '@/stores/palette' // Import the store
 import { updateLikedPalette } from '@/stores/update.palettes' // Import the function to test
-import { createRandomColorPalette } from './createRandomColorPalette'
+import { createRandomColorPalette } from './colorGenerator'
 
 const colorPalette = createRandomColorPalette()
 const localStorageMock = (() => {
@@ -39,8 +39,6 @@ it('should initialize the store with localStorage data if available', () => {
 it('should add a new palette to the store if not existing', () => {
   const paletteStore = usePaletteStore()
   paletteStore.addToColorPalette(colorPalette)
-  console.log(paletteStore.colorPalettes)
-  console.log()
   expect(paletteStore.colorPalettes).toEqual([colorPalette])
 })
 

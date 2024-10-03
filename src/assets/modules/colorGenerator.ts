@@ -1,4 +1,4 @@
-import { mixTwoColors, averageTwoColors } from './chromaMixingColor'
+import { mixTwoColors, averageTwoColors } from './colorMixer'
 function createRandomColorPalette(randomColor?: string): string[] {
   return [
     mixTwoColors('rgb', randomColor),

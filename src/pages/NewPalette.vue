@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import MainWrapper from '@/components/Base/MainWrapper.vue'
 import CardPalette from '@/components/common/Cards/CardPalette.vue'
-import { createRandomColorPalette } from '@/assets/modules/createRandomColorPalette'
+import { createRandomColorPalette } from '@/assets/modules/colorGenerator'
 import { useInputStore } from '@/stores/input'
 const hexColor = useInputStore().hexColor
 const paletteLikedStatus = ref(false)
