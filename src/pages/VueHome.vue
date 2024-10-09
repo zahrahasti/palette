@@ -24,7 +24,7 @@ import HomePageParagraph from '@/components/Base/Paragraphs/HomePageParagraph/Ho
       <div class="flex flex-col w-full mx-auto md:flex-row gap-10 items-center mt-24 mb-36">
         <ContainerSearchBar />
         <RouterLink
-          to="/New"
+          to="/new"
           class="bg-blue-600 w-[20rem] px-6 py-3 block rounded-full text-white hover:opacity-95 hover:shadow-md"
         >
           Go for Palettes

@@ -10,11 +10,11 @@ const router = createRouter({
   sensitive: true,
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    { name: 'Home', path: '/', component: VueHome },
-    { name: 'Create', path: '/Create', component: CreatePallete },
-    { name: 'New', path: '/New', component: NewPalette },
-    { name: 'Collection', path: '/Collection', component: CollectionPalette },
-    { name: 'Gradient', path: '/Gradient', component: GradientPalette }
+    { name: 'home', path: '/', component: VueHome },
+    { name: 'create', path: '/create', component: CreatePallete },
+    { name: 'new', path: '/new', component: NewPalette },
+    { name: 'collection', path: '/collection', component: CollectionPalette },
+    { name: 'gradient', path: '/gradient', component: GradientPalette }
   ]
 })
 

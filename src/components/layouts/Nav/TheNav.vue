@@ -36,16 +36,16 @@ let showList = ref(true)
           <RouterLink to="/"> Home </RouterLink>
         </li>
         <li>
-          <RouterLink to="/New"> New </RouterLink>
+          <RouterLink to="/new"> New </RouterLink>
         </li>
         <li>
-          <RouterLink to="/Gradient"> Gradient </RouterLink>
+          <RouterLink to="/gradient"> Gradient </RouterLink>
         </li>
         <li>
-          <RouterLink to="/Create"> Create </RouterLink>
+          <RouterLink to="/create"> Create </RouterLink>
         </li>
         <li>
-          <RouterLink to="/Collection"> Collection </RouterLink>
+          <RouterLink to="/collection"> Collection </RouterLink>
         </li>
       </ul>
     </div>
