@@ -40,8 +40,6 @@ const paletteLikedStatus = ref(false)
       </div>
       <div class="flex justify-between h-max gap-10 items-center mt-5">
         <ColorSwatchPicker :style="2" :colors="gradientColors" />
-
-        <button class="btn btn-custom" type="button">Save</button>
       </div>
     </section>
   </article>
