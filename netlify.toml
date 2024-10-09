@@ -2,8 +2,4 @@
   command = "pnpm run build"
   publish = "dist" # Adjust this to the correct directory for your built site
 
-[build.environment]
-  NODE_VERSION = "18"  # Specify your Node.js version (if required)
-
-[build.environment]
-  NPM_FLAGS = "--legacy-peer-deps"  # Optional: any additional flags
+ 
