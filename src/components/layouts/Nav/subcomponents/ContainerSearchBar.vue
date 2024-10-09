@@ -30,6 +30,12 @@ const filteredColors = computed(() => {
   >
     <form
       class="w-full border-2 border-black shadow-sm h-[4rem] rounded-full flex items-center px-4 gap-5"
+      @submit.prevent="
+        () => {
+          defoneInputStoreValue.updateHexColor(searchQuery)
+          $router.push('/new')
+        }
+      "
     >
       <label for="search">
         <svg class="text-black w-[1.8rem] h-[1.8rem]">
