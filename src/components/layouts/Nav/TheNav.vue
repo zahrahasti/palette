@@ -33,19 +33,19 @@ let showList = ref(true)
         class="absolute z-20 text-base-gray font-semibold bg-white space-y-5 md:space-y-0 right-5 md:flex md:relative shadow-lg md:shadow-none w-max p-5 md:w-full justify-between gap-20"
       >
         <li>
-          <a href="/"> Home </a>
+          <RouterLink to="/"> Home </RouterLink>
         </li>
         <li>
-          <a href="/new"> New </a>
+          <RouterLink to="/new"> New </RouterLink>
         </li>
         <li>
-          <a href="/gradient"> Gradient </a>
+          <RouterLink to="/gradient"> Gradient </RouterLink>
         </li>
         <li>
-          <a href="/create"> Create </a>
+          <RouterLink to="/create"> Create </RouterLink>
         </li>
         <li>
-          <a href="/collection"> Collection </a>
+          <RouterLink to="{}"> Collection </RouterLink>
         </li>
       </ul>
     </div>
