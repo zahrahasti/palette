@@ -9,7 +9,6 @@ const paletteLikedStatus = ref(false)
 </script>
 
 <template>
-  {{ hexColor }}
   <MainWrapper>
     <CardPalette
       :reactive-cliked="paletteLikedStatus"

@@ -12,11 +12,11 @@ const props = defineProps(['colors', 'showListColor'])
         :key="color"
         class="flex gap-2 items-center border-gray-100 rounded-3xl border-2 p-1"
         tag="button"
-        to="/New"
+        to="/new"
         @click="
           () => {
             $emit('setTagColor', listOfBaseColors[color])
-            $router.push('/New')
+            $router.push('/new')
           }
         "
       >
