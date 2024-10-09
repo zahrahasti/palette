@@ -11,7 +11,9 @@
     "vitest.config.*",
     "cypress.config.*",
     "nightwatch.conf.*",
-    "playwright.config.*"
+    "playwright.config.*",
+    "./**/*",
+    "../support/**/*"
   ],
 
   "exclude": ["src/**/__tests__/*"],
@@ -30,7 +32,7 @@
     "paths": { "@/*": ["./src/*"] },
     "moduleResolution": "Bundler",
     "verbatimModuleSyntax": true,
-    "types": ["vite/client", "node"],
+    "types": ["vite/client", "node", "cypress"],
     "allowArbitraryExtensions": true,
     "allowImportingTsExtensions": true,
     "noUncheckedIndexedAccess": true,
