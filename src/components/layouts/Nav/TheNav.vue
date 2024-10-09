@@ -45,7 +45,7 @@ let showList = ref(true)
           <RouterLink to="/create"> Create </RouterLink>
         </li>
         <li>
-          <RouterLink to="{}"> Collection </RouterLink>
+          <RouterLink to="/collection"> Collection </RouterLink>
         </li>
       </ul>
     </div>
