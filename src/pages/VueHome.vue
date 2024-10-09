@@ -2,7 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import ContainerSearchBar from '@/components/layouts/Nav/subcomponents/ContainerSearchBar.vue'
 import TheCards from '@/components/Home/TheCards.vue'
-import HomePageParagraph from '@/components/Base/Paragraphs/HomePageParagraph.vue'
+import HomePageParagraph from '@/components/Base/Paragraphs/HomePageParagraph/HomePageParagraph.vue'
 </script>
 <template>
   <div class="mb-20 mx-auto text-center">

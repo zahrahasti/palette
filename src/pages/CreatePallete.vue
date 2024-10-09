@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import ColorCirclePreview from '@/components/common/ColorCirclePreview.vue'
-import InputCreator from '@/components/BaseInputCreator/inputCreator.vue'
-import DowloadPaletteBtn from '@/components/common/Buttons/DowloadPaletteBtn.vue'
-import LikeBtn from '@/components/common/Buttons/LikeBtn.vue'
+import ColorSwatchPicker from '@/components/ColorSwatchPicker/ColorSwatchPicker.vue'
+import DowloadPaletteBtn from '@/components/common/Buttons/DowloadPaletteBtn/DowloadPaletteBtn.vue'
+import LikeBtn from '@/components/common/Buttons/LikeBtn/LikeBtn.vue'
 import { ref } from 'vue'
 const colors = ref(['#BBBBBB', '#CCCCCC', '#DDDDDD', '#EEEEEE'])
 const gradientColors = ref(['#EEEEEE', '#999999'])
@@ -20,7 +20,7 @@ const paletteLikedStatus = ref(false)
           <ColorCirclePreview v-for="color in colors" v-bind:key="color" :item="color" />
         </div>
         <div class="grid grid-cols-4">
-          <InputCreator :customClass="`flex-col gap-5`" :colors="colors" />
+          <ColorSwatchPicker :style="1" :colors="colors" />
         </div>
       </div>
       <div class="flex justify-between mt-5 items-center">
@@ -39,7 +39,8 @@ const paletteLikedStatus = ref(false)
         </div>
       </div>
       <div class="flex justify-between h-max gap-10 items-center mt-5">
-        <InputCreator :customClass="'flex-row-reverse items-center'" :colors="gradientColors" />
+        <ColorSwatchPicker :style="2" :colors="gradientColors" />
+
         <button class="btn btn-custom" type="button">Save</button>
       </div>
     </section>

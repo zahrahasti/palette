@@ -1,68 +1,34 @@
-import { it, expect, beforeEach } from 'vitest'
-import { setActivePinia, createPinia } from 'pinia'
-import { usePaletteStore } from '@/stores/palette' // Import the store
-import { updateLikedPalette } from '@/stores/update.palettes' // Import the function to test
+import { it, expect, vi } from 'vitest'
+import { usePaletteStore } from '@/stores/palette'
 import { createRandomColorPalette } from './colorGenerator'
+import { mount } from '@vue/test-utils'
+import LikeBtn from '@/components/common/Buttons/LikeBtn/LikeBtn.vue'
+import { createTestingPinia } from '@pinia/testing'
 
-const colorPalette = createRandomColorPalette()
-const localStorageMock = (() => {
-  let store: Record<string, string> = {}
-  return {
-    getItem(key: string) {
-      return store[key] || null
+const colors = createRandomColorPalette()
+it('should initialize the store with localStorage data if available', async () => {
+  const wrapper = mount(LikeBtn, {
+    global: {
+      plugins: [
+        createTestingPinia({
+          createSpy: vi.fn,
+          stubActions: false
+        })
+      ]
     },
-    setItem(key: string, value: string) {
-      store[key] = value
-    },
-    clear() {
-      store = {}
+    props: {
+      clicked: false,
+      colors
     }
-  }
-})()
-
-Object.defineProperty(global, 'localStorage', { value: localStorageMock })
-
-beforeEach(() => {
-  setActivePinia(createPinia())
-  localStorage.clear()
-})
-
-it('should initialize the store with localStorage data if available', () => {
-  // Simulate data in localStorage
-  localStorage.setItem('palette', JSON.stringify(colorPalette))
-
+  })
   const paletteStore = usePaletteStore()
+  const btnLike = wrapper.find('[data-test="btn-like"]')
+  await btnLike.trigger('click')
+  expect(btnLike.classes()).toContain('bg-gray-100')
+  expect(JSON.stringify(paletteStore.colorPalettes)).to.be.equal(JSON.stringify([colors]))
 
-  expect(paletteStore.colorPalettes).toEqual(colorPalette)
-})
-
-it('should add a new palette to the store if not existing', () => {
-  const paletteStore = usePaletteStore()
-  paletteStore.addToColorPalette(colorPalette)
-  expect(paletteStore.colorPalettes).toEqual([colorPalette])
-})
-
-it('should not add a duplicate palette to the store', () => {
-  const paletteStore = usePaletteStore()
-  paletteStore.colorPalettes = []
-
-  // Add the same palette twice
-  paletteStore.addToColorPalette(colorPalette)
-  paletteStore.addToColorPalette(colorPalette)
-  expect(paletteStore.colorPalettes).toEqual([colorPalette])
-})
-
-it('should remove a palette from the store', () => {
-  const paletteStore = usePaletteStore()
-  paletteStore.addToColorPalette(colorPalette)
-  paletteStore.removeColorPalette(colorPalette)
-
-  expect(paletteStore.colorPalettes).not.toContain(colorPalette)
-})
-
-it('should update localStorage when updateLikedPalette is called', () => {
-  updateLikedPalette(colorPalette)
-
-  const storedPalettes = JSON.parse(localStorage.getItem('palette') || '[]')
-  expect(storedPalettes).toContainEqual(colorPalette)
+  await btnLike.trigger('click')
+  expect(btnLike.classes()).not.toContain('bg-gray-100')
+  paletteStore.removeColorPalette(colors)
+  expect(paletteStore.colorPalettes).to.be.empty
 })

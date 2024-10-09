@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
-const { colors } = defineProps(['colors'])
+import type { PropType } from 'vue'
+const { colors } = defineProps({ colors: Array as PropType<string[]> })
 const canvas = ref<HTMLCanvasElement | null>(null)
 const drawPalette = (colors: string[]) => {
   const canvasEl = canvas.value
@@ -29,7 +30,7 @@ const downloadImage = () => {
 }
 
 onMounted(() => {
-  drawPalette(colors)
+  if (colors) drawPalette(colors)
 })
 </script>
 <template>

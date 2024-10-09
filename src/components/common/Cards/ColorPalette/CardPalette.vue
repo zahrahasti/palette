@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import ColorCopyPreview from '@/components/common/ColorPreviewAndCopy.vue'
 import { ref } from 'vue'
-import LikeBtn from '@/components/common/Buttons/LikeBtn.vue'
-import DowloadPaletteBtn from '@/components/common/Buttons/DowloadPaletteBtn.vue'
+import LikeBtn from '@/components/common/Buttons/LikeBtn/LikeBtn.vue'
+import DowloadPaletteBtn from '@/components/common/Buttons/DowloadPaletteBtn/DowloadPaletteBtn.vue'
 const props = defineProps(['colors', 'reactiveCliked'])
 const activated = ref(props.reactiveCliked)
 </script>

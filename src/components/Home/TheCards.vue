@@ -1,9 +1,5 @@
 <script lang="ts" setup>
 import icon from './vueHomeIcon/icon.svg'
-// import computed from 'vue'
-// const cssVars = computed(() => {
-//   return {}
-// })
 type CardType = {
   href: string
   title: string
