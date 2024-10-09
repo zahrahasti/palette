@@ -1,8 +1,11 @@
 [build]
   command = "pnpm run build"
-  publish = "dist" # Adjust this to the correct directory for your built site
+  publish = "dist"  # or "build", depending on your setup
 
- [[redirects]]
+[build.environment]
+  NODE_VERSION = "18"  # Specify your Node.js version if required
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
