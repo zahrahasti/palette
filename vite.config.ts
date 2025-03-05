@@ -4,7 +4,7 @@ import vue from '@vitejs/plugin-vue'
 import { HstVue } from '@histoire/plugin-vue'
 import { URL, fileURLToPath } from 'node:url'
 import vueDevTools from 'vite-plugin-vue-devtools'
-
+import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   server: {
     open: true,
@@ -24,7 +24,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  plugins: [vue(), vueDevTools()],
+  plugins: [tailwindcss(), vue(), vueDevTools()],
   histoire: {
     setupFile: 'src/histoire.setup.ts',
     storyMatch: ['src/components/**/*.story.vue'],

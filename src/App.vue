@@ -1,14 +1,14 @@
 <script lang="ts" setup>
-import FooterUi from './components/layouts/Footer/FooterUi.vue'
-import TheNav from './components/layouts/Nav/TheNav.vue'
+import TheNav from './components/layouts/TheNav.vue'
 import { RouterView } from 'vue-router'
 </script>
 <template>
-  <div class="min-h-[100vh]">
-    <div class="p-10 mx-auto lg:w-5/6">
+  <div class="min-h-[100vh] p-5">
+    <div class="mx-auto lg:w-5/6">
       <TheNav />
-      <RouterView />
+      <main class="gap-normal h-max w-full">
+        <RouterView />
+      </main>
     </div>
-    <FooterUi />
   </div>
 </template>

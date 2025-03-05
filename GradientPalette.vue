@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import BaseGradientCard from '@/components/common/Cards/BaseGradientCard.vue'
 import MainWrapper from '@/components/Base/MainWrapper.vue'
 </script>
@@ -6,4 +6,4 @@ import MainWrapper from '@/components/Base/MainWrapper.vue'
   <MainWrapper>
     <BaseGradientCard />
   </MainWrapper>
-</template>
+</template> -->
