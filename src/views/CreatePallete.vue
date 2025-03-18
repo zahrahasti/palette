@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import ColorCirclePreview from '@/components/common/ColorCirclePreview.vue'
+import ColorCirclePreview from '@/components/ColorCirclePreview.vue'
 import ColorSwatchPicker from '@/components/ColorSwatchPicker/ColorSwatchPicker.vue'
-import DowloadPaletteBtn from '@/components/common/Buttons/DowloadPaletteBtn/DowloadPaletteBtn.vue'
-import LikeBtn from '@/components/common/Buttons/LikeBtn/LikeBtn.vue'
+import DowloadPaletteBtn from '@/components/DowloadPaletteBtn/DowloadPaletteBtn.vue'
+import LikeBtn from '@/components/LikeBtn/LikeBtn.vue'
 import { ref } from 'vue'
 const colors = ref(['#BBBBBB', '#CCCCCC', '#DDDDDD', '#EEEEEE'])
 const gradientColors = ref(['#EEEEEE', '#999999'])

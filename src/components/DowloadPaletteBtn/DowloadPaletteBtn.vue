@@ -35,11 +35,5 @@ onMounted(() => {
 </script>
 <template>
   <canvas width="200" height="200" class="hidden" ref="canvas"></canvas>
-  <button
-    @click="downloadImage"
-    type="button"
-    class="btn text-[1.8rem] md:text-[1.6rem] sm:text-[1.4rem] btn-custom"
-  >
-    Download
-  </button>
+  <button @click="downloadImage" type="button" class="button-default">Download</button>
 </template>

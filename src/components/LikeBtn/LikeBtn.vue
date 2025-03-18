@@ -22,15 +22,17 @@ function toggleLikedPalette() {
   <button
     type="button"
     :class="{ 'bg-gray-100': propsValue }"
-    class="btn text-base-gray border-[1px] p-2 rounded-lg border-gray-200 flex-center gap-4 text-[1.8rem] md:text-[1.6rem] sm:text-[1.4rem] btn-custom"
+    class="button-default w-[7.3rem] h-[3.4rem] flex-center"
     @click="toggleLikedPalette"
     data-test="btn-like"
   >
     <span
       :class="{ 'text-red-500 bg-red-500 fill-amber-50': propsValue }"
-      class="icon-[material-symbols-light--favorite-rounded] w-10 h-10"
+      class="icon-[material-symbols-light--favorite-rounded] m-0 p-0 w-10 h-10"
     >
     </span>
     <span>Like</span>
   </button>
 </template>
+
+<style></style>

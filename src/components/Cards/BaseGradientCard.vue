@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import ColorCopyButton from '@/components/common/ColorCopyButton/ColorCopyButton.vue'
+import ColorCopyButton from '@/components/ColorCopyButton/ColorCopyButton.vue'
 function returnTwoRandomColor() {}
 const colors = [returnTwoRandomColor(), returnTwoRandomColor()]
 </script>

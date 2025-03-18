@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import CardPalette from '@/components/common/Cards/ColorPalette/CardPalette.vue'
+import CardPalette from '@/components/Cards/ColorPalette/CardPalette.vue'
 import { ref } from 'vue'
 const palette: string | null = localStorage.getItem('palette')
 const parsedAvailableColorPalettes = palette !== null ? (JSON.parse(palette) as string[][]) : []
