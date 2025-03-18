@@ -9,7 +9,7 @@ lerna-debug.log*
 
 node_modules
 .DS_Store
-.env
+
 dist
 dist-ssr
 coverage
@@ -19,6 +19,7 @@ coverage
 /cypress/screenshots/
 
 # Editor directories and files
+.env
 .vscode/*
 !.vscode/extensions.json
 .idea
