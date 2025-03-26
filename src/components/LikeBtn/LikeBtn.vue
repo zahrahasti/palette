@@ -27,8 +27,8 @@ function toggleLikedPalette() {
     data-test="btn-like"
   >
     <span
-      :class="{ 'text-red-500 bg-red-500 fill-amber-50': propsValue }"
-      class="icon-[material-symbols-light--favorite-rounded] m-0 p-0 w-10 h-10"
+      :class="{ 'bg-blue-500 fill-amber-50': propsValue }"
+      class="icon-[ic--round-favorite] m-0 p-0 w-10 h-10"
     >
     </span>
     <span>Like</span>

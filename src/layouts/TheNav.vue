@@ -7,14 +7,18 @@ const routerLinkItems = [
   },
   { iconId: 'icon-[solar--star-bold]', router: '/gradient', output: 'Gradient' },
   { iconId: 'icon-[solar--widget-add-bold]', router: '/create', output: 'Create' },
-  { iconId: 'icon-[ic--round-favorite]', router: '/collection', output: 'Collection' }
+  {
+    iconId: 'icon-[ic--round-favorite]',
+    router: '/collection',
+    output: 'Collection'
+  }
 ]
 </script>
 
 <template>
-  <div>
+  <div class="z-10 fixed left-1/2 -translate-x-1/2 md:inset-y-[85%] bottom-1.5 w-full md:w-5xl">
     <ul
-      class="fixed rounded-xl md:mb-12 shadow-2xl bg-white w-full md:w-5xl bottom-0 left-1/2 -translate-x-1/2 z-20 text-base-gray flex p-5 justify-around md:gap-20"
+      class="rounded-xl md:mb-12 bg-gray-100 shadow-2xl text-base-gray flex p-5 justify-around md:gap-20"
     >
       <li v-for="item in routerLinkItems" :key="item.iconId">
         <RouterLink

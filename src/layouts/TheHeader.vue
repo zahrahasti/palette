@@ -11,12 +11,12 @@ const showTagColor = shallowRef(false)
     <picture>
       <source srcset="@/assets/Icon/desktop-logo.svg" media="(min-width: 768px)" />
       <img
-        src="../../assets/Icon/mobile-logo.svg"
+        src="@/assets/Icon/mobile-logo.svg"
         alt="Palette website logo featuring a colorful paint palette"
       />
     </picture>
 
-    <div class="relative w-full">
+    <div class="isolate w-full relative">
       <search>
         <form
           action=""
@@ -42,14 +42,14 @@ const showTagColor = shallowRef(false)
       </search>
       <div
         :style="{ display: showTagColor ? 'block' : 'none' }"
-        class="absolute z-20 border-default mt-5 w-full text-base-gray bg-white rounded-b-3xl p-5"
+        class="absolute border-default mt-5 w-full text-base-gray bg-white rounded-b-3xl p-5"
       >
         <strong class="mb-10">colors</strong>
         <div class="flex flex-wrap gap-1.5">
           <RouterLink
             v-for="(color, index) in colors"
             :key="index"
-            :to="'/colors/' + color"
+            :to="`/colors/${color}`"
             class="small-color p-2 px-3 text-xl rounded-full"
           >
             <span class="w-6 h-6 rounded-full block" :style="{ backgroundColor: color }"></span>
@@ -58,6 +58,6 @@ const showTagColor = shallowRef(false)
         </div>
       </div>
     </div>
+    <TheNav />
   </div>
-  <TheNav />
 </template>

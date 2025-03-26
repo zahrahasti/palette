@@ -5,10 +5,10 @@ import ColorCopyButton from './ColorCopyButton.vue'
 <template>
   <Story>
     <Variant title="default style in coloCopyButton">
-      <ColorCopyButton :item="`#000FFF`" :style="1" />
+      <ColorCopyButton :style="'flex-row'" :item="`#000FFF`" />
     </Variant>
     <Variant title="second Style in colorCopyButton">
-      <ColorCopyButton :item="`#000FFF`" :style="2" />
+      <ColorCopyButton :item="`#000FFF`" />
     </Variant>
   </Story>
 </template>

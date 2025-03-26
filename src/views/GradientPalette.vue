@@ -3,6 +3,7 @@ import ColorCopyButton from '@/components/ColorCopyButton/ColorCopyButton.vue'
 import { fetchPalettes, colorPalettes } from '@/lib/fetchPalettes'
 import { computed, readonly, shallowRef } from 'vue'
 import { useIntersectionObserver } from '@vueuse/core'
+colorPalettes.value = []
 const lastElement = shallowRef(null)
 const homePageTagColor = readonly({ tagColor: 'gradient' })
 useIntersectionObserver(
@@ -17,17 +18,17 @@ useIntersectionObserver(
 <template>
   <div class="w-full grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] justify-between gap-5">
     <div
-      class="flex flex-col w-full aspect-square"
+      class="flex-center rounded-3xl justify-between w-full aspect-square"
       v-for="({ colors }, index) in colorPalettes"
       :key="index"
+      :style="{ background: `linear-gradient(to right, ${colors.join(',')}` }"
     >
-      <div
-        class="w-full aspect-square"
-        :style="{ background: `linear-gradient(to right, ${colors[0]}, ${colors[1]})` }"
-      ></div>
-      <div class="flex-center mt-5">
-        <ColorCopyButton v-for="(color, index) in colors" :key="index" :color="color" />
-      </div>
+      <ColorCopyButton
+        class="w-full h-full bg-[rgba(225,225,255,.2)] ease-in duration-300 opacity-0 hover:opacity-100 grid place-content-center"
+        v-for="color in colors"
+        :key="color"
+        :color="color"
+      />
     </div>
   </div>
   <div ref="lastElement"></div>

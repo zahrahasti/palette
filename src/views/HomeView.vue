@@ -15,6 +15,7 @@ import CardPalette from '@/components/Cards/ColorPalette/CardPalette.vue'
 const lastElement = shallowRef(null)
 const homePageTagColor = readonly({ tagColor: 'random' })
 import { fetchPalettes, colorPalettes } from '@/lib/fetchPalettes'
+colorPalettes.value = []
 fetchPalettes(homePageTagColor.tagColor)
 
 const observeSentinel = () => {

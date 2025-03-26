@@ -20,7 +20,6 @@ const fetchPalettes = async (tagColor: string) => {
       }
     )
     const data = await response.json()
-    console.log(data)
     if (data.length > 0) {
       colorPalettes.value = [...colorPalettes.value, ...data]
       offset.value += 4

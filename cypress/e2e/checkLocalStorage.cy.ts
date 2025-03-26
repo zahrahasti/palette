@@ -1,5 +1,3 @@
-// https://on.cypress.io/api
-
 let clicked = false
 it('check for localStorage', () => {
   cy.visit('/New')
